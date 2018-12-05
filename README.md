@@ -1,13 +1,17 @@
-# A starter webpack project for React
+# How you Doin'?  ||  Mood
 
-This is a starter project that uses webpack to transpile and bundle ES6 React code. To use, consider these steps:
+Our application will help you track your mood and can help you find out how it came there. The goal of the app is to create awareness and provide you with usefull tips on how to improve it and to visualise how your mood has been over the course of time. 
 
-* Fork this repo
-* Rename your repo according to the app you're building
 
-```sh
-git clone https://github.com/[your-account]/[your-app].git
-cd [your-app] && yarn
+## Goals
+See Wiki for an up to date list - https://github.com/kowhai-2018/Final-Project/wiki/Goals
+
+
+## How to start
+
+```
+git clone https://github.com/kowhai-2018/Final-Project.git
+cd Final-Project && yarn
 ```
 
 To start the development server with a watcher that rebuilds your code, run `yarn dev`. The assets built by webpack are placed in `server/public`. This folder is defined as a static folder in an Express.js server that can be started with `npm run server`.
@@ -16,7 +20,7 @@ Additional components should be placed in `client/components`.
 
 ## Separate client/server
 
-The boilerplate is also set up to host the client using `webpack-dev-server` with hot module reloading etc. To use this method, in one terminal run:
+This application is also set up to host the client using `webpack-dev-server` with hot module reloading etc. To use this method, in one terminal run:
 ```sh
 yarn client
 ```
