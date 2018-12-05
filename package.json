@@ -1,16 +1,17 @@
 {
-  "name": "boilerplate-react-webpack",
+  "name": "Mood",
   "version": "0.2.2",
-  "description": "A webpack React starter",
-  "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
+  "description": "Kowhai 2018 - Final Project",
+  "repository": "https://github.com/kowhai-2018/Final-Project.git",
   "main": "server/index.js",
-  "author": "EDA",
+  "author": "Kowhai 2018",
   "license": "ISC",
   "scripts": {
     "client": "webpack-dev-server --hot --inline",
-    "dev": "node server & webpack --watch",
-    "server": "node server",
+    "dev": "nodemon server & webpack --watch",
+    "server": "nodemon server",
     "start": "webpack && node server",
+    "updateDB": "rm dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run",
     "test": "jest --watchAll"
   },
   "babel": {
@@ -29,22 +30,38 @@
     ]
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "superagent": "^4.0.0-beta.5"
-  },
-  "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "knex": "^0.15.2",
+    "libsodium-wrappers-sumo": "^0.7.3",
+    "pg": "^7.7.1",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.83.0",
+    "superagent": "^4.0.0",
+    "webpack": "^3.12.0"
+  },
+  "devDependencies": {
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "jest": "^23.6.0",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
-    "webpack": "^3.10.0",
+    "nock": "^10.0.2",
+    "nodemon": "^1.18.7",
+    "sqlite3": "^4.0.4",
+    "react-test-renderer": "^16.6.3",
+    "supertest": "^3.3.0",
     "webpack-dev-server": "^2.11.1"
   }
 }
