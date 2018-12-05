@@ -1,6 +1,6 @@
 # How you Doin'?  ||  Mood
 
-Our application will help you track your mood and can help you find out how it came there. The goal of the app is to create awareness and provide you with usefull tips on how to improve it and to visualise how your mood has been over the course of time. 
+Our application will help you track your mood and can help you find out how it came there. The goal of the app is to create awareness and provide you with useful tips on how to improve it and to visualise how your mood has been over the course of time. 
 
 
 ## Goals
