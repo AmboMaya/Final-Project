@@ -1,8 +1,8 @@
+exports.up = knex =>
+  knex.schema.createTable('activities', t => {
+    t.increments('id').primary()
+    t.string('name').unique()
+    t.string('icon')
+  })
 
-exports.up = function(knex, Promise) {
-  
-};
-
-exports.down = function(knex, Promise) {
-  
-};
+exports.down = knex => knex.schema.dropTable('activities')
