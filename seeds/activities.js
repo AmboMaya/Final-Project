@@ -1,13 +1,17 @@
-
-exports.seed = function(knex, Promise) {
+exports.seed = knex => {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex('activities').del()
+    .then(() => {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
-};
+      return knex('activities').insert([
+        {id: 1, mood: '', icon: ''},
+        {id: 2, exercise: '', icon: ''},
+        {id: 3, diet: '', icon: ''},
+        {id: 4, sleep: '', icon: ''},
+        {id: 5, meditation: '', icon: ''},
+        {id: 6, water: '', icon: ''},
+        {id: 7, alcohol: '', icon: ''},
+        {id: 8, vice: '', icon: ''}
+      ])
+    })
+}
