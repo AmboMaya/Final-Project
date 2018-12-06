@@ -1,34 +1,30 @@
-import React from 'react'
-import {Card, Container, List, Grid} from 'semantic-ui-react'
+import React from "react";
+import { Card, Button } from 'semantic-ui-react'
 
-const activityData = {
-  mood: 'happy',
-  exercise: 'not happy',
-  diet: '',
-  sleep: '',
-  meditation: '',
-  water: '',
-  alcohol: '',
-  vice: ''
+const ActivityCard = props => {
+  return (
+    <React.Fragment>
+      <Card>
+        <Card.Content>
+          <Card.Header>{props.name}</Card.Header>
+          <Card.Meta>Friends of Elliot</Card.Meta>
+          <Card.Description>
+            {props.log}
+          </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <div className="ui two buttons">
+            <Button basic color="green">
+              Approve
+            </Button>
+            <Button basic color="red">
+              Decline
+            </Button>
+          </div>
+        </Card.Content>
+      </Card>
+    </React.Fragment>
+  )
 }
 
-class CardList extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        <Container>
-          <h1>{this.props.item.name}</h1>
-          {/* <Grid columns={2} doubling stackable>
-            <Grid.Column align='center'>
-              <List>
-                <Card activityData = {activityData} />
-              </List>
-            </Grid.Column>
-          </Grid> */}
-        </Container>
-      </React.Fragment>
-    )
-  }
-}
-
-export default CardList
+export default ActivityCard
