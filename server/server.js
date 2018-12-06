@@ -2,13 +2,15 @@ const cors = require('cors')
 const path = require('path')
 const express = require('express')
 
-// const users = require('./routes/users')
+const users = require('./routes/users')
+const dates = require('./routes/dates')
 
 const server = express()
 
 server.use(cors())
 server.use(express.json())
-// server.use('/api/v1/users', users)
+server.use('/api/v1/users', users)
+server.use('/api/v1/records', dates)
 server.use(express.static(path.join(__dirname, './public')))
 
 server.get('*', (req, res) => {

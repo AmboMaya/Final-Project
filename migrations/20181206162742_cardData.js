@@ -4,7 +4,7 @@ exports.up = knex =>
     t.integer('date_id').references('dates.id')
     t.integer('activity_id').references('activities.id')
     t.integer('rating')
-    t.string('detail')
+    t.string('log')
   })
 
 exports.down = knex => knex.schema.dropTable('cardData')
