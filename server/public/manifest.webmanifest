@@ -4,7 +4,7 @@
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait", 
-  "background_color": "#AEBD38",
+  "background_color": "#505160",
   "description": "Journal your mental state of mind",
   "icons": [{
     "src": "images/touch/icon48.png",
