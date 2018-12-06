@@ -11,8 +11,8 @@ module.exports = router
 // })
 
 router.post('/', (req, res) => {
-  // req.body must look like :
-  // {userId: 1, records:[{activityId:1, rating:1, }]}
+  // req.body required to look like :
+  // {userId: 1, records:[{activityId:1, rating:1, log:'blah'},{more cards}]}
   const {userId, records} = req.body
 
   cardData.addDate({user_id: userId})
