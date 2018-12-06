@@ -1,7 +1,7 @@
 import React from 'react'
-// import {Header} from 'semantic-ui-react'
+import Main from './Main'
 
-class CardList extends React.Component {
+class App extends React.Component {
   render () {
     return (
       <React.Fragment>
@@ -16,4 +16,4 @@ class CardList extends React.Component {
   }
 }
 
-export default CardList
+export default App
