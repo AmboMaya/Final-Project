@@ -3,6 +3,7 @@ import { Card, Button, Grid } from 'semantic-ui-react'
 import Smiley from "./Rating/Smiley"
 
 const ActivityCard = props => {
+  
   let smilies = []
   for (let i = 1; i <= 5; i++) {
     smilies.push(<Smiley rating={i} selected={props.currentRating === i} activity={props.activity} />)
@@ -21,7 +22,7 @@ const ActivityCard = props => {
             {smilies}
           </Card.Content>
           <Card.Content extra>
-            <i className="plus icon" value="Add log"></i>
+            <i className="plus icon"></i>
           </Card.Content>
         </Card>
       </Grid.Column>
