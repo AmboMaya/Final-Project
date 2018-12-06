@@ -10,6 +10,11 @@ function addDate (data, db = connection) {
     .returning('id')
 }
 
+function addRecords (records, db = connection) {
+  
+}
+
 module.exports = {
-  addDate
+  addDate,
+  addRecords
 }
