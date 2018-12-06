@@ -16,7 +16,7 @@ const Smiley = props => {
   }
 
   return (
-    <i className={"far " + faceType + " fa-3x smileyFace"}></i>
+    <i className={"far " + faceType + " fa-3x facesInCss"}></i>
   )
 }
  

@@ -23,9 +23,9 @@ const ActivityCard = props => {
             <Smiley rating={3} />         
             <Smiley rating={4} />         
             <Smiley rating={5} />          */}
-          {/* <Card.Description>
-            {props.log}
-          </Card.Description> */}
+            {/* <Card.Description>
+              {props.log}
+            </Card.Description> */}
         </Card.Content>
         <Card.Content>
           <i className="plus icon"></i>
