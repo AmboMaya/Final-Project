@@ -24,7 +24,7 @@ export default class CardList extends React.Component {
             <Grid.Column align="center">
               <div>
                 {this.state.activities.map(act => {
-                  return <ActivityCard name={act.name} log={act.log} />;
+                  return <ActivityCard name={act.name} log={act.log} key={act.name} />;
                 })}
               </div>
             </Grid.Column>
