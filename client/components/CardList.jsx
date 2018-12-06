@@ -5,14 +5,14 @@ import ActivityCard from "./ActivityCard"
 export default class CardList extends React.Component {
   state = {
     activities: [
-      { name: "mood", log: "happy" },
-      { name: "exercise", log: "happy" },
-      { name: "diet", log: "happy" },
-      { name: "sleep", log: "happy" },
-      { name: "meditation", log: "happy" },
-      { name: "water", log: "happy" },
-      { name: "alcohol", log: " not happy" },
-      { name: "vice", log: "sad" }
+      { name: "Mood", log: "happy" },
+      { name: "Exercise", log: "happy" },
+      { name: "Diet", log: "happy" },
+      { name: "Sleep", log: "happy" },
+      { name: "Meditation", log: "happy" },
+      { name: "Water", log: "happy" },
+      { name: "Alcohol", log: " not happy" },
+      { name: "Vice", log: "sad" }
     ]
   }
 
@@ -20,7 +20,7 @@ export default class CardList extends React.Component {
     return (
       <React.Fragment>
         <Container>
-          <Grid columns={2} doubling stackable>
+          <Grid columns={1} doubling stackable>
             <Grid.Column align="center">
               <div>
                 {this.state.activities.map(act => {
