@@ -11,7 +11,8 @@ function addDate (data, db = connection) {
 }
 
 function addRecords (records, db = connection) {
-  
+  return db('cardData')
+    .insert(records)
 }
 
 module.exports = {

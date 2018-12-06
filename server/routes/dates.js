@@ -15,17 +15,37 @@ router.post('/', (req, res) => {
   // {userId: 1, records:[{activityId:1, rating:1, log:'blah'},{more cards}]}
   const {userId, records} = req.body
 
+  // if (isRecordOkay) {
   cardData.addDate({user_id: userId})
     .then(dateId => {
       for (let rec of records) {
-        rec.date_id = dateId
+        rec.date_id = dateId[0]
         rec.activity_id = rec.activityId
         delete rec.activityId
       }
-      res.json(records)
-      cardData.addRecords(records)
 
-      // res.json({Okay: id})
+      cardData.addRecords(records)
+        .then(() => {
+          // res.json(records)
+          res.json({Okay: true})
+        })
+        .catch((err) => res.json({Okay: false, error: err.message}))
     })
     .catch((err) => res.json({Okay: false, error: err.message}))
+
+  // }
+  // else {
+  //   res.json({Okay: false, error: 'Data format is not correct'})
+  // }
 })
+
+// // Check if records data is in right format
+// function checkRecords (records) {
+//   let isRecordOkay = true
+//   records.forEach(rec => {
+//     if (Object.keys(rec).sort() !== ['activityId', 'log', 'rating'] || !rec.activityId) {
+//       isRecordOkay = false
+//     }
+//   })
+//   return isRecordOkay
+// }
