@@ -3,6 +3,7 @@
   "short_name": "Mood",
   "start_url": "/index.html",
   "display": "standalone",
+  "orientation": "portrait", 
   "background_color": "#AEBD38",
   "description": "Journal your mental state of mind",
   "icons": [{
@@ -34,5 +35,4 @@
     "sizes": "192x192",
     "type": "image/png"
   }]
-  
 }
