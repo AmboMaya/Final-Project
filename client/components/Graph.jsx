@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import {Line} from 'react-chartjs-2'
 
 export default class Chart extends Component {
+
     state = {
         chartData: {
             labels: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Yesterday"], //Placeholders for dates
-            yLabels: {
-                1 : 'terrible', 2 : 'bad', 3 : 'average', 4 : 'good',
-                5 : 'great'
-            },
             datasets: [{
                 fill: false,
                 borderColor: 'red',
@@ -74,21 +71,26 @@ export default class Chart extends Component {
       <div>
         <Line 
         data={this.state.chartData}
-        // options={{
-        //     scales: {
-        //         yAxes: [{
-        //             ticks: {
-        //                 callback: function(value, index, values) {
-        //                     // for a value (tick) equals to 8
-        //                     return yLabels[value];
-        //                     // 'junior-dev' will be returned instead and displayed on your chart
-        //                 }
-        //             }
-        //         }]
-        //     }
-        // }}
+        options={{
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        callback: function(label, index, labels) {
+                            // for a value (tick) equals to 8
+                            return yLabels[label];
+                            // 'junior-dev' will be returned instead and displayed on your chart
+                        }
+                    }
+                }]
+            }
+        }}
         />
       </div>
     )
   }
+}
+
+let yLabels = {
+    1 : 'terrible', 2 : 'bad', 3 : 'average', 4 : 'good',
+    5 : 'great'
 }

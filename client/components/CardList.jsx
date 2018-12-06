@@ -1,10 +1,10 @@
 import React from 'react'
-import Graph from './Graph'
 // import {Header} from 'semantic-ui-react'
 
+
 class CardList extends React.Component {
-  render () {
-    return (
+  render() {
+    return(
       <React.Fragment>
         {/* <div className="ui two column centered grid">
           <div className="column">
@@ -12,7 +12,6 @@ class CardList extends React.Component {
           </div>
         </div> */}
         <h1>Hello</h1>
-        <Graph />
       </React.Fragment>
     )
   }
