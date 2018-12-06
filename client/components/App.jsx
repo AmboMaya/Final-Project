@@ -1,20 +1,20 @@
 import React from 'react'
 // import {Header} from 'semantic-ui-react'
+import CardList from './CardList'
 
-
-class CardList extends React.Component {
-  render() {
-    return(
+class App extends React.Component {
+  render () {
+    return (
       <React.Fragment>
         {/* <div className="ui two column centered grid">
           <div className="column">
             <Header>Hello</Header>
           </div>
         </div> */}
-        <h1>Hello</h1>
+        <CardList />
       </React.Fragment>
     )
   }
 }
 
-export default CardList
+export default App
