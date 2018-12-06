@@ -8,57 +8,57 @@ export default class Chart extends Component {
             labels: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Yesterday"], //Placeholders for dates
             datasets: [{
                 fill: false,
-                borderColor: 'red',
-                backgroundColor: 'red',
+                borderColor: '#E1350B',
+                backgroundColor: '#E1350B',
                 label: 'Mood',
                 data: [1, 3, 3, 5, 2, 1], //Placeholders for data
-                borderWidth: 2
+                borderWidth: 3
             },{
                 fill: false,
-                borderColor: 'rgba(75,192,192,1)',
-                backgroundColor: 'rgba(75,192,192,1)',
+                borderColor: '#68829E',
+                backgroundColor: '#68829E',
                 label: 'Diet',
                 data: [2, 4, 1, 5, 1, 3], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'blue',
-                backgroundColor: 'blue',
+                borderColor: '#AEBD38',
+                backgroundColor: '#AEBD38',
                 label: 'Exercise',
                 data: [2, 2, 1, 2, 2, 3], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'pink',
-                backgroundColor: 'pink',
+                borderColor: '#598234',
+                backgroundColor: '#598234',
                 label: 'Sleep',
                 data: [5, 4, 3, 5, 2, 3], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'yellow',
-                backgroundColor: 'yellow',
+                borderColor: '#CF6F6F',
+                backgroundColor: '#CF6F6F',
                 label: 'Meditation',
                 data: [2, 3, 5, 1, 1, 2], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'purple',
-                backgroundColor: 'purple',
+                borderColor: '#F47D4A',
+                backgroundColor: '#F47D4A',
                 label: 'Alcohol',
                 data: [5, 4, 3, 2, 1, 5], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'orange',
-                backgroundColor: 'orange',
+                borderColor: '#FFEC5C',
+                backgroundColor: '#FFEC5C',
                 label: 'Water',
                 data: [1, 2, 1, 5, 4, 4], //Placeholders for data
                 borderWidth: 2
             },{
                 fill: false,
-                borderColor: 'green',
-                backgroundColor: 'green',
+                borderColor: '#505160',
+                backgroundColor: '#505160',
                 label: 'Vice',
                 data: [2, 5, 1, 3, 2, 1], //Placeholders for data
                 borderWidth: 2
