@@ -1,5 +1,4 @@
 import React from 'react'
-import Graph from './Graph'
 // import {Header} from 'semantic-ui-react'
 
 class CardList extends React.Component {
@@ -12,7 +11,6 @@ class CardList extends React.Component {
           </div>
         </div> */}
         <h1>Hello</h1>
-        <Graph />
       </React.Fragment>
     )
   }
