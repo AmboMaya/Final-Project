@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  const newUser = {name}
+  const {username} = req.body
   users
-    .createUser(newUser)
+    .createUser(username)
     .then(() => {
       res.json({Okay: true})
     })
