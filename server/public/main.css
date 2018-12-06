@@ -1,3 +1,9 @@
 .image {
   width: 70%;
 }
+
+.facesInCss {
+  color: grey;
+  margin-top: 7px;
+  letter-spacing: 10px;
+}
