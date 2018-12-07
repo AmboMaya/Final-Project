@@ -14,7 +14,16 @@ function getCardsPerDate (dateId, db = connection) {
     .where('date_id', '=', dateId)
 }
 
+function getCards (dateIds, db = connection) {
+  return db('cardData')
+    // for (date of dateIds) {
+    //   .where('date_id', '=', date)
+    // }
+    
+}
+
 module.exports = {
   getCardsPerDate,
-  getDates
+  getDates,
+  getCards
 }

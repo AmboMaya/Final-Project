@@ -63,21 +63,46 @@ router.get('/graph/:userId/:endDate', (req, res) => {
   let date = moment(endDate)
   let startDate = date.add(-1, period).format('YYYY-MM-DD')
 
+  let cardsPerDate = []
+
+  let f = (dates, callback) => {
+    dates.forEach(d => {
+      let obj = {date_id: d.id}
+      graph.getCardsPerDate(d.id)
+        .then(cards => {
+          obj.cards = cards
+        })
+        .then(() => {
+          cardsPerDate.push(obj)
+        })
+        .then(() => {
+          res.json({cardsPerDate})
+        })
+        // cardsPerDate.push(obj)
+      
+    })
+    // callback(cardsPerDate)
+  }
+
+  let resjason = (o) => {
+    res.json(o)
+  }
+
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      // let cardsPerDate = []
-      // dates.forEach(d => {
-      //   let obj = {date_id: d.id}
-      //   graph.getCardsPerDate(d.id)
-      //     .then(cards => {
-      //       obj.cards = cards
-      //     })
-      //     .then()
-      //   cardsPerDate.push(obj)
-      // })
-      //     res.json(cardsPerDate)
+      // res.json(dates)
+      // let dateIds = []
+      // for (let date of dates) {
+      //   dateIds = [...dateIds, date.id]
+      // }
+      // res.json(dateIds)
 
+      // graph.getCards(dateIds)
+
+      f(dates, resjason)
     })
+
+  // f(cardsPerDate)
 
   // res.json({time: newD})
 })
