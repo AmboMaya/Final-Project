@@ -1,6 +1,7 @@
 const express = require('express')
 
 const cardData = require('../db/cardData')
+const graph = require('../db/graph')
 
 const router = express.Router()
 
@@ -49,3 +50,9 @@ router.post('/', (req, res) => {
 //   })
 //   return isRecordOkay
 // }
+
+
+router.get('/graph/:userId', (req, res) => {
+  const userId = Number(req.params.userId)
+  graph.getGraphDetail(userId)
+}
