@@ -1,25 +1,36 @@
 import React from 'react'
 import { Container, Grid } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
+import {connect} from 'react-redux'
 
-export default class CardList extends React.Component {
+class CardList extends React.Component {
 
   state = {
     user: [
       {
-        id: 1,
-        username: 'Bella',
-        entries: []
+        user_id: 1,
+        records: [
+          {
+            activity_id: 1,
+            rating: '1',
+            log: 'The pizza was just too good...'
+          },
+          {
+            activity_id: 2,
+            rating: '',
+            log: ''
+          }
+        ]
       }
     ],
   }
 
-   addEntry = (id, entry) => {
+   addEntry = (id, record) => {
     const newEntry = this.state.user.map(ent => {
       if (ent.id !== id) return ent
       return {
         ...ent,
-        entries: [...act.entries, entry]
+        records: [...act.records, record]
       }
     })
     this.setState({ user: newEntry })
@@ -32,7 +43,7 @@ export default class CardList extends React.Component {
           <Grid columns={3} doubling stackable>
             {this.state.user.map(user => {
               return (
-                <ActivityCard addEntry={this.addEntry} name={user.username} key={user.id} />
+                <ActivityCard addEntry={this.addEntry} name={user.username} key={user.user_id} />
               )
             })}
           </Grid>
