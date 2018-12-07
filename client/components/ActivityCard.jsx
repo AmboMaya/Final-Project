@@ -26,15 +26,13 @@ export default class ActivityCard extends React.Component {
                   />
                 </Grid.Column>
               </Grid>
+             
               <Card.Header>{this.props.name}</Card.Header>
               <Grid.Column align='center'>
                 {this.state.smiles.map(smile => {
                   return (
                     <i
                       className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
-                      value={smile.value}
-                      onClick={this.changeHandler}
-                      name={smile.name}
                       key={smile.mood}
                     />
                   )
@@ -50,3 +48,4 @@ export default class ActivityCard extends React.Component {
     )
   }
 }
+
