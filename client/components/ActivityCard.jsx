@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, Button, Grid} from 'semantic-ui-react'
+import { Card, Grid} from 'semantic-ui-react'
 import Smiley from "./Rating/Smiley"
 
 const ActivityCard = props => {
@@ -8,24 +8,25 @@ const ActivityCard = props => {
   for (let i = 1; i <= 5; i++) {
     smilies.push(<Smiley rating={i} key={i} selected={props.currentRating === i} activity={props.activity} />)
   }
-
-  // changeHandler = (e) => {
-  //   e.target:
-  // }
+  
   return (
     <React.Fragment>
-      <Grid.Row align="center" width={5}>
-        <Card className="activityCard">
+      <Grid.Column align="center">
+        <Card>
           <Card.Content>
-              <i className="ellipsis horizontal icon right" floated="right"></i>
+            <Grid>
+              <Grid.Column floated='right' width={5}>
+                <i className="ellipsis horizontal icon right" floated="right"></i>
+              </Grid.Column>
+            </Grid>
             <Card.Header>{props.name}</Card.Header>
-              {smilies}
+            {smilies}
           </Card.Content>
           <Card.Content extra>
-            <Button><i className="plus icon" floated="center"></i></Button>
+            <i className="plus icon"></i><span>Add log</span>
           </Card.Content>
         </Card>
-      </Grid.Row>
+      </Grid.Column>
     </React.Fragment>
   )
 }

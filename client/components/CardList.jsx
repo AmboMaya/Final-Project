@@ -6,8 +6,6 @@ import ActivityCard from "./ActivityCard"
 import {getActivities} from '../actions/journalActions'
 
 
-
-
 class CardList extends React.Component {
   state = {
     activities: [
@@ -15,10 +13,10 @@ class CardList extends React.Component {
       { name: "bla2", log: "happy" },
       { name: "blaba", log: "happy" },
       { name: "biepbiep", log: "happy" },
-      { name: "boopbiop", log: "happy" },
+      { name: "boopbiop", log: "" },
       { name: "no", log: "happy" },
       { name: "yes", log: " not happy" },
-      { name: "drugs", log: "sad" }
+      { name: "drugs", log: "" }
     ] 
   }
 
@@ -28,6 +26,7 @@ class CardList extends React.Component {
 
   render() {
     return (
+      <React.Fragment>
         <Container className="appBody">
           <Grid columns={3} doubling stackable>
             {this.props.activities.map(act => {
@@ -35,6 +34,7 @@ class CardList extends React.Component {
             })}
           </Grid>
         </Container>
+      </React.Fragment>
     )
   }
 }
