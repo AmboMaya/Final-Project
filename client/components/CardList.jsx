@@ -10,24 +10,20 @@ export default class CardList extends React.Component {
       { name: "Diet", log: "happy" },
       { name: "Sleep", log: "happy" },
       { name: "Meditation", log: "happy" },
-      { name: "Water", log: "happy" },
-      { name: "Alcohol", log: " not happy" },
-      { name: "Vice", log: "sad" }
+      { name: "water", log: "happy" },
+      { name: "alcohol", log: " not happy" },
+      { name: "vice", log: "sad" }
     ]
   }
 
   render() {
     return (
       <React.Fragment>
-        <Container>
-          <Grid columns={1} doubling stackable>
-            <Grid.Column align="center">
-              <div>
-                {this.state.activities.map(act => {
-                  return <ActivityCard name={act.name} log={act.log} key={act.name} />;
-                })}
-              </div>
-            </Grid.Column>
+        <Container className="appBody">
+          <Grid columns={3} doubling stackable>
+            {this.state.activities.map(act => {
+              return <ActivityCard name={act.name} log={act.log} key={act.name} />;
+            })}
           </Grid>
         </Container>
       </React.Fragment>
