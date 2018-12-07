@@ -1,31 +1,31 @@
-import React from "react";
-import { Card, Button, Grid } from 'semantic-ui-react'
+import React from "react"
+import { Card, Button, Grid} from 'semantic-ui-react'
 import Smiley from "./Rating/Smiley"
 
 const ActivityCard = props => {
   
   let smilies = []
   for (let i = 1; i <= 5; i++) {
-    smilies.push(<Smiley rating={i} selected={props.currentRating === i} activity={props.activity} />)
+    smilies.push(<Smiley rating={i} key={i} selected={props.currentRating === i} activity={props.activity} />)
   }
+
+  // changeHandler = (e) => {
+  //   e.target:
+  // }
   return (
     <React.Fragment>
-      <Grid.Column align="center">
-        <Card>
+      <Grid.Row align="center" width={5}>
+        <Card className="activityCard">
           <Card.Content>
-            <Grid>
-              <Grid.Column floated='right' width={5}>
-                <i className="ellipsis horizontal icon right" floated="right"></i>
-              </Grid.Column>
-            </Grid>
+              <i className="ellipsis horizontal icon right" floated="right"></i>
             <Card.Header>{props.name}</Card.Header>
-            {smilies}
+              {smilies}
           </Card.Content>
           <Card.Content extra>
-            <i className="plus icon"></i>
+            <Button><i className="plus icon" floated="center"></i></Button>
           </Card.Content>
         </Card>
-      </Grid.Column>
+      </Grid.Row>
     </React.Fragment>
   )
 }

@@ -18,7 +18,6 @@ export default class CardList extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
         <Container className="appBody">
           <Grid columns={3} doubling stackable>
             {this.state.activities.map(act => {
@@ -26,7 +25,6 @@ export default class CardList extends React.Component {
             })}
           </Grid>
         </Container>
-      </React.Fragment>
     )
   }
 }
