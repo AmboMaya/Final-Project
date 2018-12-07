@@ -1,19 +1,20 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import { Container, Grid } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
-import {connect} from 'react-redux'
+import { getActivities } from '../actions/journalActions'
 
 class CardList extends React.Component {
-
   state = {
-    user: [
+    records: [
       {
         user_id: 1,
-        records: [
+        entries: [
           {
             activity_id: 1,
-            rating: '1',
-            log: 'The pizza was just too good...'
+            rating: '',
+            log: ''
           },
           {
             activity_id: 2,
@@ -25,26 +26,29 @@ class CardList extends React.Component {
     ],
   }
 
-   addEntry = (id, record) => {
+   addEntry = (id, entry) => {
     const newEntry = this.state.user.map(ent => {
       if (ent.id !== id) return ent
       return {
         ...ent,
-        records: [...act.records, record]
+        entries: [...act.entries, entry]
       }
     })
     this.setState({ user: newEntry })
   }
 
+  
+  componentDidMount(){
+    this.props.getActivities()
+  }
+
   render() {
     return (
       <React.Fragment>
-        <Container className='appBody'>
+        <Container className="appBody">
           <Grid columns={3} doubling stackable>
-            {this.state.user.map(user => {
-              return (
-                <ActivityCard addEntry={this.addEntry} name={user.username} key={user.user_id} />
-              )
+            {this.props.activities.map(act => {
+              return <ActivityCard name={act.name} log={act.log} key={act.name} />;
             })}
           </Grid>
         </Container>
@@ -62,9 +66,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getActivities: () => dispatch(getActivities())
+    getActivities: () => dispatch(getActivities()),
+    // orderAZ: (x) => dispatch(orderAZ(x)),
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardList)
-
