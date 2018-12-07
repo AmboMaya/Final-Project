@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import {Line} from 'react-chartjs-2'
+import { getData, showMonth, showWeek } from '../actions/graph'
+import {connect} from 'react-redux'
 
-export default class Chart extends Component {
+class Graph extends Component {
 
     state = {
         chartData: {
-            labels: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Yesterday"], //Placeholders for dates
+            labels: ["12.12.18", "13.12.18", "14.12.18", "15.12.18", "16.12.18", "17.12.18"], //Placeholders for dates
             datasets: [{
                 fill: false,
                 borderColor: '#E1350B',
@@ -83,6 +85,9 @@ export default class Chart extends Component {
             }
         }}
         />
+        <Button onClick={() => this.props.weekSort('WEEK')}>Week</Button>
+        <Button onClick={() => this.props.monthSort('MONTH')}>Month</Button>
+
       </div>
     )
   }
@@ -92,3 +97,44 @@ let yLabels = {
     1 : 'terrible', 2 : 'bad', 3 : 'average', 4 : 'good',
     5 : 'great'
 }
+
+export function weekSort (items) {
+    // return items.sort((a, b) => {
+    //   let levelA = Number(a.level_id)
+    //   let levelB = Number(b.level_id)
+    //   return levelA - levelB
+    // })
+  }
+  
+  export function monthSort (items) {
+    // return items.sort((a, b) => {
+    //   let methodA = Number(a.method_id)
+    //   let methodB = Number(b.method_id)
+    //   return methodB - methodA
+    // })
+  }
+  
+  
+  const mapStateToProps = state => {
+    const sortedData  = [... state.data]
+    if (state.sort.sortOrder == 'WEEK') {
+      weekSort(sortedData)
+    } else if (state.sort.sortOrder == 'MONTH') {
+      monthSort(sortedData)
+    } 
+  
+    return {
+      data: state.sort.sortOrder,
+      labels: state.sort.sortOrder
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      getData: () => dispatch(getData()),
+      showMonth: (x) => dispatch(showMonth(x)),
+      showWeek: (x) => dispatch(showWeek(x)),
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Graph)

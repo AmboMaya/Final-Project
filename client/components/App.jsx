@@ -1,11 +1,11 @@
 import React from 'react'
-import Main from './Main'
+import Graph from './Graph'
 
 class App extends React.Component {
   render () {
     return (
       <div>
-        <Main />
+        <Graph />
       </div>
     )
   }
