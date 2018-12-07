@@ -1,16 +1,20 @@
 const connection = require('./')
-const dates = require('./dates')
+// const dates = require('./dates')
 
-function getGraphDetail (datesId, db = connection) {
+function getDates (userId, startDate, endDate, db = connection) {
   return db('dates')
-    .join('cardData', 'dates.id', 'date_id')
-    .where('date_id', dates.id)
-    .select(
-      'dates.id as id',
-      'dates.user_id as user_id',
-      'activity_id',
-      'rating'
-    )
-    .first()
+    .where('user_id', '=', userId)
+    .where('created_at', '>=', startDate)
+    .where('created_at', '<=', endDate)
+    .select()
 }
-module.exports = {getGraphDetail}
+
+function getCardsPerDate (dateId, db = connection) {
+  return db('cardData')
+    .where('date_id', '=', dateId)
+}
+
+module.exports = {
+  getCardsPerDate,
+  getDates
+}

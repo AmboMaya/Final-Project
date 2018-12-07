@@ -1,4 +1,5 @@
 const express = require('express')
+const moment = require('moment')
 
 const cardData = require('../db/cardData')
 const graph = require('../db/graph')
@@ -51,8 +52,32 @@ router.post('/', (req, res) => {
 //   return isRecordOkay
 // }
 
-
-router.get('/graph/:userId', (req, res) => {
+// created_at:2018-12-06 21:35:55
+router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
-  graph.getGraphDetail(userId)
-}
+  // const endDate = req.params.endDate
+  let endDate = '2018-12-14'
+  endDate += ' 23:59:59'
+  const period = 'week'
+
+  let date = moment(endDate)
+  let startDate = date.add(-1, period).format('YYYY-MM-DD')
+
+  graph.getDates(userId, startDate, endDate)
+    .then(dates => {
+      // let cardsPerDate = []
+      // dates.forEach(d => {
+      //   let obj = {date_id: d.id}
+      //   graph.getCardsPerDate(d.id)
+      //     .then(cards => {
+      //       obj.cards = cards
+      //     })
+      //     .then()
+      //   cardsPerDate.push(obj)
+      // })
+      //     res.json(cardsPerDate)
+
+    })
+
+  // res.json({time: newD})
+})
