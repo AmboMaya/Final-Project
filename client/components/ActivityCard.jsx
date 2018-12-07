@@ -38,7 +38,7 @@ export default class ActivityCard extends React.Component {
               </Grid>
               <Card.Header>{this.props.name}</Card.Header>
               {this.state.smiles.map(smile => {
-                return ( <i className={smile.mood}></i> )
+                return ( <i className={smile.mood} key={smile.mood}></i> )
               })}
             </Card.Content>
             <Card.Content extra>
