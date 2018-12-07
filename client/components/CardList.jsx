@@ -9,20 +9,7 @@ export default class CardList extends React.Component {
       {
         id: 1,
         username: 'Bella',
-        entries: [
-          {
-            date: '',
-            activity_id: 1,
-            rating: '',
-            log: ''
-          },
-          {
-            date: '',
-            activity_id: 2,
-            rating: '',
-            log: ''
-          }
-        ]
+        entries: []
       }
     ],
   }
@@ -54,3 +41,19 @@ export default class CardList extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  const activities  = [... state.activities]
+  return {
+    activities
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getActivities: () => dispatch(getActivities())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardList)
+
