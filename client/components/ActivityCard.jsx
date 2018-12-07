@@ -4,21 +4,11 @@ import { Card, Button, Grid, Icon } from 'semantic-ui-react'
 export default class ActivityCard extends React.Component {
   state = {
     smiles: [
-      {
-        mood: 'fa-angry'
-      },
-      {
-        mood: 'fa-frown'
-      },
-      {
-        mood: 'fa-meh'
-      },
-      {
-        mood: 'fa-smile'
-      },
-      {
-        mood: 'fa-laugh'
-      }
+      {mood: 'fa-angry'},
+      {mood: 'fa-frown'},
+      {mood: 'fa-meh'},
+      {mood: 'fa-smile'},
+      {mood: 'fa-laugh'}
     ]
   }
 
@@ -27,7 +17,7 @@ export default class ActivityCard extends React.Component {
       <React.Fragment>
         <Grid.Column align='center'>
           <Card>
-            <Card.Content>
+            <Card.Content align='center'>
               <Grid>
                 <Grid.Column floated='right' width={5}>
                   <i
@@ -37,9 +27,19 @@ export default class ActivityCard extends React.Component {
                 </Grid.Column>
               </Grid>
               <Card.Header>{this.props.name}</Card.Header>
-              {this.state.smiles.map(smile => {
-                return ( <i className={smile.mood} key={smile.mood}></i> )
-              })}
+              <Grid.Column align='center'>
+                {this.state.smiles.map(smile => {
+                  return (
+                    <i
+                      className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
+                      value={smile.value}
+                      onClick={this.changeHandler}
+                      name={smile.name}
+                      key={smile.mood}
+                    />
+                  )
+                })}
+              </Grid.Column>
             </Card.Content>
             <Card.Content extra>
               <i className='plus icon' />
