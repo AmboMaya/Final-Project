@@ -15,7 +15,7 @@ export function getActivitiesSuccess (activities) {
 
 export function getActivitiesError (message) {
   return {
-    type: 'GET_FISH_ERROR',
+    type: 'GET_ACTIVITIES_ERROR',
     message
   }
 }
@@ -26,7 +26,7 @@ export function getActivities () {
 
     request
       .get('/api/v1/activities')
-      .then(res => dispatch(getActivitiesSuccess(res.body.activities)))
+      .then(res => dispatch(getActivitiesSuccess(res.body.activity)))
       .catch(err => dispatch(getActivitiesError(err.message)))
   }
 }
