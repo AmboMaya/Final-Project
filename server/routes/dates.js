@@ -52,6 +52,20 @@ router.post('/', (req, res) => {
 //   return isRecordOkay
 // }
 
+// let f = (dates, cb) => {
+//   let cardsPerDate = []
+//   dates.forEach(d => {
+//     let obj = {date_id: d.id}
+//     graph.getCardsPerDate(d.id)
+//       .then(cards => {
+//         obj.cards = cards
+//       })
+//       .then()
+//     cardsPerDate.push(obj)
+//   })
+//   cb(cardsPerDate)
+// }
+
 // created_at:2018-12-06 21:35:55
 router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
@@ -63,46 +77,39 @@ router.get('/graph/:userId/:endDate', (req, res) => {
   let date = moment(endDate)
   let startDate = date.add(-1, period).format('YYYY-MM-DD')
 
-  let cardsPerDate = []
-
-  let f = (dates, callback) => {
-    dates.forEach(d => {
-      let obj = {date_id: d.id}
-      graph.getCardsPerDate(d.id)
-        .then(cards => {
-          obj.cards = cards
-        })
-        .then(() => {
-          cardsPerDate.push(obj)
-        })
-        .then(() => {
-          res.json({cardsPerDate})
-        })
-        // cardsPerDate.push(obj)
-      
-    })
-    // callback(cardsPerDate)
-  }
-
-  let resjason = (o) => {
-    res.json(o)
-  }
-
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      // res.json(dates)
-      // let dateIds = []
-      // for (let date of dates) {
-      //   dateIds = [...dateIds, date.id]
-      // }
-      // res.json(dateIds)
+      graph.getAllCards()
+        .then(cards => {
+          // res.json(cards)
+          let cardsPerDate = []
 
-      // graph.getCards(dateIds)
+          dates.forEach(date => {
+            let obj = {date_id: date.id}
+            let dateCards = cards.filter((card) => {
+              return card.date_id === date.id
+            })
+            obj.cards = dateCards
+            cardsPerDate.push(obj)
+          })
 
-      f(dates, resjason)
+          res.json(cardsPerDate)
+        })
+
+      /*
+      // let cardsPerDate = []
+      // dates.forEach(d => {
+      //   let obj = {date_id: d.id}
+      //   graph.getCardsPerDate(d.id)
+      //     .then(cards => {
+      //       obj.cards = cards
+      //     })
+      //     .then()
+      //   cardsPerDate.push(obj)
+      // })
+      //     res.json(cardsPerDate)
+
+      // f(dates, res.json)
+      */
     })
-
-  // f(cardsPerDate)
-
-  // res.json({time: newD})
 })
