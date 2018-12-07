@@ -39,8 +39,8 @@ export function getData () {
     dispatch(getDataPending())
 
     request
-      .get('/api/v1/graph') //CHECK CORRECT PATH
-      .then(res => dispatch(getDataSuccess(res.body.fish))) //CHANGE FISH!
+      .get('/api/v1/data')
+      .then(res => dispatch(getDataSuccess(res.body.data)))
       .catch(err => dispatch(getDataError(err.message)))
   }
 }

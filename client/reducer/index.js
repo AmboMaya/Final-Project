@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux'
 
-import sortReducer from './sort'
-import graphReducer from './graph'
+import sort from './sort'
+import graph from './graph'
+import activities from './activities'
 
 export default combineReducers({
-  graphReducer,
-  sortReducer
+  graph,
+  sort,
+  activities
 })
