@@ -1,28 +1,52 @@
-import React from "react"
-import { Container, Grid } from "semantic-ui-react"
-import ActivityCard from "./ActivityCard"
+import React from 'react'
+import { Container, Grid } from 'semantic-ui-react'
+import ActivityCard from './ActivityCard'
 
 export default class CardList extends React.Component {
+
   state = {
-    activities: [
-      { name: "Mood", log: "happy" },
-      { name: "Exercise", log: "happy" },
-      { name: "Diet", log: "happy" },
-      { name: "Sleep", log: "happy" },
-      { name: "Meditation", log: "happy" },
-      { name: "water", log: "happy" },
-      { name: "alcohol", log: " not happy" },
-      { name: "vice", log: "sad" }
-    ]
+    user: [
+      {
+        id: 1,
+        username: 'Bella',
+        entries: [
+          {
+            date: '',
+            activity_id: 1,
+            rating: '',
+            log: ''
+          },
+          {
+            date: '',
+            activity_id: 2,
+            rating: '',
+            log: ''
+          }
+        ]
+      }
+    ],
+  }
+
+   addEntry = (id, entry) => {
+    const newEntry = this.state.user.map(ent => {
+      if (ent.id !== id) return ent
+      return {
+        ...ent,
+        entries: [...act.entries, entry]
+      }
+    })
+    this.setState({ user: newEntry })
   }
 
   render() {
     return (
       <React.Fragment>
-        <Container className="appBody">
+        <Container className='appBody'>
           <Grid columns={3} doubling stackable>
-            {this.state.activities.map(act => {
-              return <ActivityCard name={act.name} log={act.log} key={act.name} />;
+            {this.state.user.map(user => {
+              return (
+                <ActivityCard addEntry={this.addEntry} name={user.username} key={user.id} />
+              )
             })}
           </Grid>
         </Container>
