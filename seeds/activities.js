@@ -4,7 +4,7 @@ exports.seed = knex => {
     .then(() => {
       // Inserts seed entries
       return knex('activities').insert([
-        {id: 1, name: 'mood', icon: 'icon 1, ico'},
+        {id: 1, name: 'mood', icon: ''},
         {id: 2, name: 'exercise', icon: ''},
         {id: 3, name: 'diet', icon: ''},
         {id: 4, name: 'sleep', icon: ''},
