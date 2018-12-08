@@ -22,7 +22,7 @@ const ActivityCard = props => {
             {smilies}
           </Card.Content>
           <Card.Content extra>
-            <i className="plus icon"></i>
+            <i className="plus icon"></i><span>Add log</span>
           </Card.Content>
         </Card>
       </Grid.Column>
