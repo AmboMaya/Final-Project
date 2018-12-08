@@ -24,7 +24,7 @@ class Statistics extends React.Component {
         <Container className="appBody">
           <h1>My Activity Statistics</h1>
           <h2>Weekly Graph</h2>
-          <Graph />
+          <Graph chartData={this.props.records}/>
         </Container>
         <BottomMenu />
       </React.Fragment>
