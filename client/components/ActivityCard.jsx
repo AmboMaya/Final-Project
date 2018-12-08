@@ -24,7 +24,6 @@ const ActivityCard = props => {
                     </Modal.Description>
                   </Modal.Content>
                 </Modal>
-
               </Grid.Column>
             </Grid>
             <Card.Header >{props.name}</Card.Header>
