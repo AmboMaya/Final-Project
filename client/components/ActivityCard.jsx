@@ -1,52 +1,68 @@
-import React from 'react'
-import {Card, Grid} from 'semantic-ui-react'
-import ActivityLog from './ActivityLog'
+import React from "react";
+import { Card, Grid } from "semantic-ui-react";
+import ActivityLog from "./ActivityLog";
 
 export default class ActivityCard extends React.Component {
-  
   state = {
-    smiles: [
-      {mood: 'fa-angry'},
-      {mood: 'fa-frown'},
-      {mood: 'fa-meh'},
-      {mood: 'fa-smile'},
-      {mood: 'fa-laugh'}
-    ]
-  }
+    activity_id: "",
+    rating: "",
+    log: ""
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.addRecord(this.props.id, this.state);
+    // Final validation before submitting to server
+    console.log("SUBMITTED:", this.state);
+    // Clear the state to clear the form
+    this.setState({
+      activity_id: "",
+      rating: "",
+      log: ""
+    });
+  };
 
   render() {
     return (
       <React.Fragment>
-        <Grid.Column align='center'>
+        <Grid.Column align="center">
           <Card>
-            <Card.Content align='center'>
+            <Card.Content align="center">
               <Grid>
-                <Grid.Column floated='right' width={5}>
+                <Grid.Column floated="right" width={5}>
                   <i
-                    className='ellipsis horizontal icon right'
-                    floated='right'
+                    className="ellipsis horizontal icon right"
+                    floated="right"
                   />
                 </Grid.Column>
               </Grid>
-             
-              <Card.Header>{this.props.name}</Card.Header>
-              <Grid.Column align='center'>
-                {this.state.smiles.map(smile => {
+
+              <Card.Header>
+                {this.props.name}
+              </Card.Header>
+              <Grid.Column align="center">
+                {this.props.smiles.map(smile => {
                   return (
                     <i
-                      className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
+                      className={"far " + `${smile.mood}` + " fa-3x facesInCss"}
                       key={smile.mood}
                     />
-                  )
+                  );
                 })}
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
-            <ActivityLog />
-          </Card.Content>
+              <ActivityLog />
+            </Card.Content>
           </Card>
         </Grid.Column>
       </React.Fragment>
-    )
+    );
   }
 }
