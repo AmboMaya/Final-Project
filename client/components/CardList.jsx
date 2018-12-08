@@ -6,8 +6,6 @@ import ActivityCard from "./ActivityCard"
 import {getActivities} from '../actions/journalActions'
 import BottomMenu from './BottomMenu'
 
-
-
 class CardList extends React.Component {
   state = {
     activities: [
