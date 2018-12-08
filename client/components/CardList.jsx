@@ -5,7 +5,6 @@ import { Container, Grid } from "semantic-ui-react"
 import ActivityCard from "./ActivityCard"
 import {getActivities} from '../actions/journalActions'
 
-
 class CardList extends React.Component {
   state = {
     activities: [
@@ -21,7 +20,7 @@ class CardList extends React.Component {
   }
 
   componentDidMount(){
-    this.props.getActivities()
+   this.props.getActivities()
   }
 
   render() {
