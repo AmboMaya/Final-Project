@@ -1,13 +1,14 @@
-import React from "react";
-import { Card, Button, Grid } from 'semantic-ui-react'
+import React from "react"
+import { Card, Grid} from 'semantic-ui-react'
 import Smiley from "./Rating/Smiley"
 
 const ActivityCard = props => {
   
   let smilies = []
   for (let i = 1; i <= 5; i++) {
-    smilies.push(<Smiley rating={i} selected={props.currentRating === i} activity={props.activity} />)
+    smilies.push(<Smiley rating={i} key={i} selected={props.currentRating === i} activity={props.activity} />)
   }
+  
   return (
     <React.Fragment>
       <Grid.Column align="center">
@@ -22,7 +23,7 @@ const ActivityCard = props => {
             {smilies}
           </Card.Content>
           <Card.Content extra>
-            <i className="plus icon"></i>
+            <i className="plus icon"></i><span>Add log</span>
           </Card.Content>
         </Card>
       </Grid.Column>
