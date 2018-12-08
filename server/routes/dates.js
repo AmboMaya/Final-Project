@@ -42,30 +42,6 @@ router.post('/', (req, res) => {
   // }
 })
 
-// // Check if records data is in right format
-// function checkRecords (records) {
-//   let isRecordOkay = true
-//   records.forEach(rec => {
-//     if (Object.keys(rec).sort() !== ['activityId', 'log', 'rating'] || !rec.activityId) {
-//       isRecordOkay = false
-//     }
-//   })
-//   return isRecordOkay
-// }
-
-// let f = (dates, cb) => {
-//   let cardsPerDate = []
-//   dates.forEach(d => {
-//     let obj = {date_id: d.id}
-//     graph.getCardsPerDate(d.id)
-//       .then(cards => {
-//         obj.cards = cards
-//       })
-//       .then()
-//     cardsPerDate.push(obj)
-//   })
-//   cb(cardsPerDate)
-// }
 
 
 router.get('/graph/:userId/:endDate', (req, res) => {
@@ -121,8 +97,13 @@ router.get('/graph/:userId/:endDate', (req, res) => {
                   chartData.datasets[card.activity_id - 1].data.push(card.rating)
                 }
               }
-              res.json(chartData)
+              res.status(200).json({
+                ok: true, chartData
+              })
             })
+            .catch(err => res.status(500).json({
+              ok: false, error: err.message
+            }))
         })
     })
 })
