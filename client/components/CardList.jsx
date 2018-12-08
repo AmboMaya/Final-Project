@@ -1,19 +1,20 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { Container, Grid } from "semantic-ui-react";
-import ActivityCard from "./ActivityCard";
-import { getActivities } from "../actions/journalActions";
-import BottomMenu from "./BottomMenu";
+import { Container, Grid } from 'semantic-ui-react'
+import ActivityCard from './ActivityCard'
+import { getActivities } from '../actions/journalActions'
+import { addNewRecord } from '../actions/records'
+import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
   state = {
     smiles: [
-      { mood: "fa-angry", value: 1 },
-      { mood: "fa-frown", value: 2 },
-      { mood: "fa-meh", value: 3 },
-      { mood: "fa-smile", value: 4 },
-      { mood: "fa-laugh", value: 5 }
+      { mood: 'fa-angry', value: 1 },
+      { mood: 'fa-frown', value: 2 },
+      { mood: 'fa-meh', value: 3 },
+      { mood: 'fa-smile', value: 4 },
+      { mood: 'fa-laugh', value: 5 }
     ],
     records: [
       {
@@ -21,32 +22,48 @@ class CardList extends React.Component {
         entries: [
           {
             activity_id: 1,
-            rating: "",
-            log: ""
+            rating: '',
+            log: ''
           },
           {
             activity_id: 2,
-            rating: "",
-            log: ""
+            rating: '',
+            log: ''
           }
         ]
       }
     ]
-  };
+  }
 
   addRecord = (id, record) => {
     const newRecord = this.state.records.map(rec => {
-      if (rec.user_id !== id) return rec;
+      if (rec.user_id !== id) return rec
       return {
         ...rec,
         records: [...rec.entries, record]
-      };
-    });
-    this.setState({ records: newRecord });
-  };
+      }
+    })
+    this.setState({ records: newRecord })
+  }
+
+  handleSubmit = e => {
+    console.log('AddNew')
+    e.preventDefault()
+    this.props.dispatch(addNewRecord(this.state))
+    this.setState({
+      smiles: [
+        { mood: 'fa-angry', value: 1 },
+        { mood: 'fa-frown', value: 2 },
+        { mood: 'fa-meh', value: 3 },
+        { mood: 'fa-smile', value: 4 },
+        { mood: 'fa-laugh', value: 5 }
+      ],
+      records: []
+    })
+  }
 
   componentDidMount() {
-    this.props.getActivities();
+    this.props.getActivities()
   }
 
   render() {
@@ -66,30 +83,31 @@ class CardList extends React.Component {
                   smiles={this.state.smiles}
                   addRecord={this.addRecord}
                 />
-              );
+              )
             })}
           </Grid>
         </Container>
-        <BottomMenu />
+        <BottomMenu submit={this.handleSubmit} />
       </React.Fragment>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
-  const activities = [...state.activities];
+  const activities = [...state.activities]
   return {
     activities
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    getActivities: () => dispatch(getActivities())
-  };
-};
+    getActivities: () => dispatch(getActivities()),
+    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+  }
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CardList);
+)(CardList)
