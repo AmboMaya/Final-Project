@@ -13,15 +13,15 @@ class CardList extends React.Component {
       { name: "bla2", log: "happy" },
       { name: "blaba", log: "happy" },
       { name: "biepbiep", log: "happy" },
-      { name: "boopbiop", log: "happy" },
+      { name: "boopbiop", log: "" },
       { name: "no", log: "happy" },
       { name: "yes", log: " not happy" },
-      { name: "drugs", log: "sad" }
+      { name: "drugs", log: "" }
     ] 
   }
 
   componentDidMount(){
-    this.props.getActivities()
+   this.props.getActivities()
   }
 
   render() {
