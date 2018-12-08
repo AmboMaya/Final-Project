@@ -3,6 +3,7 @@ const moment = require('moment')
 
 const cardData = require('../db/cardData')
 const graph = require('../db/graph')
+const activities = require('../db/activities')
 
 const router = express.Router()
 
@@ -76,14 +77,17 @@ router.get('/graph/:userId/:endDate', (req, res) => {
 
   let date = moment(endDate)
   let startDate = date.add(-1, period).format('YYYY-MM-DD')
+  let chartData = {}
 
+  // get dates data
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
+      // get cards data
       graph.getAllCards()
         .then(cards => {
-          // res.json(cards)
           let cardsPerDate = []
 
+          // loop through dates data to add cards for each day
           dates.forEach(date => {
             let obj = {date_id: date.id}
             let dateCards = cards.filter((card) => {
@@ -93,23 +97,32 @@ router.get('/graph/:userId/:endDate', (req, res) => {
             cardsPerDate.push(obj)
           })
 
-          res.json(cardsPerDate)
+          // rearrange the data as graph component wants
+          chartData.labels = []
+          for (date of dates) {
+            chartData.labels.push(date.created_at)
+          }
+          chartData.datasets = []
+
+          // get activity names
+          activities.getActivities()
+            .then(actis => {
+              for (let a of actis) {
+                let aObj = {}
+                aObj.label = a.name
+                aObj.data = []
+
+                chartData.datasets.push(aObj)
+              }
+
+              // loop through the cardsPerDate to get each card data.
+              for (let date of cardsPerDate) {
+                for (let card of date.cards) {
+                  chartData.datasets[card.activity_id - 1].data.push(card.rating)
+                }
+              }
+              res.json(chartData)
+            })
         })
-
-      /*
-      // let cardsPerDate = []
-      // dates.forEach(d => {
-      //   let obj = {date_id: d.id}
-      //   graph.getCardsPerDate(d.id)
-      //     .then(cards => {
-      //       obj.cards = cards
-      //     })
-      //     .then()
-      //   cardsPerDate.push(obj)
-      // })
-      //     res.json(cardsPerDate)
-
-      // f(dates, res.json)
-      */
     })
 })
