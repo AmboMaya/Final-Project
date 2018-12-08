@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const BottomMenu = () => {
   return (
     <div className="ui teal three item inverted menu">
@@ -7,10 +8,10 @@ const BottomMenu = () => {
     Home
       </a>
       <a className="item">
-    Messages
+    Calendar
       </a>
       <a className="item">
-    Friends
+    Graph
       </a>
     </div>
   )
