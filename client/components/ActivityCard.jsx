@@ -1,35 +1,52 @@
 import React from 'react'
 import {Card, Grid} from 'semantic-ui-react'
-import Smiley from './Rating/Smiley'
 import ActivityLog from './ActivityLog'
 
-const ActivityCard = props => {
+export default class ActivityCard extends React.Component {
   
-  let smilies = []
-  for (let i = 1; i <= 5; i++) {
-    smilies.push(<Smiley key={i} rating={i} selected={props.currentRating === i} activity={props.activity} />)
+  state = {
+    smiles: [
+      {mood: 'fa-angry'},
+      {mood: 'fa-frown'},
+      {mood: 'fa-meh'},
+      {mood: 'fa-smile'},
+      {mood: 'fa-laugh'}
+    ]
   }
 
-  return (
-    <React.Fragment>
-      <Grid.Column align='center'>
-        <Card>
-          <Card.Content >
-            <Grid>
-              <Grid.Column floated='right' width={5} style={{paddingLeft: 35}}>
-                <i className='ellipsis horizontal icon right'></i>
+  render() {
+    return (
+      <React.Fragment>
+        <Grid.Column align='center'>
+          <Card>
+            <Card.Content align='center'>
+              <Grid>
+                <Grid.Column floated='right' width={5}>
+                  <i
+                    className='ellipsis horizontal icon right'
+                    floated='right'
+                  />
+                </Grid.Column>
+              </Grid>
+             
+              <Card.Header>{this.props.name}</Card.Header>
+              <Grid.Column align='center'>
+                {this.state.smiles.map(smile => {
+                  return (
+                    <i
+                      className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
+                      key={smile.mood}
+                    />
+                  )
+                })}
               </Grid.Column>
-            </Grid>
-            <Card.Header >{props.name}</Card.Header>
-              {smilies}
-          </Card.Content>
-          <Card.Content extra>
+            </Card.Content>
+            <Card.Content extra>
             <ActivityLog />
           </Card.Content>
-        </Card>
-      </Grid.Column>
-    </React.Fragment>
-  )
+          </Card>
+        </Grid.Column>
+      </React.Fragment>
+    )
+  }
 }
-
-export default ActivityCard
