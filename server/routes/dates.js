@@ -67,11 +67,11 @@ router.post('/', (req, res) => {
 //   cb(cardsPerDate)
 // }
 
-// created_at:2018-12-06 21:35:55
+
 router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
-  // const endDate = req.params.endDate
-  let endDate = '2018-12-14'
+  let endDate = req.params.endDate
+  // let endDate = '2018-12-14'
   endDate += ' 23:59:59'
   const period = 'week'
 
