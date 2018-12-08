@@ -6,11 +6,11 @@ const BottomMenu = () => {
       <a className="active item" path='/'>
     Home
       </a>
-      <a className="item">
-    Messages
+      <a className="item" onClick={this.handleSubmit} type='submit'>
+    Submit
       </a>
       <a className="item">
-    Friends
+    Calendar
       </a>
     </div>
   )
