@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Grid, Modal} from 'semantic-ui-react'
+import {Card, Grid, Modal, Link} from 'semantic-ui-react'
 import Smiley from './Rating/Smiley'
 import ActivityLog from './ActivityLog'
 
@@ -21,6 +21,7 @@ const ActivityCard = props => {
                   <Modal.Content>
                     <Modal.Description>
                       <p>{props.info}</p>
+                      <a href={props.link}>{props.link}</a>
                     </Modal.Description>
                   </Modal.Content>
                 </Modal>
