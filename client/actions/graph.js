@@ -26,7 +26,7 @@ export function getRecords (userId, endDate) {
 
     request
       .get(`/api/v1/records/graph/${userId}/${endDate}`)
-      .then(res => dispatch(getRecordsSuccess(res.body.activity)))
+      .then(res => dispatch(getRecordsSuccess(res.body.chartData)))
       .catch(err => dispatch(getRecordsError(err.message)))
   }
 }
