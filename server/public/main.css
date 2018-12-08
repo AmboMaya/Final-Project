@@ -5,7 +5,8 @@
 .facesInCss {
   color: grey;
   margin-top: 5%;
-  letter-spacing: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 body{
@@ -14,4 +15,16 @@ body{
 
 .appBody{
   margin-top: 30px;
+}
+
+*:focus{
+  outline:none !important;
+}
+
+.addLogModal {
+  width: 80% !important;
+}
+
+.activityCards {
+  height: 150px !important;
 }
