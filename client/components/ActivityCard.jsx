@@ -51,7 +51,9 @@ export default class ActivityCard extends React.Component {
                   return (
                     <i
                       className={"far " + `${smile.mood}` + " fa-3x facesInCss"}
-                      key={smile.mood}
+                      key={smile.value}
+                      type="submit"
+                      onSubmit={this.submitHandler}
                     />
                   );
                 })}
