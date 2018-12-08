@@ -9,11 +9,11 @@ import BottomMenu from "./BottomMenu";
 class CardList extends React.Component {
   state = {
     smiles: [
-      { mood: "fa-angry" },
-      { mood: "fa-frown" },
-      { mood: "fa-meh" },
-      { mood: "fa-smile" },
-      { mood: "fa-laugh" }
+      { mood: "fa-angry", value: 1 },
+      { mood: "fa-frown", value: 2 },
+      { mood: "fa-meh", value: 3 },
+      { mood: "fa-smile", value: 4 },
+      { mood: "fa-laugh", value: 5 }
     ],
     records: [
       {
@@ -57,6 +57,7 @@ class CardList extends React.Component {
             {this.props.activities.map(act => {
               return (
                 <ActivityCard
+                  value={act.value}
                   name={act.name}
                   log={act.log}
                   key={act.id}
