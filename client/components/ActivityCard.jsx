@@ -12,16 +12,16 @@ const ActivityCard = props => {
 
   return (
     <React.Fragment>
-      <Grid.Column align="center">
+      <Grid.Column align='center'>
         <Card>
           <Card.Content >
             <Grid>
-              <Grid.Column floated='right' width={5}>
-                <i className="ellipsis horizontal icon right" floated="right"></i>
+              <Grid.Column floated='right' width={5} style={{paddingLeft: 35}}>
+                <i className='ellipsis horizontal icon right'></i>
               </Grid.Column>
             </Grid>
             <Card.Header >{props.name}</Card.Header>
-            {smilies}
+              {smilies}
           </Card.Content>
           <Card.Content extra>
             <ActivityLog />

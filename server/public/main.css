@@ -24,3 +24,7 @@ body{
 .addLogModal {
   width: 80% !important;
 }
+
+.activityCards {
+  height: 150px !important;
+}

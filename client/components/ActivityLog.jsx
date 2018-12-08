@@ -12,7 +12,7 @@ class ActivityLog extends React.Component {
   render() {
     return (
       <div>
-        <a basic size='mini' onClick={this.open}>
+        <a size='mini' onClick={this.open}>
           <i className="plus icon"></i>
           <span>Add log</span>
         </a>
@@ -23,7 +23,7 @@ class ActivityLog extends React.Component {
               <Card.Content extra>
                 <Grid>
                   <Grid.Column floated='right'> 
-                    <Button basic size='mini' onClick={this.close}>Add</Button>
+                    <Button basic={true} size='mini' onClick={this.close}>Add</Button>
                   </Grid.Column>    
                 </Grid>
               </Card.Content>
