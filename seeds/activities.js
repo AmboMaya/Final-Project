@@ -4,7 +4,7 @@ exports.seed = knex => {
     .then(() => {
       // Inserts seed entries
       return knex('activities').insert([
-        {id: 1, name: 'mood', icon: 'icon 1, ico', info: 'What is your emotional state today?'},
+        {id: 1, name: 'mood', icon: '', info: 'What is your emotional state today?'},
         {id: 2, name: 'exercise', icon: '', info: '"Exercise improves mental health by reducing anxiety, depression, and negative mood and by improving self-esteem and cognitive function" - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1470658/'},
         {id: 3, name: 'diet', icon: '', info: '"a number of conditions, including depression, may be influenced by dietary factors" - https://www.mentalhealth.org.nz/assets/ResourceFinder/healthy-eating-depression-how-diet-protects-you-health.pdf'},
         {id: 4, name: 'sleep', icon: '', info: '"Studies using different methods and populations estimate that 65% to 90% of adult patients with major depression, and about 90% of children with this disorder, experience some kind of sleep problem." - https://www.health.harvard.edu/newsletter_article/sleep-and-mental-health'},
