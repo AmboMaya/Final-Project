@@ -12,7 +12,8 @@
     "server": "nodemon server",
     "start": "webpack && node server",
     "updateDB": "rm dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "heroku-postbuild": "yarn knex migrate:latest && yarn knex seed:run"
   },
   "babel": {
     "presets": [
