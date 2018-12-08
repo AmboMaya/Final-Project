@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { Container, Grid } from "semantic-ui-react"
 import ActivityCard from "./ActivityCard"
 import {getActivities} from '../actions/journalActions'
-
+import BottomMenu from './BottomMenu'
 
 
 
@@ -36,6 +36,7 @@ class CardList extends React.Component {
             })}
           </Grid>
         </Container>
+        <BottomMenu />
       </React.Fragment>
     )
   }
