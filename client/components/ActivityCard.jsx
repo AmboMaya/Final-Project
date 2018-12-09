@@ -7,13 +7,11 @@ import { addNewRecord } from '../actions/records'
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.dispatch(
-      addNewRecord(userId, {
+    this.props.addNewRecord(userId, {
         activityId: e.target.id,
         rating: e.target.getAttribute('value'),
         log: e.target.getAttribute('name')
-      })
-    )
+    })
   }
 
   render() {
@@ -88,6 +86,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(
-  // mapStateToProps,
+  null,
   mapDispatchToProps
 )(ActivityCard)
