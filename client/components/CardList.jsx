@@ -20,6 +20,8 @@ class CardList extends React.Component {
       {
         user_id: '1',
         entries: []
+      }
+    ]
   }
 
   addRecord = (id, record) => {
