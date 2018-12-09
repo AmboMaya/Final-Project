@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { addNewRecord } from '../actions/records'
 
 class ActivityCard extends React.Component {
-
   clickHandler = e => {
     const userId = this.props.user_id
     this.props.dispatch(
@@ -37,7 +36,9 @@ class ActivityCard extends React.Component {
                     <Modal.Content>
                       <Modal.Description>
                         <p>{this.props.info}</p>
-                        {this.props.link ? <a href={this.props.link}>Source</a> : null}
+                        {this.props.link ? (
+                          <a href={this.props.link}>Source</a>
+                        ) : null}
                       </Modal.Description>
                     </Modal.Content>
                   </Modal>
@@ -73,10 +74,20 @@ class ActivityCard extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  const records = [...state.records]
+  return {
+    records
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
   }
 }
 
-export default connect(mapDispatchToProps)(ActivityCard)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ActivityCard)
