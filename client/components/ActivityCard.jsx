@@ -4,7 +4,6 @@ import Smiley from './Rating/Smiley'
 import ActivityLog from './ActivityLog'
 
 const ActivityCard = props => {
-  
   let smilies = []
   for (let i = 1; i <= 5; i++) {
     smilies.push(<Smiley key={i} rating={i} selected={props.currentRating === i} activity={props.activity} />)
@@ -21,7 +20,7 @@ const ActivityCard = props => {
               </Grid.Column>
             </Grid>
             <Card.Header >{props.name}</Card.Header>
-              {smilies}
+            {smilies}
           </Card.Content>
           <Card.Content extra>
             <ActivityLog />
