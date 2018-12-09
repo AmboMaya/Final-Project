@@ -13,7 +13,7 @@ export default class ActivityCard extends React.Component {
     e.preventDefault()
     this.setState({
       activity_id: e.target.id,
-      rating: e.target.rating,
+      rating: e.target.value,
       log: e.target.name
     })
     this.props.addRecord(this.props.user_id, this.state)
@@ -44,14 +44,18 @@ export default class ActivityCard extends React.Component {
               <Grid.Column align="center">
                 {this.props.smiles.map(smile => {
                   return (
-                    <i
-                      className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
-                      rating={smile.value}
-                      key={smile.mood}
-                      id={this.props.id}
-                      name={this.props.name}
-                      onClick={this.changeHandler}
-                    />
+                    <a>
+                      <i
+                        className={
+                          'far ' + `${smile.mood}` + ' fa-3x facesInCss'
+                        }
+                        value={smile.value}
+                        key={smile.value}
+                        id={this.props.act_id}
+                        name={this.props.name}
+                        onClick={this.changeHandler}
+                      />
+                    </a>
                   )
                 })}
               </Grid.Column>
