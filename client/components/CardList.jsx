@@ -1,18 +1,10 @@
 import React from 'react'
-<<<<<<< HEAD
 import { connect } from 'react-redux'
 
 import { Container, Grid } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
 
-=======
-import {connect} from 'react-redux'
-
-import { Container, Grid } from 'semantic-ui-react'
-import ActivityCard from './ActivityCard'
-import {getActivities} from '../actions/journalActions'
->>>>>>> development
 import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
