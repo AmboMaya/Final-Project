@@ -65,9 +65,7 @@ export default class Chart extends Component {
 //       ]
 //       }
 //   }
-  // state = {
-  //     chartData: this.props.chartData
-  // }
+
   render () {
     return (
       <div>
