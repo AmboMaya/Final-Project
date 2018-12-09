@@ -25,7 +25,10 @@ export function addNewRecord(userId, newRecord) {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-      .send(userId, newRecord)
+      .send({
+        user_id: userId,
+        entries: [newRecord]
+      })
       .then(res => {
         dispatch(addNewRecordSuccess(res.body))
       })
