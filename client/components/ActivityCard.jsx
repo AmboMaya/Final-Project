@@ -9,7 +9,7 @@ class ActivityCard extends React.Component {
     const userId = this.props.user_id
     this.props.dispatch(
       addNewRecord(userId, {
-        activity_id: e.target.id,
+        activity_id: e.target.getAttribute('id'),
         rating: e.target.getAttribute('value'),
         log: e.target.getAttribute('name')
       })
