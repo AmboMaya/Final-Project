@@ -1,9 +1,9 @@
 import request from 'superagent'
 
-export function addNewRecordSuccess(newRecord) {
+export function addNewRecordSuccess(records) {
   return {
     type: 'ADD_RECORD_SUCCESS',
-    newRecord
+    records
   }
 }
 
