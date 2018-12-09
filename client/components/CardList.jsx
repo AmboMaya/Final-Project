@@ -19,15 +19,7 @@ class CardList extends React.Component {
     records: [
       {
         user_id: '1',
-        entries: [
-          {
-            activity_id: '2',
-            rating: '4',
-            log: ''
-          }
-        ]
-      }
-    ]
+        entries: []
   }
 
   addRecord = (id, record) => {
@@ -52,7 +44,18 @@ class CardList extends React.Component {
         { mood: 'fa-smile', value: 4 },
         { mood: 'fa-laugh', value: 5 }
       ],
-      records: []
+      records: [
+        {
+          user_id: '1',
+          entries: [
+            {
+              activity_id: '2',
+              rating: '4',
+              log: ''
+            }
+          ]
+        }
+      ]
     })
   }
 
