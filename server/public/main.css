@@ -15,6 +15,7 @@ body{
 
 .appBody{
   margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 *:focus{
@@ -27,4 +28,11 @@ body{
 
 .activityCards {
   height: 150px !important;
+}
+
+.stickyMenu {
+  position: fixed !important;
+  width: 100% !important;
+  border-radius: none !important;
+  padding-bottom: 
 }
