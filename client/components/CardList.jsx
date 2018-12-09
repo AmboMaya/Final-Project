@@ -40,7 +40,6 @@ class CardList extends React.Component {
                   act_id={act.id}
                   user_id={this.state.records[0].user_id}
                   smiles={this.state.smiles}
-                  addRecord={this.addRecord}
                 />
               )
             })}
