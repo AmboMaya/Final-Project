@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Grid } from 'semantic-ui-react'
+import { Card, Grid, Modal } from 'semantic-ui-react'
 import ActivityLog from './ActivityLog'
 import { connect } from 'react-redux'
 import { addNewRecord } from '../actions/records'
@@ -24,10 +24,22 @@ class ActivityCard extends React.Component {
             <Card.Content align="center">
               <Grid>
                 <Grid.Column floated="right" width={5}>
-                  <i
-                    className="ellipsis horizontal icon right"
-                    floated="right"
-                  />
+                  <Modal
+                    trigger={
+                      <a>
+                        <i className="question circle outline icon right" />
+                      </a>
+                    }
+                    closeIcon
+                  >
+                    <Modal.Header>{this.props.name}</Modal.Header>
+                    <Modal.Content>
+                      <Modal.Description>
+                        <p>{this.props.info}</p>
+                        {this.props.link ? <a href={this.props.link}>Source</a> : null}
+                      </Modal.Description>
+                    </Modal.Content>
+                  </Modal>
                 </Grid.Column>
               </Grid>
 
