@@ -10,11 +10,11 @@ import BottomMenu from './BottomMenu'
 class CardList extends React.Component {
   state = {
     smiles: [
-      { mood: 'fa-angry', value: 1 },
-      { mood: 'fa-frown', value: 2 },
-      { mood: 'fa-meh', value: 3 },
-      { mood: 'fa-smile', value: 4 },
-      { mood: 'fa-laugh', value: 5 }
+      { mood: 'fa-angry', value: '1' },
+      { mood: 'fa-frown', value: '2' },
+      { mood: 'fa-meh', value: '3' },
+      { mood: 'fa-smile', value: '4' },
+      { mood: 'fa-laugh', value: '5' }
     ],
     records: [
       {
