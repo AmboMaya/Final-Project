@@ -64,7 +64,14 @@ exports.seed = knex => {
           name: 'vice',
           icon: '',
           info: 'What do you want to track to see if it affects your mood? Smoking, a certain drug, gambling, or something else?',
-          colour: 'white'
+          colour: '#505160'
+        },
+        {
+          id: 9,
+          name: 'Medication',
+          icon: '',
+          info: 'Have you taken any medication today? Does it affects your health?',
+          colour: '#7c3284'
         }
       ])
     })

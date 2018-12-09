@@ -16,7 +16,7 @@ const ActivityCard = props => {
           <Card.Content >
             <Grid>
               <Grid.Column floated='right' width={5} style={{paddingLeft: 35}}>
-                <Modal trigger={<i className='info circle icon right grey'></i>} closeIcon>
+                <Modal trigger={<a><i className='question circle outline icon right'></i></a>} closeIcon>
                   <Modal.Header>{props.name}</Modal.Header>
                   <Modal.Content>
                     <Modal.Description>
