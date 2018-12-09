@@ -18,7 +18,7 @@ class CardList extends React.Component {
     ],
     records: [
       {
-        user_id: 1,
+        user_id: '1',
         entries: [
           {
             activity_id: '2',
@@ -68,12 +68,10 @@ class CardList extends React.Component {
             {this.props.activities.map(act => {
               return (
                 <ActivityCard
-                  value={act.value}
                   name={act.name}
-                  log={act.log}
                   key={act.id}
                   act_id={act.id}
-                  user_id={this.state.records.user_id}
+                  user_id={this.state.records[0].user_id}
                   smiles={this.state.smiles}
                   addRecord={this.addRecord}
                 />
