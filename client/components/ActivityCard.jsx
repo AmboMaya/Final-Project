@@ -12,11 +12,11 @@ export default class ActivityCard extends React.Component {
   changeHandler = e => {
     e.preventDefault()
     this.setState({
-      activity_id: e.target.act,
-      rating: e.target.value,
+      activity_id: e.target.id,
+      rating: e.target.rating,
       log: e.target.name
     })
-    this.props.addRecord(this.props.id, this.state)
+    this.props.addRecord(this.props.user_id, this.state)
     console.log('SUBMITTED:', this.state)
     this.setState({
       activity_id: '',
@@ -46,10 +46,9 @@ export default class ActivityCard extends React.Component {
                   return (
                     <i
                       className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
-                      id={smile.value}
-                      value={smile.value}
-                      act={this.props.id}
-                      key={smile.value}
+                      rating={smile.value}
+                      key={smile.mood}
+                      id={this.props.id}
                       name={this.props.name}
                       onClick={this.changeHandler}
                     />
