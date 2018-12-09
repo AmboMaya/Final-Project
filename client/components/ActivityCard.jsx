@@ -10,14 +10,17 @@ export default class ActivityCard extends React.Component {
   }
 
   changeHandler = e => {
-    e.preventDefault()
     this.setState({
       activity_id: e.target.id,
       rating: e.target.value,
       log: e.target.name
     })
     this.props.addRecord(this.props.user_id, this.state)
-    console.log('SUBMITTED:', this.state)
+    console.log('SUBMITTED:', this.props.user_id, this.state)
+
+  }
+
+  submitChange = () => {
     this.setState({
       activity_id: '',
       rating: '',
