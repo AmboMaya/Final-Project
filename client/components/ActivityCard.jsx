@@ -10,14 +10,15 @@ export default class ActivityCard extends React.Component {
   }
 
   changeHandler = e => {
-    this.setState({
-      activity_id: e.target.id,
-      rating: e.target.value,
-      log: e.target.name
-    })
+    this.setState(
+      {
+        activity_id: e.target.id,
+        rating: e.target.value,
+        log: e.target.name
+      },
+      () => console.log('SUBMITTED:', this.props.user_id, this.state)
+    )
     this.props.addRecord(this.props.user_id, this.state)
-    console.log('SUBMITTED:', this.props.user_id, this.state)
-
   }
 
   submitChange = () => {
@@ -59,7 +60,7 @@ export default class ActivityCard extends React.Component {
                       />
                     </a>
                   )
-                })}
+                }, this)}
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
