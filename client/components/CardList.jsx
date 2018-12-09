@@ -38,6 +38,8 @@ class CardList extends React.Component {
                   key={key}
                   name={act.name}
                   act_id={act.id}
+                  info={act.info} 
+                  link={act.link}
                   user_id={this.state.records[0].user_id}
                   smiles={this.state.smiles}
                 />
