@@ -1,9 +1,9 @@
 import request from 'superagent'
 
-export function addNewRecordSuccess(records) {
+export function addNewRecordSuccess(record) {
   return {
     type: 'ADD_RECORD_SUCCESS',
-    records
+    record
   }
 }
 
@@ -20,12 +20,12 @@ export function getRecordError(message) {
   }
 }
 
-export function addNewRecord(id, newRecord) {
+export function addNewRecord(id, record) {
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-      .send({ userId: id, records: [ newRecord ]})
+      .send({ userId: id, records: [ record ]})
       .then(res => {
         dispatch(addNewRecordSuccess(res.body))
       })
