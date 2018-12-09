@@ -60,7 +60,7 @@ export default class ActivityCard extends React.Component {
                       />
                     </a>
                   )
-                }, this)}
+                })}
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
