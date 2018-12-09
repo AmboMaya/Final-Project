@@ -9,20 +9,15 @@ export default class ActivityCard extends React.Component {
     log: ''
   }
 
-  handleChange = e => {
+  changeHandler = e => {
+    e.preventDefault()
     this.setState({
       activity_id: e.target.act,
       rating: e.target.value,
       log: e.target.name
     })
-  }
-
-  submitHandler = e => {
-    e.preventDefault()
     this.props.addRecord(this.props.id, this.state)
-    // Final validation before submitting to server
     console.log('SUBMITTED:', this.state)
-    // Clear the state to clear the form
     this.setState({
       activity_id: '',
       rating: '',
@@ -56,9 +51,7 @@ export default class ActivityCard extends React.Component {
                       act={this.props.id}
                       key={smile.value}
                       name={this.props.name}
-                      onClick={this.handleChange}
-                      type="submit"
-                      onSubmit={this.submitHandler}
+                      onClick={this.changeHandler}
                     />
                   )
                 })}
