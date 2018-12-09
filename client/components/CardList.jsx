@@ -18,23 +18,10 @@ class CardList extends React.Component {
     ],
     records: [
       {
-        user_id: '1',
-        entries: []
+        user_id: '1'
       }
     ]
   }
-
-  addRecord = (id, record) => {
-    const newRecord = this.state.records.map(rec => {
-      if (rec.user_id !== id) return rec
-      return {
-        ...rec,
-        records: [...rec.entries, record]
-      }
-    })
-    this.setState({ records: newRecord })
-  }
-
 
   componentDidMount() {
     this.props.getActivities()
@@ -74,8 +61,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getActivities: () => dispatch(getActivities()),
-    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+    getActivities: () => dispatch(getActivities())
   }
 }
 
