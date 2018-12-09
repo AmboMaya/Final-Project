@@ -21,7 +21,7 @@ const ActivityCard = props => {
                   <Modal.Content>
                     <Modal.Description>
                       <p>{props.info}</p>
-                      <a href={props.link}>{props.link}</a>
+                      {props.link ? <a href={props.link}>Source</a> : null}
                     </Modal.Description>
                   </Modal.Content>
                 </Modal>
