@@ -1,32 +1,19 @@
 import React from 'react'
 import { Card, Grid } from 'semantic-ui-react'
 import ActivityLog from './ActivityLog'
+import { connect } from 'react-redux'
+import { addNewRecord } from '../actions/records'
 
-export default class ActivityCard extends React.Component {
-  state = {
-    activity_id: '',
-    rating: '',
-    log: ''
-  }
-
-  changeHandler = e => {
-    this.setState(
-      {
+class ActivityCard extends React.Component {
+  clickHandler = e => {
+    const userId = this.props.user_id
+    this.props.dispatch(
+      addNewRecord(userId, {
         activity_id: e.target.id,
         rating: e.target.value,
         log: e.target.name
-      },
-      () => console.log('SUBMITTED:', this.props.user_id, this.state)
+      })
     )
-    this.props.addRecord(this.props.user_id, this.state)
-  }
-
-  submitChange = () => {
-    this.setState({
-      activity_id: '',
-      rating: '',
-      log: ''
-    })
   }
 
   render() {
@@ -56,7 +43,7 @@ export default class ActivityCard extends React.Component {
                         value={smile.value}
                         id={this.props.act_id}
                         name={this.props.name}
-                        onClick={this.changeHandler}
+                        onClick={this.clickHandler}
                       />
                     </a>
                   )
@@ -72,3 +59,11 @@ export default class ActivityCard extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+  }
+}
+
+export default connect(mapDispatchToProps)(ActivityCard)
