@@ -5,6 +5,7 @@ exports.up = knex =>
     t.string('icon')
     t.string('info')
     t.string('link')
+    t.string('colour')
   })
 
 exports.down = knex => knex.schema.dropTable('activities')

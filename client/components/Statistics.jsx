@@ -5,16 +5,19 @@ import { Container, Grid } from "semantic-ui-react"
 import Graph from "./Graph"
 import {getRecords} from '../actions/graph'
 import BottomMenu from './BottomMenu'
+import moment from "moment"
 
 class Statistics extends React.Component {
   state = {
     // mock data to send to the server
     userId: 1,
-    date: '2018-12-14'
+    date: moment().format('YYYY-MM-DD')
   }
 
   componentDidMount(){
    this.props.getRecords(this.state.userId, this.state.date)
+  console.log(this.props.records)
+  console.log(moment().format('YYYY-MM-DD'))
    // this.props.records  => is the data
   }
 
