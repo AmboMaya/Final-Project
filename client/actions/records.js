@@ -1,32 +1,34 @@
-export function addNewRecordSuccess (newRecord) {
-    return {
-      type: 'ADD_RECORD_SUCCESS',
-      newRecord
-    }
-  }
+import request from 'superagent'
 
-  export function getRecordPending () {
-    return {
-      type: 'GET_RECORD_PENDING'
-    }
+export function addNewRecordSuccess(newRecord) {
+  return {
+    type: 'ADD_RECORD_SUCCESS',
+    newRecord
   }
+}
 
-  export function getRecordError (message) {
-    return {
-      type: 'GET_RECORD_ERROR',
-      message
-    }
+export function getRecordPending() {
+  return {
+    type: 'GET_RECORD_PENDING'
   }
+}
 
-export function addNewRecord (newRecord) {
-    return dispatch => {
-      dispatch(getRecordPending())
-      return request
-        .post('/api/v1/records')
-        .send(newRecord)
-        .then(res => {
-          dispatch(addNewRecordSuccess(res.body))
-        })
-        .catch(err => dispatch(getRecordError(err.message)))
-    }
+export function getRecordError(message) {
+  return {
+    type: 'GET_RECORD_ERROR',
+    message
   }
+}
+
+export function addNewRecord(userId, newRecord) {
+  return dispatch => {
+    dispatch(getRecordPending())
+    return request
+      .post('/api/v1/records')
+      .send(userId, newRecord)
+      .then(res => {
+        dispatch(addNewRecordSuccess(res.body))
+      })
+      .catch(err => dispatch(getRecordError(err.message)))
+  }
+}
