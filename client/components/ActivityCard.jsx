@@ -74,20 +74,20 @@ class ActivityCard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const records = [...state.records]
-  return {
-    records
-  }
-}
+// const mapStateToProps = state => {
+//   const records = [...state.records]
+//   return {
+//     records
+//   }
+// }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+    addNewRecord: record => dispatch(addNewRecord(record))
   }
 }
 
 export default connect(
-  mapStateToProps,
+  // mapStateToProps,
   mapDispatchToProps
 )(ActivityCard)
