@@ -1,5 +1,4 @@
 const connection = require('./')
-// const dates = require('./dates')
 
 function getDates (userId, startDate, endDate, db = connection) {
   return db('dates')
@@ -9,27 +8,11 @@ function getDates (userId, startDate, endDate, db = connection) {
     .select()
 }
 
-function getCardsPerDate (dateId, db = connection) {
-  return db('cardData')
-    .where('date_id', '=', dateId)
-    .select()
-}
-
-function getCards (dateIds, db = connection) {
-  return db('cardData')
-    // for (date of dateIds) {
-    //   .where('date_id', '=', date)
-    // }
-    
-}
-
 function getAllCards (db = connection) {
   return db('cardData')
 }
 
 module.exports = {
-  getCardsPerDate,
   getDates,
-  getCards,
   getAllCards
 }

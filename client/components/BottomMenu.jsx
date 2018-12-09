@@ -1,19 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {Sticky} from 'semantic-ui-react'
 
-const BottomMenu = () => {
-  return (
-    <div className="ui teal three item inverted menu">
-      <a className="active item" path='/'>
-    Home
-      </a>
-      <a className="item">
-    Messages
-      </a>
-      <a className="item">
-    Friends
-      </a>
-    </div>
-  )
+export default class BottomMenu extends Component {
+  handleClick (e) {
+    e.preventDefault()
+  }
+
+  render () {
+    return (
+      <Sticky className='stickyMenu' style={{bottom: 0}}>
+        <div className='ui teal three item inverted menu'>
+          <a href='/' onClick={this.handleClick} className='active item'>Home</a>
+          <a className='item'>Calendar</a>
+          <a href='/records' onClick={this.handleClick} className='item'>Graph</a>
+        </div>
+      </Sticky>
+    )
+  }
 }
-
-export default BottomMenu

@@ -1,5 +1,5 @@
 import React from 'react'
-// import Graph from './Graph'
+import Statistics from './Statistics'
 import CardList from './CardList'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 
@@ -8,7 +8,8 @@ export default class Main extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path='/' component={CardList} />
+          <Route exact path='/' component={CardList} />
+          <Route exact path='/statistics' component={Statistics} />
         </Switch>
       </Router>
     )
