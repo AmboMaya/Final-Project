@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Container, Grid } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
-import { addNewRecord } from '../actions/records'
+
 import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
@@ -35,31 +35,6 @@ class CardList extends React.Component {
     this.setState({ records: newRecord })
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    this.props.dispatch(addNewRecord(this.state))
-    this.setState({
-      smiles: [
-        { mood: 'fa-angry', value: 1 },
-        { mood: 'fa-frown', value: 2 },
-        { mood: 'fa-meh', value: 3 },
-        { mood: 'fa-smile', value: 4 },
-        { mood: 'fa-laugh', value: 5 }
-      ],
-      records: [
-        {
-          user_id: '1',
-          entries: [
-            {
-              activity_id: '2',
-              rating: '4',
-              log: ''
-            }
-          ]
-        }
-      ]
-    })
-  }
 
   componentDidMount() {
     this.props.getActivities()
