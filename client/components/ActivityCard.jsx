@@ -56,6 +56,7 @@ export default class ActivityCard extends React.Component {
                       act={this.props.id}
                       key={smile.value}
                       name={this.props.name}
+                      onClick={this.handleChange}
                       type="submit"
                       onSubmit={this.submitHandler}
                     />
