@@ -30,7 +30,7 @@ class CardList extends React.Component {
         <Container className="appBody">
           <Grid columns={3} doubling stackable>
             {this.props.activities.map(act => {
-              return <ActivityCard name={act.name} log={act.log} key={act.name} />;
+              return <ActivityCard name={act.name} log={act.log} key={act.name} info={act.info} link={act.link} />
             })}
           </Grid>
         </Container>
