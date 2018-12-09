@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { addNewRecord } from '../actions/records'
 
 class ActivityCard extends React.Component {
+
   clickHandler = e => {
     const userId = this.props.user_id
     this.props.dispatch(
