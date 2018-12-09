@@ -14,6 +14,26 @@ class ActivityCard extends React.Component {
     })
   }
 
+  renderSmiles = () => {
+    // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
+    const { activity, smiles } = this.props
+
+    return smiles.map((smile, key) => 
+      <a key={key}>
+        <i
+          className={
+            'far ' + `${smile.mood}` + ' fa-3x facesInCss'
+          }
+          value={smile.value}
+          id={this.props.act_id}
+          name={this.props.name}
+          onClick={this.clickHandler}
+          style={activity && activity.rating === smile.value ? { color: smile.color } : {}}
+        />
+      </a>
+    )
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -45,21 +65,7 @@ class ActivityCard extends React.Component {
 
               <Card.Header>{this.props.name}</Card.Header>
               <Grid.Column align="center">
-                {this.props.smiles.map((smile, key) => {
-                  return (
-                    <a key={key}>
-                      <i
-                        className={
-                          'far ' + `${smile.mood}` + ' fa-3x facesInCss'
-                        }
-                        value={smile.value}
-                        id={this.props.act_id}
-                        name={this.props.name}
-                        onClick={this.clickHandler}
-                      />
-                    </a>
-                  )
-                })}
+                {this.renderSmiles()}
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
@@ -72,20 +78,24 @@ class ActivityCard extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   const records = [...state.records]
-//   return {
-//     records
-//   }
-// }
+const mapStateToProps = ({ records }, ownProps) => {
+  let activity = undefined
+  if (records) {
+    activity = records[0].activities.find(a => Number(a.activityId) === ownProps.act_id)
+  }
+
+  return {
+    activity
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewRecord: record => dispatch(addNewRecord(record))
+    addNewRecord: (userId, record) => dispatch(addNewRecord(userId, record))
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(ActivityCard)

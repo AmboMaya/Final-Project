@@ -20,12 +20,13 @@ export function getRecordError(message) {
   }
 }
 
-export function addNewRecord(id, record) {
+export function addNewRecord(userId, record) {
   return dispatch => {
     dispatch(getRecordPending())
+
     return request
       .post('/api/v1/records')
-      .send({ userId: id, records: [ record ]})
+      .send({ userId, records: [ record ]})
       .then(res => {
         dispatch(addNewRecordSuccess(res.body))
       })
