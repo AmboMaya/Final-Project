@@ -11,7 +11,9 @@ export default class ActivityCard extends React.Component {
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      activity_id: e.target.act,
+      rating: e.target.value,
+      log: e.target.name
     })
   }
 
@@ -49,7 +51,11 @@ export default class ActivityCard extends React.Component {
                   return (
                     <i
                       className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
+                      id={smile.value}
+                      value={smile.value}
+                      act={this.props.id}
                       key={smile.value}
+                      name={this.props.name}
                       type="submit"
                       onSubmit={this.submitHandler}
                     />
