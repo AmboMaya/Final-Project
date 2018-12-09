@@ -74,7 +74,7 @@ router.get('/graph/:userId/:endDate', (req, res) => {
           // rearrange the data as graph component wants
           chartData.labels = []
           for (date of dates) {
-            chartData.labels.push(date.created_at.slice(0, 10))
+            chartData.labels.push(date.created_at.slice(5, 10))
           }
           chartData.datasets = []
 

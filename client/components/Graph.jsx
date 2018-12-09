@@ -84,11 +84,17 @@ export default class Chart extends Component {
               yAxes:
                [{
                  ticks: {
+                   fontColor: 'black',
                    callback: function (label, index, labels) {
                      return yLabels[label]
                    }
                  }
-               }]
+               }],
+              xAxes: [{
+                ticks: {
+                  fontColor: 'black'
+                }
+              }]
             }
           }}
         />
