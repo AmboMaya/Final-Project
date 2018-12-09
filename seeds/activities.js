@@ -11,7 +11,8 @@ exports.seed = knex => {
         {id: 5, name: 'Meditation', icon: '', info: '"a mindfulness-based stress reduction program helped quell anxiety symptoms in people with generalized anxiety disorder"', link: 'https://www.health.harvard.edu/blog/mindfulness-meditation-may-ease-anxiety-mental-stress-201401086967'},
         {id: 6, name: 'Water', icon: '', info: '"Even mild dehydration that can occur during the course of our ordinary daily activities can degrade how we are feeling"', link: 'https://today.uconn.edu/2012/02/even-mild-dehydration-can-alter-mood/'},
         {id: 7, name: 'Alcohol', icon: '', info: '"in the long term alcohol misuse can cause big problems for our mental health. It’s linked to a range of issues from depression and memory loss to suicide."', link: 'https://www.mentalhealth.org.nz/assets/A-Z/Downloads/The-facts-about-Alcohol-and-mental-health-Drink-Aware-UK-2013.pdf'},
-        {id: 8, name: 'Vice', icon: '', info: 'What do you want to track to see if it affects your mood? Smoking, a certain drug, gambling, or something else?'}
+        {id: 8, name: 'Vice', icon: '', info: 'What do you want to track to see if it affects your mood? Smoking, a certain drug, gambling, or something else?'},
+        {id: 9, name: 'Medication', icon: '', info: 'Have you taken any medication today? Does it affects your health?'}
       ])
     })
 }

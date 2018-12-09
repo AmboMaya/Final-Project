@@ -13,7 +13,7 @@ class ActivityLog extends React.Component {
     return (
       <div>
         <a size='mini' onClick={this.open}>
-          <i className="plus icon"></i>
+          <i className='plus icon'></i>
           <span>Add log</span>
         </a>
         <Modal className='addLogModal' size='mini' open={this.state.open} onClose={this.close} >
