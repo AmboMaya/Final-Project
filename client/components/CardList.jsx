@@ -1,10 +1,18 @@
 import React from 'react'
+<<<<<<< HEAD
 import { connect } from 'react-redux'
 
 import { Container, Grid } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
 
+=======
+import {connect} from 'react-redux'
+
+import { Container, Grid } from 'semantic-ui-react'
+import ActivityCard from './ActivityCard'
+import {getActivities} from '../actions/journalActions'
+>>>>>>> development
 import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
@@ -30,7 +38,7 @@ class CardList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Container className="appBody">
+        <Container className='appBody'>
           <Grid columns={3} doubling stackable>
             {this.props.activities.map((act, key) => {
               return (
