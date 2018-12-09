@@ -21,13 +21,8 @@ class CardList extends React.Component {
         user_id: 1,
         entries: [
           {
-            activity_id: 1,
-            rating: '',
-            log: ''
-          },
-          {
-            activity_id: 2,
-            rating: '',
+            activity_id: '2',
+            rating: '4',
             log: ''
           }
         ]
@@ -47,7 +42,6 @@ class CardList extends React.Component {
   }
 
   handleSubmit = e => {
-    console.log('AddNew')
     e.preventDefault()
     this.props.dispatch(addNewRecord(this.state))
     this.setState({
