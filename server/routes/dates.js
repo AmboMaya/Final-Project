@@ -42,8 +42,6 @@ router.post('/', (req, res) => {
   // }
 })
 
-
-
 router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
   let endDate = req.params.endDate
@@ -86,6 +84,10 @@ router.get('/graph/:userId/:endDate', (req, res) => {
               for (let a of actis) {
                 let aObj = {}
                 aObj.label = a.name
+                aObj.borderColor = a.colour
+                aObj.backgroundColor = a.colour
+                a.name === 'mood' ? aObj.borderWidth = 4 : aObj.borderWidth = 2
+                aObj.fill = false
                 aObj.data = []
 
                 chartData.datasets.push(aObj)
