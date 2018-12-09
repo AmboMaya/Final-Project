@@ -7,7 +7,7 @@ import moment from "moment"
 import Graph from "./Graph"
 import BottomMenu from './BottomMenu'
 import {getRecords} from '../actions/graph'
-import {getUser} from '../actions/user'
+// import {getUser} from '../actions/user'
 
 
 
@@ -18,7 +18,6 @@ class Statistics extends React.Component {
 
   componentDidMount(){
    this.props.getRecords(this.props.user.id, this.state.date)
-   console.log(this.props.user.id)
   //  this.getUserAction()
   }
 
