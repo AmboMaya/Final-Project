@@ -65,11 +65,11 @@ class CardList extends React.Component {
       <React.Fragment>
         <Container className="appBody">
           <Grid columns={3} doubling stackable>
-            {this.props.activities.map(act => {
+            {this.props.activities.map((act, key) => {
               return (
                 <ActivityCard
+                  key={key}
                   name={act.name}
-                  key={act.id}
                   act_id={act.id}
                   user_id={this.state.records[0].user_id}
                   smiles={this.state.smiles}
