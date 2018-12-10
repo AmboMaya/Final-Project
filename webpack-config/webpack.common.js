@@ -31,6 +31,10 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new GenerateSW()
+    new GenerateSW({
+      swDest: 'sw.js',
+      clientsClaim: true,
+      skipWaiting: true,
+    })
   ]
 }
