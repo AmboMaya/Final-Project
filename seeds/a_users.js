@@ -4,8 +4,8 @@ exports.seed = knex =>
       knex('users').insert([
         {
           id: 1,
-          username: 'test',
-          email: 'test@example.com',
+          username: 'Potato Kowhai',
+          email: 'potatoKowhai.com',
           // Password is 'password'!
           hash: '$argon2id$v=19$m=8,t=2,p=1$yjmQK3uZ0b7oK7RqIua5Kw$rciYEEnFUlkunk09KIGN1VRVhAzWpXrDbHN+kfcUqjU'
         }

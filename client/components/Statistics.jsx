@@ -2,31 +2,38 @@ import React from "react"
 import {connect} from 'react-redux'
 
 import { Container, Grid } from "semantic-ui-react"
-import Graph from "./Graph"
-import {getRecords} from '../actions/graph'
-import BottomMenu from './BottomMenu'
 import moment from "moment"
+
+import Graph from "./Graph"
+import BottomMenu from './BottomMenu'
+import {getRecords} from '../actions/graph'
+// import {getUser} from '../actions/user'
+
+
 
 class Statistics extends React.Component {
   state = {
-    // mock data to send to the server
-    userId: 1,
     date: moment().format('YYYY-MM-DD')
   }
 
   componentDidMount(){
-   this.props.getRecords(this.state.userId, this.state.date)
-  console.log(this.props.records)
-  console.log(moment().format('YYYY-MM-DD'))
-   // this.props.records  => is the data
+   this.props.getRecords(this.props.user.id, this.state.date)
+  //  this.getUserAction()
   }
+
+  // getUserAction = () => {
+  //   this.props.getUser()
+  //     this.setState({
+  //       user : this.props.user
+  //     })
+  // }
 
   render() {
     return (
       <React.Fragment>
         <Container className="appBody">
-          <h1>My Activity Statistics</h1>
-          <h2>Weekly Graph</h2>
+          <h2>My Activity Statistics</h2>
+          <h3>Weekly Graph</h3>
           <Graph chartData={this.props.records}/>
         </Container>
         <BottomMenu />
@@ -36,14 +43,17 @@ class Statistics extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const records  = state.graph
-  return {records}
+  return {
+    records: state.graph, 
+    user: state.user
+  }
   
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRecords: (userId, date) => dispatch(getRecords(userId, date))
+    getRecords: (userId, date) => dispatch(getRecords(userId, date)),
+    // getUser: () => dispatch(getUser())
   }
 }
 
