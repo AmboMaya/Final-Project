@@ -1,7 +1,7 @@
 import React from 'react'
 import Calendar from 'react-input-calendar'
 import BottomMenu from './BottomMenu'
-import Loading from './loading'
+import Loading from './Loading'
 
 class MyCalendar extends React.Component {
   render () {
