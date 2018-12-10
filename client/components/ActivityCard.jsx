@@ -7,7 +7,7 @@ import { addActivity } from '../actions/records'
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.addNewRecord(userId, {
+    this.props.addActivity(userId, {
         activityId: e.target.id,
         rating: e.target.getAttribute('value'),
         log: e.target.getAttribute('name')
@@ -91,7 +91,7 @@ const mapStateToProps = ({ records }, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewRecord: (userId, record) => dispatch(addNewRecord(userId, record))
+    addActivity: (userId, record) => dispatch(addActivity(userId, record))
   }
 }
 
