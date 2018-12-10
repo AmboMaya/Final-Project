@@ -1,38 +1,72 @@
 import React from 'react'
-import { Button, TextArea, Modal, Card, Grid } from 'semantic-ui-react'
+import { Button, Divider, Form, TextArea, Modal, Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addLog } from '../actions/records'
 
 class ActivityLog extends React.Component {
   state = {
-    open: false
+    open: false,
+    log: ""
   }
-  
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  submitHandler = e => {
+    e.preventDefault()
+    this.props.addLog(this.props.user, this.state.log)
+  }
+
   handleRef = component => (this.ref = component)
   open = () => this.setState({ open: true }, () => this.ref.focus())
   close = () => this.setState({ open: false })
   render() {
     return (
       <div>
-        <a size='mini' onClick={this.open}>
-          <i className='plus icon'></i>
+        <a size="mini" onClick={this.open}>
+          <i className="plus icon" />
           <span>Add log</span>
         </a>
-        <Modal className='addLogModal' size='mini' open={this.state.open} onClose={this.close} >
+        <Modal
+          className="addLogModal"
+          size="mini"
+          open={this.state.open}
+          onClose={this.close}
+          closeIcon
+        >
           <Modal.Content>
-            <Card.Content align="center"/>
-              <TextArea ref={this.handleRef} style={{minWidth: 250}}/>
-              <Card.Content extra>
-                <Grid>
-                  <Grid.Column floated='right'> 
-                    <Button basic={true} size='mini' onClick={this.close}>Add</Button>
-                  </Grid.Column>    
-                </Grid>
-              </Card.Content>
+            <Card.Content align="center" />
+            <Form onSubmit={this.submitHandler}>
+              <TextArea
+                name="log"
+                value={this.state.log}
+                onChange={this.handleChange}
+                ref={this.handleRef}
+                style={{ minWidth: 250 }}
+              />
+              <Divider />
+              <Button
+                type="submit"
+                basic={true}
+                size="mini"
+                onClick={this.close}
+              >
+                Add
+              </Button>
+            </Form>
           </Modal.Content>
         </Modal>
       </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
   }
 }
 
@@ -42,4 +76,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(ActivityLog)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ActivityLog)
