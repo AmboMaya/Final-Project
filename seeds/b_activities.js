@@ -70,7 +70,7 @@ exports.seed = knex => {
           id: 9,
           name: 'Medication',
           icon: '',
-          info: 'Have you taken any medication today? Does it affects your health?',
+          info: 'Have you taken any medication today? Does it affect your health?',
           colour: '#7c3284'
         }
       ])

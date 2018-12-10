@@ -3,8 +3,8 @@ export default function recordReducer (state = [], action) {
     case 'GET_RECORD_SUCCESS':
       return action.record
 
-    case 'ADD_NEW_RECORD_SUCCESS':
-      return action.newRecord
+    case 'ADD_RECORD_SUCCESS':
+      return action.record
 
     default:
       return state

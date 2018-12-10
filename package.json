@@ -7,16 +7,14 @@
   "author": "Kowhai 2018",
   "license": "ISC",
   "scripts": {
-    "client": "webpack-dev-server --hot --inline",
+    "client": "webpack-dev-server --hot --inline --config ./webpack-config/webpack.dev.js",
     "server": "nodemon server",
     "start": "webpack && node server",
     "updateDB": "rm -f dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run",
     "heroku-postbuild": "yarn knex migrate:latest && yarn knex seed:run",
     "test": "jest --watchAll",
-    "build-dev": "webpack --progress --config ./webpack-config/webpack.dev.js --mode development",
-    "build-prod": "webpack -p --progress --config ./webpack-config/webpack.prod.js --mode production",
-    "dev": "nodemon --watch server/index.js & yarn build-dev --watch",
-    "prod": "nodemon --watch server/index.js & yarn build-prod --watch"
+    "build-dev": "webpack --progress --config ./webpack-config/webpack.dev.js",
+    "dev": "nodemon --watch server/index.js & yarn build-dev --watch"
   },
   "babel": {
     "presets": [
