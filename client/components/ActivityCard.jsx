@@ -2,17 +2,35 @@ import React from 'react'
 import { Card, Grid, Modal } from 'semantic-ui-react'
 import ActivityLog from './ActivityLog'
 import { connect } from 'react-redux'
-import { addNewRecord } from '../actions/records'
+import { addActivity } from '../actions/records'
 
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.dispatch(
-      addNewRecord(userId, {
+    this.props.addActivity(userId, {
         activityId: e.target.id,
         rating: e.target.getAttribute('value'),
         log: e.target.getAttribute('name')
-      })
+    })
+  }
+
+  renderSmiles = () => {
+    // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
+    const { card, smiles } = this.props
+
+    return smiles.map((smile, key) => 
+      <a key={key}>
+        <i
+          className={
+            'far ' + `${smile.mood}` + ' fa-3x facesInCss'
+          }
+          value={smile.value}
+          id={this.props.act_id}
+          name={this.props.name}
+          onClick={this.clickHandler}
+          style={card && card.rating === Number(smile.value) ? { color: smile.color } : {}}
+        />
+      </a>
     )
   }
 
@@ -36,7 +54,9 @@ class ActivityCard extends React.Component {
                     <Modal.Content>
                       <Modal.Description>
                         <p>{this.props.info}</p>
-                        {this.props.link ? <a href={this.props.link}>Source</a> : null}
+                        {this.props.link ? (
+                          <a href={this.props.link}>Source</a>
+                        ) : null}
                       </Modal.Description>
                     </Modal.Content>
                   </Modal>
@@ -45,25 +65,11 @@ class ActivityCard extends React.Component {
 
               <Card.Header>{this.props.name}</Card.Header>
               <Grid.Column align="center">
-                {this.props.smiles.map((smile, key) => {
-                  return (
-                    <a key={key}>
-                      <i
-                        className={
-                          'far ' + `${smile.mood}` + ' fa-3x facesInCss'
-                        }
-                        value={smile.value}
-                        id={this.props.act_id}
-                        name={this.props.name}
-                        onClick={this.clickHandler}
-                      />
-                    </a>
-                  )
-                })}
+                {this.renderSmiles()}
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
-              <ActivityLog />
+              <ActivityLog id={this.props.act_id} name={this.props.name} />
             </Card.Content>
           </Card>
         </Grid.Column>
@@ -72,10 +78,26 @@ class ActivityCard extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = ({ records }, ownProps) => {
+  let card = undefined
+  if (records.length > 0) {
+    card = records[0].cardData.find(c => {
+      return Number(c.activityId) === ownProps.act_id
+    })
+  }
+
   return {
-    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+    card
   }
 }
 
-export default connect(mapDispatchToProps)(ActivityCard)
+const mapDispatchToProps = dispatch => {
+  return {
+    addActivity: (userId, record) => dispatch(addActivity(userId, record))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ActivityCard)

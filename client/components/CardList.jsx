@@ -10,16 +10,11 @@ import BottomMenu from './BottomMenu'
 class CardList extends React.Component {
   state = {
     smiles: [
-      { mood: 'fa-angry', value: '1' },
-      { mood: 'fa-frown', value: '2' },
-      { mood: 'fa-meh', value: '3' },
-      { mood: 'fa-smile', value: '4' },
-      { mood: 'fa-laugh', value: '5' }
-    ],
-    records: [
-      {
-        user_id: '1' //can use 'this.props.user.id' from the reducer
-      }
+      { mood: 'fa-angry', value: '1', color: 'red' },
+      { mood: 'fa-frown', value: '2', color: 'orange' },
+      { mood: 'fa-meh', value: '3', color: 'blue' },
+      { mood: 'fa-smile', value: '4', color: 'yellow' },
+      { mood: 'fa-laugh', value: '5', color: 'green' }
     ]
   }
 
@@ -47,7 +42,7 @@ class CardList extends React.Component {
             })}
           </Grid>
         </Container>
-        <BottomMenu submit={this.handleSubmit} />
+        <BottomMenu />
       </React.Fragment>
     )
   }

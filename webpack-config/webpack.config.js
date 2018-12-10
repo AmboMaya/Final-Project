@@ -10,7 +10,12 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       loader: 'babel-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
+      include: path.join(__dirname, '/app/')
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }]
   },
   resolve: {
@@ -18,6 +23,11 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
     contentBase: './server/public'
   }
 }
+
+
