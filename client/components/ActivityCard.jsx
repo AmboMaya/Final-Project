@@ -38,9 +38,9 @@ class ActivityCard extends React.Component {
   renderLogs = () => {
     const { card, act_id, name } = this.props
     return card && card.log ? (
-      <p>{card.log}</p>
+      <ActivityLog icon="edit icon" text={card.log} id={act_id} name={name} />
     ) : (
-      <ActivityLog id={act_id} name={name} />
+      <ActivityLog icon="plus icon" text="Add Log" id={act_id} name={name} />
     )
   }
 
