@@ -1,7 +1,7 @@
 const express = require('express')
 const moment = require('moment')
 
-const cardData = require('../db/cardData')
+const cardDb = require('../db/cardData')
 const graph = require('../db/graph')
 const activities = require('../db/activities')
 
@@ -38,49 +38,43 @@ module.exports = router
 //   // }
 // })
 
-const addRecords = (record, dateId, date, res) => {
+const addRecords = (record, dateId, date) => {
   record.date_id = dateId
   record.activity_id = record.activityId
   delete record.activityId
 
-  cardData.checkRecords(dateId, record.activity_id)
-    .then(value => {
-      if (!value.length) {
+  return cardDb.checkRecords(dateId, record.activity_id)
+    .then(card => {
+      if (!card) {
         // add
-        cardData.addRecord(record)
-          .then(() => {
-            res.json()
-          })
-      } else {
-        // update
-        value = value[0]
-        record.rating ? value.rating = record.rating : value.log = record.log
-        cardData.updateRecord(value)
-          .then(() => {})
+        return cardDb.addRecord(record)
       }
+      // update
+      return cardDb.updateRecord({
+        id: card.id,
+        ...record
+      })
     })
 }
 
 router.post('/', (req, res) => {
   // req.body look like :
-  // {userId: 1, records:{activityId:1, rating: 1, log:'asdfdgfh'}}
-  const {userId, date, records} = req.body
-  let dateId
+  // { userId: 1, date: 'YYYY-MM-DD', cardData: { activityId: 1, rating: 1, log: 'asdfdgfh'} }
+  const { userId, date, cardData } = req.body
+
   // check if date data is exist in dates table
-  cardData.checkDate(userId, date)
-    .then(dateFound => {
-      if (!dateFound.length) {
-        cardData.addDate({user_id: userId, date})
-          .then(id => {
-            dateId = id[0]
-            addRecords(records, dateId, res)
-            // console.log(dateId)
-          })
-      } else {
-        dateId = dateFound[0].id
-        addRecords(records, dateId, res)
+  cardDb.checkDate(userId, date)
+    .then(existingDate => {
+      if (!existingDate) {
+        return cardDb.addDate({user_id: userId, date})
       }
+
+      return [existingDate.id]
     })
+    .then(([ dateId ]) => addRecords(cardData, dateId))
+    .then(() => cardDb.getRecordsForDate(date))
+    .then(records => res.status(200).json({ Okay: true, records }))
+    .catch(err => res.status(500).json({ Okay: false, error: err.message }))
 })
 
 // Gets all data for graph component
