@@ -16,7 +16,7 @@ class ActivityLog extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    this.props.addLog(this.props.user.id, this.props.selectedDate, {
+    this.props.addLog(this.props.user.id, {
       activityId: this.props.id,
       log: this.state.log
     })
