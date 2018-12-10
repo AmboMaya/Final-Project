@@ -9,9 +9,9 @@
   "scripts": {
     "client": "webpack-dev-server --hot --inline --config ./webpack-config/webpack.dev.js",
     "server": "nodemon server",
-    "start": "node server/index.js && yarn build-dev",
+    "start": "node server/index.js && yarn build-prod",
     "updateDB": "rm -f dev.sqlite3 && yarn knex migrate:latest && yarn knex seed:run",
-    "postinstall": "webpack -p --progress --config ./webpack-config/webpack.dev.js --mode production && knex migrate:latest && yarn knex seed:run",
+    "postinstall": "webpack -p --progress --config ./webpack-config/webpack.prod.js --mode production && knex migrate:latest && yarn knex seed:run",
     "test": "jest --watchAll",
     "build-dev": "webpack --progress --config ./webpack-config/webpack.dev.js",
     "build-prod": "webpack -p --progress --config ./webpack-config/webpack.prod.js",
