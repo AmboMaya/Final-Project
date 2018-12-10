@@ -20,14 +20,7 @@ class ActivityLog extends React.Component {
     this.props.addLog(this.props.user.id, {
       activityId: this.props.id,
       log: this.state.log
-    }),
-      console.log(
-        (this.props.user.id,
-        {
-          activityId: this.props.id,
-          log: this.state.log
-        })
-      )
+    })
   }
 
   render() {
