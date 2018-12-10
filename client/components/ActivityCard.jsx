@@ -8,7 +8,7 @@ class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
     const date = this.props.selectedDate
-    this.props.addActivity(userId, date, {
+    this.props.addActivity(userId, {
       activityId: e.target.id,
       rating: e.target.getAttribute('value')
     })
