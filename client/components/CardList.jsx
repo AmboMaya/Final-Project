@@ -15,11 +15,6 @@ class CardList extends React.Component {
       { mood: 'fa-meh', value: '3', color: 'blue' },
       { mood: 'fa-smile', value: '4', color: 'yellow' },
       { mood: 'fa-laugh', value: '5', color: 'green' }
-    ],
-    records: [
-      {
-        user_id: '1' //can use 'this.props.user.id' from the reducer
-      }
     ]
   }
 
