@@ -40,7 +40,7 @@ export function addLog(userId, record) {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records') // we may need a new api?
-      .send({ userId, records: [ record ]})
+      .send({ userId, date: moment().format('YYYY-MM-DD'), records: [ record ]})
       .then(res => {
         dispatch(addRecordSuccess(res.body.records))
       })
