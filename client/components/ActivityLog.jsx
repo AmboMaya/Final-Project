@@ -44,6 +44,7 @@ class ActivityLog extends React.Component {
                 placeholder="Tell us more..."
                 onChange={this.handleChange}
                 style={{ minWidth: 250 }}
+                maxLength="250"
               />
               <Divider />
               <Form.Button basic={true} size="mini" >
