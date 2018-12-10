@@ -11,5 +11,9 @@ module.exports = merge(common, {
       '/': 'http://localhost:3000'
     },
     contentBase: './server/public'
-  }
+  },
+  plugins: [
+    // new BundleAnalyzerPlugin()
+  ]
 })
+
