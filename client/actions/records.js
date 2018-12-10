@@ -28,7 +28,7 @@ export function addNewRecord(userId, record) {
       .post('/api/v1/records')
       .send({ userId, records: [ record ]})
       .then(res => {
-        dispatch(addNewRecordSuccess(res.body))
+        dispatch(addNewRecordSuccess(res.body.records))
       })
       .catch(err => dispatch(getRecordError(err.message)))
   }
