@@ -37,58 +37,53 @@ module.exports = router
 //   //   res.json({Okay: false, error: 'Data format is not correct'})
 //   // }
 // })
-const addRecords = (record, dateId) => {
+
+const addRecords = (record, dateId, date, res) => {
   record.date_id = dateId
   record.activity_id = record.activityId
   delete record.activityId
 
+  cardData.checkRecords(dateId, record.activity_id)
+    .then(value => {
+      if (!value.length) {
+        // add
+        cardData.addRecord(record)
+          .then(() => {
+            res.json()
+          })
+      } else {
+        // update
+        value = value[0]
+        record.rating ? value.rating = record.rating : value.log = record.log
+        cardData.updateRecord(value)
+          .then(() => {})
+      }
+    })
 }
 
 router.post('/', (req, res) => {
-  // req.body required to look like :
+  // req.body look like :
   // {userId: 1, records:{activityId:1, rating: 1, log:'asdfdgfh'}}
   const {userId, date, records} = req.body
   let dateId
-
+  // check if date data is exist in dates table
   cardData.checkDate(userId, date)
-    .then(value => {
-      if (!value.length) {
+    .then(dateFound => {
+      if (!dateFound.length) {
         cardData.addDate({user_id: userId, date})
           .then(id => {
-            dateId = id
-            addRecords(records, dateId)
+            dateId = id[0]
+            addRecords(records, dateId, res)
             // console.log(dateId)
           })
       } else {
-        dateId = value[0].id
-        addRecords(records, dateId)
+        dateId = dateFound[0].id
+        addRecords(records, dateId, res)
       }
     })
-    .then(() => {
-      res.json(dateId)
-      
-    })
-
-
-
-  // cardData.addDate({user_id: userId, date}, date)
-  //   .then(dateId => {
-  //     for (let rec of records) {
-  //       rec.date_id = dateId[0]
-  //       rec.activity_id = rec.activityId
-  //       delete rec.activityId
-  //     }
-
-  //     cardData.addRecords(records)
-  //       .then(() => {
-  //         // res.json(records)
-  //         res.json({Okay: true, records})
-  //       })
-  //       .catch((err) => res.json({Okay: false, error: err.message}))
-  //   })
-  //   .catch((err) => res.json({Okay: false, error: err.message}))
 })
 
+// Gets all data for graph component
 router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
   let endDate = req.params.endDate

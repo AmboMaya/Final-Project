@@ -13,13 +13,29 @@ function addDate (data, db = connection) {
     .returning('id')
 }
 
-function addRecords (records, db = connection) {
+function checkRecords (dateId, actId, db = connection) {
   return db('cardData')
-    .insert(records)
+    .select()
+    .where('date_id', dateId)
+    .where('activity_id', actId)
+}
+
+function addRecord (record, db = connection) {
+  return db('cardData')
+    .insert(record)
+    .returning()
+}
+
+function updateRecord (record, db = connection) {
+  return db('cardData')
+    .where('id', record.id)
+    .update(record)
 }
 
 module.exports = {
   checkDate,
   addDate,
-  addRecords
+  checkRecords,
+  addRecord,
+  updateRecord
 }
