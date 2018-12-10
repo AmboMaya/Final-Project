@@ -17,7 +17,10 @@ class ActivityLog extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    this.props.addLog(this.props.user, this.state.log)
+    this.props.addLog(this.props.user, {
+      activityId: this.props.id,
+      log: this.state.log
+    })
   }
 
   handleRef = component => (this.ref = component)
