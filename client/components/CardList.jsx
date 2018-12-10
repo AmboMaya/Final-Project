@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Calendar from 'react-input-calendar'
+import Loading from './Loading'
+import moment from "moment"
 
 import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
@@ -10,6 +12,7 @@ import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
   state = {
+    selectedDate:moment(),
     smiles: [
       { mood: 'fa-angry', value: '1', color: 'red' },
       { mood: 'fa-frown', value: '2', color: 'orange' },
@@ -23,12 +26,16 @@ class CardList extends React.Component {
     this.props.getActivities()
   }
 
+  onSelect = (e) => {
+    this.setState({selectedDate:moment(e)})
+  }
+
   render() {
     return (
       <React.Fragment>
         <Container className="appBody">
           <Container textAlign="center">
-            <Calendar placeholder="Today" format="DD/MM/YYYY" />
+            <Calendar placeholder="Today" format="DD/MM/YYYY" date={this.state.selectedDate} onChange={this.onSelect} />
           </Container>
           <Divider />
           <Grid columns={3} doubling stackable>
