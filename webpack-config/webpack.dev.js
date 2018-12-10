@@ -6,7 +6,10 @@ const common = require('./webpack.common.js')
 module.exports = merge(common, {
   devtool: 'inline-source-map',
   mode: 'development',
-  plugins: [
-    // new BundleAnalyzerPlugin()
-  ]
+  devServer: {
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
+    contentBase: './server/public'
+  }
 })
