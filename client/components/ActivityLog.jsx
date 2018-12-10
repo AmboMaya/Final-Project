@@ -27,7 +27,7 @@ class ActivityLog extends React.Component {
       <div>
         
         <Modal
-          trigger={<a size="mini" onClick={this.open}>
+          trigger={<a size="mini" >
           <i className={this.props.icon} />
           <span>{this.props.text}</span>
         </a>}
