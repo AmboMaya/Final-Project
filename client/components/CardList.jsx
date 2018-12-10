@@ -18,7 +18,7 @@ class CardList extends React.Component {
     ],
     records: [
       {
-        user_id: '1'
+        user_id: '1' //can use 'this.props.user.id' from the reducer
       }
     ]
   }
@@ -40,7 +40,7 @@ class CardList extends React.Component {
                   act_id={act.id}
                   info={act.info} 
                   link={act.link}
-                  user_id={this.state.records[0].user_id}
+                  user_id={this.props.user.id}
                   smiles={this.state.smiles}
                 />
               )
@@ -53,7 +53,17 @@ class CardList extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 const mapStateToProps = ({ activities }) => ({ activities })
+=======
+const mapStateToProps = state => {
+  const activities = [...state.activities]
+  return {
+    activities,
+    user: state.user
+  }
+}
+>>>>>>> cb09fec9dc7af927a7bd84809cc4bbe1ddcbe6f1
 
 const mapDispatchToProps = dispatch => {
   return {

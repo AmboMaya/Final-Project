@@ -1,32 +1,33 @@
 import request from 'superagent'
+import moment from 'moment'
 
-export function addNewRecordSuccess(record) {
+export function addNewRecordSuccess (record) {
   return {
     type: 'ADD_RECORD_SUCCESS',
     record
   }
 }
 
-export function getRecordPending() {
+export function getRecordPending () {
   return {
     type: 'GET_RECORD_PENDING'
   }
 }
 
-export function getRecordError(message) {
+export function getRecordError (message) {
   return {
     type: 'GET_RECORD_ERROR',
     message
   }
 }
 
-export function addNewRecord(userId, record) {
+export function addNewRecord (userId, record) {
   return dispatch => {
     dispatch(getRecordPending())
 
     return request
       .post('/api/v1/records')
-      .send({ userId, records: [ record ]})
+      .send({userId, date: moment().format('YYYY-MM-DD'), records: [ record ]})
       .then(res => {
         dispatch(addNewRecordSuccess(res.body.records))
       })

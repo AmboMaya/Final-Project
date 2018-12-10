@@ -1,8 +1,11 @@
 const connection = require('./')
 
-// function getCards (db = connection) {
-//   return db('ratings')
-// }
+function checkDate (userId, date, db = connection) {
+  return db('dates')
+    .select()
+    .where('date', date)
+    .where('user_id', userId)
+}
 
 function addDate (data, db = connection) {
   return db('dates')
@@ -16,6 +19,7 @@ function addRecords (records, db = connection) {
 }
 
 module.exports = {
+  checkDate,
   addDate,
   addRecords
 }
