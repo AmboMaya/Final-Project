@@ -45,4 +45,3 @@ export default function recordReducer (state = [], action) {
       return state
   }
 }
-
