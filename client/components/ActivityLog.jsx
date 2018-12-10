@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, TextArea, Modal, Card, Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { addLog } from '../actions/records'
 
 class ActivityLog extends React.Component {
   state = {
@@ -18,7 +20,7 @@ class ActivityLog extends React.Component {
         </a>
         <Modal className='addLogModal' size='mini' open={this.state.open} onClose={this.close} >
           <Modal.Content>
-            <Card.Content/>
+            <Card.Content align="center"/>
               <TextArea ref={this.handleRef} style={{minWidth: 250}}/>
               <Card.Content extra>
                 <Grid>
@@ -34,4 +36,10 @@ class ActivityLog extends React.Component {
   }
 }
 
-export default ActivityLog
+const mapDispatchToProps = dispatch => {
+  return {
+    addLog: (id, record) => dispatch(addLog(id, record))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ActivityLog)
