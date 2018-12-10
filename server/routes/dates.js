@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
       cardData.addRecords(records)
         .then(() => {
           // res.json(records)
-          res.json({Okay: true})
+          res.json({Okay: true, records})
         })
         .catch((err) => res.json({Okay: false, error: err.message}))
     })

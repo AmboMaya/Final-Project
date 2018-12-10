@@ -23,6 +23,11 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
     contentBase: './server/public'
   }
 }
+
+
