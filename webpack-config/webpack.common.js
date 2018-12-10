@@ -35,6 +35,7 @@ module.exports = {
       swDest: 'sw.js',
       clientsClaim: true,
       skipWaiting: true,
+      include: [/\.html$/, /\.js$/, /\.jpg$/, /\.png$/]
     })
   ]
 }
