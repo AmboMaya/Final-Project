@@ -38,7 +38,7 @@ export function addLog(userId, record) {
   return dispatch => {
     dispatch(getRecordPending())
     return request
-      .post('/api/v1/records') // do we still want it to go to the same api?
+      .post('/api/v1/records') // we may need a new api?
       .send({ userId, records: [ record ]})
       .then(res => {
         dispatch(addRecordSuccess(res.body.records))
