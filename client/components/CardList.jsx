@@ -42,7 +42,7 @@ class CardList extends React.Component {
             })}
           </Grid>
         </Container>
-        <BottomMenu submit={this.handleSubmit} />
+        <BottomMenu />
       </React.Fragment>
     )
   }
