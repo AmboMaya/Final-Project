@@ -7,7 +7,7 @@ import moment from "moment"
 import Graph from "./Graph"
 import BottomMenu from './BottomMenu'
 import {getRecords} from '../actions/graph'
-import Loading from './loading'
+import Loading from './Loading'
 // import {getUser} from '../actions/user'
 
 
