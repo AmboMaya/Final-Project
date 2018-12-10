@@ -16,7 +16,7 @@ class ActivityCard extends React.Component {
 
   renderSmiles = () => {
     // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
-    const { activity, smiles } = this.props
+    const { card, smiles } = this.props
 
     return smiles.map((smile, key) => 
       <a key={key}>
@@ -28,7 +28,7 @@ class ActivityCard extends React.Component {
           id={this.props.act_id}
           name={this.props.name}
           onClick={this.clickHandler}
-          style={activity && activity.rating === smile.value ? { color: smile.color } : {}}
+          style={card && card.rating === Number(smile.value) ? { color: smile.color } : {}}
         />
       </a>
     )
@@ -79,13 +79,15 @@ class ActivityCard extends React.Component {
 }
 
 const mapStateToProps = ({ records }, ownProps) => {
-  let activity = undefined
-  if (records) {
-    activity = records[0].activities.find(a => Number(a.activityId) === ownProps.act_id)
+  let card = undefined
+  if (records.length > 0) {
+    card = records[0].cardData.find(c => {
+      return Number(c.activityId) === ownProps.act_id
+    })
   }
 
   return {
-    activity
+    card
   }
 }
 
