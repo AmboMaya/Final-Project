@@ -1,10 +1,5 @@
 export default function recordReducer (state = [], action) {
   switch (action.type) {
-    case 'GET_RECORD_PENDING':
-      return {
-        ...state,
-        pending: true
-      }
     case 'GET_RECORD_SUCCESS':
       return action.record
 
