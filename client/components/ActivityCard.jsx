@@ -8,9 +8,8 @@ class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
     this.props.addActivity(userId, {
-        activityId: e.target.id,
-        rating: e.target.getAttribute('value'),
-        log: e.target.getAttribute('name')
+      activityId: e.target.id,
+      rating: e.target.getAttribute('value')
     })
   }
 
@@ -18,19 +17,30 @@ class ActivityCard extends React.Component {
     // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
     const { card, smiles } = this.props
 
-    return smiles.map((smile, key) => 
+    return smiles.map((smile, key) => (
       <a key={key}>
         <i
-          className={
-            'far ' + `${smile.mood}` + ' fa-3x facesInCss'
-          }
+          className={'far ' + `${smile.mood}` + ' fa-3x facesInCss'}
           value={smile.value}
           id={this.props.act_id}
           name={this.props.name}
           onClick={this.clickHandler}
-          style={card && card.rating === Number(smile.value) ? { color: smile.color } : {}}
+          style={
+            card && card.rating === Number(smile.value)
+              ? { color: smile.color }
+              : {}
+          }
         />
       </a>
+    ))
+  }
+
+  renderLogs = () => {
+    const { card, act_id, name } = this.props
+    return card && card.log ? (
+      <p>{card.log}</p>
+    ) : (
+      <ActivityLog id={act_id} name={name} />
     )
   }
 
@@ -62,15 +72,10 @@ class ActivityCard extends React.Component {
                   </Modal>
                 </Grid.Column>
               </Grid>
-
               <Card.Header>{this.props.name}</Card.Header>
-              <Grid.Column align="center">
-                {this.renderSmiles()}
-              </Grid.Column>
+              <Grid.Column align="center">{this.renderSmiles()}</Grid.Column>
             </Card.Content>
-            <Card.Content extra>
-              <ActivityLog id={this.props.act_id} name={this.props.name} />
-            </Card.Content>
+            <Card.Content extra>{this.renderLogs()}</Card.Content>
           </Card>
         </Grid.Column>
       </React.Fragment>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Calendar from 'react-input-calendar'
 
-import { Container, Grid } from 'semantic-ui-react'
+import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
 
@@ -25,7 +26,11 @@ class CardList extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Container className='appBody'>
+        <Container className="appBody">
+          <Container textAlign="center">
+            <Calendar placeholder="Today" format="DD/MM/YYYY" />
+          </Container>
+          <Divider />
           <Grid columns={3} doubling stackable>
             {this.props.activities.map((act, key) => {
               return (
@@ -33,7 +38,7 @@ class CardList extends React.Component {
                   key={key}
                   name={act.name}
                   act_id={act.id}
-                  info={act.info} 
+                  info={act.info}
                   link={act.link}
                   user_id={this.props.user.id}
                   smiles={this.state.smiles}
