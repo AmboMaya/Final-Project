@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Form, Grid, Header, Image, Segment} from 'semantic-ui-react'
+import {Button, Form, Grid, Header, Image, Segment} from 'semantic-ui-react'
 
 const LoginForm = () => (
   <div className='login-form'>
@@ -32,7 +32,7 @@ const LoginForm = () => (
               type='password'
             />
 
-            <Link color='teal' fluid size='large' to="/">Login</Link>
+            <Button as={Link} color='teal' fluid size='large' to="/">Login</Button>
           </Segment>
         </Form>
       </Grid.Column>
