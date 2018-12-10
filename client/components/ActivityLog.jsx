@@ -1,12 +1,12 @@
 import React from 'react'
-import { Button, Divider, Form, TextArea, Modal, Card } from 'semantic-ui-react'
+import { Divider, Form, Modal, Card } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { addLog } from '../actions/records'
 
 class ActivityLog extends React.Component {
   state = {
     open: false,
-    log: ""
+    log: ''
   }
 
   handleChange = e => {
@@ -17,48 +17,49 @@ class ActivityLog extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    this.props.addLog(this.props.user, {
+    this.props.addLog(this.props.user.id, {
       activityId: this.props.id,
       log: this.state.log
-    })
+    }),
+      console.log(
+        (this.props.user.id,
+        {
+          activityId: this.props.id,
+          log: this.state.log
+        })
+      )
   }
 
-  handleRef = component => (this.ref = component)
-  open = () => this.setState({ open: true }, () => this.ref.focus())
-  close = () => this.setState({ open: false })
+  // handleRef = component => (this.ref = component)
+  // open = () => this.setState({ open: true }, () => this.ref.focus())
+  // close = () => this.setState({ open: false })
   render() {
     return (
       <div>
-        <a size="mini" onClick={this.open}>
+        
+        <Modal
+          trigger={<a size="mini" onClick={this.open}>
           <i className="plus icon" />
           <span>Add log</span>
-        </a>
-        <Modal
+        </a>}
           className="addLogModal"
           size="mini"
-          open={this.state.open}
-          onClose={this.close}
           closeIcon
         >
           <Modal.Content>
             <Card.Content align="center" />
             <Form onSubmit={this.submitHandler}>
-              <TextArea
+              <Form.TextArea
                 name="log"
-                value={this.state.log}
+                label={this.props.name}
+                placeholder="Tell us more..."
                 onChange={this.handleChange}
-                ref={this.handleRef}
                 style={{ minWidth: 250 }}
               />
               <Divider />
-              <Button
-                type="submit"
-                basic={true}
-                size="mini"
-                onClick={this.close}
-              >
+              <Form.Button basic={true} size="mini" onClick={this.close}>
                 Add
-              </Button>
+              </Form.Button>
             </Form>
           </Modal.Content>
         </Modal>
