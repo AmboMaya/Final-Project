@@ -1,13 +1,13 @@
 import React from "react"
 import {connect} from 'react-redux'
 
-import { Container, Grid } from "semantic-ui-react"
+import { Container, Grid, Card } from "semantic-ui-react"
 import moment from "moment"
 
 import Graph from "./Graph"
 import BottomMenu from './BottomMenu'
 import {getRecords} from '../actions/graph'
-import Loading from './loading'
+import Loading from './Loading'
 // import {getUser} from '../actions/user'
 
 
@@ -37,9 +37,13 @@ class Statistics extends React.Component {
     return (
       <React.Fragment>
         <Container className="appBody">
-          <h2>My Activity Statistics</h2>
-          <h3>Weekly Graph</h3>
+        <Card fluid>
+        <Card.Content align="center">
+        <Card.Header size='small'>My Activity Statistics</Card.Header>
+          </Card.Content>
+          </Card>
           <Graph chartData={this.props.records}/>
+          
         </Container>
         <BottomMenu />
       </React.Fragment>

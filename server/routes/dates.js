@@ -122,8 +122,9 @@ router.get('/graph/:userId/:endDate', (req, res) => {
                 aObj.label = a.name
                 aObj.borderColor = a.colour
                 aObj.backgroundColor = a.colour
-                a.name === 'mood' ? aObj.borderWidth = 4 : aObj.borderWidth = 2
+                a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
                 aObj.fill = false
+                aObj.pointRadius = 2
                 aObj.data = []
 
                 chartData.datasets.push(aObj)
