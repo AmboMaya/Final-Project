@@ -5,7 +5,6 @@ import { addLog } from '../actions/records'
 
 class ActivityLog extends React.Component {
   state = {
-    open: false,
     log: ''
   }
 
@@ -29,8 +28,8 @@ class ActivityLog extends React.Component {
         
         <Modal
           trigger={<a size="mini" onClick={this.open}>
-          <i className="plus icon" />
-          <span>Add log</span>
+          <i className={this.props.icon} />
+          <span>{this.props.text}</span>
         </a>}
           className="addLogModal"
           size="mini"
@@ -47,7 +46,7 @@ class ActivityLog extends React.Component {
                 style={{ minWidth: 250 }}
               />
               <Divider />
-              <Form.Button basic={true} size="mini" onClick={this.close}>
+              <Form.Button basic={true} size="mini" >
                 Add
               </Form.Button>
             </Form>
