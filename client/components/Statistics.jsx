@@ -7,6 +7,7 @@ import moment from "moment"
 import Graph from "./Graph"
 import BottomMenu from './BottomMenu'
 import {getRecords} from '../actions/graph'
+import Loading from './loading'
 // import {getUser} from '../actions/user'
 
 
@@ -29,6 +30,10 @@ class Statistics extends React.Component {
   // }
 
   render() {
+    if (this.props.pending) {
+      return <Loading />
+    }
+
     return (
       <React.Fragment>
         <Container className="appBody">
