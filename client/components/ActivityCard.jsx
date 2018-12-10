@@ -2,13 +2,13 @@ import React from 'react'
 import { Card, Grid, Modal } from 'semantic-ui-react'
 import ActivityLog from './ActivityLog'
 import { connect } from 'react-redux'
-import { addNewRecord } from '../actions/records'
+import { addActivity } from '../actions/records'
 
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
     this.props.dispatch(
-      addNewRecord(userId, {
+      addActivity(userId, {
         activityId: e.target.id,
         rating: e.target.getAttribute('value'),
         log: e.target.getAttribute('name')
@@ -74,7 +74,7 @@ class ActivityCard extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNewRecord: newRecord => dispatch(addNewRecord(newRecord))
+    addActivity: (id, record) => dispatch(addActivity(id, record))
   }
 }
 
