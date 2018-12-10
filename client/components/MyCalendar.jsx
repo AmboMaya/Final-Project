@@ -10,7 +10,7 @@ class MyCalendar extends React.Component {
     }
     return (
       <div>
-        <Calendar format='DD/MM/YYYY' date='04-11-2018' />
+        <Calendar format='DD/MM/YYYY' />
         <BottomMenu />
       </div>
     )
