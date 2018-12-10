@@ -69,7 +69,7 @@ class ActivityCard extends React.Component {
               </Grid.Column>
             </Card.Content>
             <Card.Content extra>
-              <ActivityLog />
+              <ActivityLog id={this.props.act_id}/>
             </Card.Content>
           </Card>
         </Grid.Column>
