@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Calendar from 'react-input-calendar'
-import Loading from './Loading'
 import moment from "moment"
 
 import { Container, Grid, Divider } from 'semantic-ui-react'
@@ -12,7 +11,7 @@ import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
   state = {
-    selectedDate:moment(),
+    selectedDate: moment(),
     smiles: [
       { mood: 'fa-angry', value: '1', color: 'red' },
       { mood: 'fa-frown', value: '2', color: 'orange' },
@@ -47,6 +46,7 @@ class CardList extends React.Component {
                   act_id={act.id}
                   info={act.info}
                   link={act.link}
+                  selectedDate={this.state.selectedDate}
                   user_id={this.props.user.id}
                   smiles={this.state.smiles}
                 />
