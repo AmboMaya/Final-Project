@@ -30,9 +30,6 @@ class ActivityLog extends React.Component {
       )
   }
 
-  // handleRef = component => (this.ref = component)
-  // open = () => this.setState({ open: true }, () => this.ref.focus())
-  // close = () => this.setState({ open: false })
   render() {
     return (
       <div>
