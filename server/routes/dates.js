@@ -37,8 +37,11 @@ module.exports = router
 //   //   res.json({Okay: false, error: 'Data format is not correct'})
 //   // }
 // })
-const addRecords = (record) => {
-  
+const addRecords = (record, dateId) => {
+  record.date_id = dateId
+  record.activity_id = record.activityId
+  delete record.activityId
+
 }
 
 router.post('/', (req, res) => {
@@ -53,17 +56,17 @@ router.post('/', (req, res) => {
         cardData.addDate({user_id: userId, date})
           .then(id => {
             dateId = id
+            addRecords(records, dateId)
             // console.log(dateId)
           })
       } else {
         dateId = value[0].id
+        addRecords(records, dateId)
       }
     })
     .then(() => {
       res.json(dateId)
-      records.date_id = dateId
-      records.activity_id = records.activityId
-      delete records.activityId
+      
     })
 
 
