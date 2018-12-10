@@ -14,9 +14,7 @@
     "heroku-postbuild": "yarn knex migrate:latest && yarn knex seed:run",
     "test": "jest --watchAll",
     "build-dev": "webpack --progress --config ./webpack-config/webpack.dev.js",
-    "build-prod": "webpack -p --progress --config ./webpack-config/webpack.prod.js",
-    "dev": "nodemon --watch server/index.js & yarn build-dev --watch",
-    "prod": "nodemon --watch server/index.js & yarn build-prod --watch"
+    "dev": "nodemon --watch server/index.js & yarn build-dev --watch"
   },
   "babel": {
     "presets": [
