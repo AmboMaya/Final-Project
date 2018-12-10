@@ -7,14 +7,14 @@ import { addActivity } from '../actions/records'
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.addActivity(userId, {
+    const date = this.props.selectedDate
+    this.props.addActivity(userId, date, {
       activityId: e.target.id,
       rating: e.target.getAttribute('value')
     })
   }
 
   renderSmiles = () => {
-    // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
     const { card, smiles } = this.props
 
     return smiles.map((smile, key) => (
@@ -40,7 +40,7 @@ class ActivityCard extends React.Component {
     return card && card.log ? (
       <ActivityLog icon="edit icon" text={card.log} id={act_id} name={name} />
     ) : (
-      <ActivityLog icon="plus icon" text="Add Log" id={act_id} name={name} />
+      <ActivityLog icon="plus icon" text="Add Log" id={act_id} name={name} date={this.props.selectedDate} />
     )
   }
 
