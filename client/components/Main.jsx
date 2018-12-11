@@ -1,7 +1,7 @@
 import React from 'react'
 import Statistics from './Statistics'
 import CardList from './CardList'
-import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
 
 import MyCalendar from './MyCalendar'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
@@ -14,7 +14,7 @@ export default class Main extends React.Component {
           <Route exact path='/' component={CardList} />
           <Route path='/calendar' component={MyCalendar} />
           <Route exact path='/statistics' component={Statistics} />
-          <Route exact path='/login' component={LoginForm} />
+          <Route exact path='/auth' component={RegisterForm} />
         </Switch>
       </Router>
     )
