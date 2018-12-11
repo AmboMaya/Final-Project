@@ -5,8 +5,11 @@ import { addLog } from '../actions/records'
 
 class ActivityLog extends React.Component {
   state = {
-    log: ''
+    log: '',
+    modalOpen: false
   }
+
+  openModal = () => this.setState({modalOpen: true})
 
   handleChange = e => {
     this.setState({
@@ -20,20 +23,23 @@ class ActivityLog extends React.Component {
       activityId: this.props.id,
       log: this.state.log
     })
+    this.setState({ modalOpen: false})
   }
+
 
   render() {
     return (
       <div>
         
         <Modal
-          trigger={<a size="mini" onClick={this.open}>
+          trigger={<a size="mini" onClick={this.openModal}>
           <i className={this.props.icon} />
           <span>{this.props.text}</span>
         </a>}
           className="addLogModal"
           size="mini"
           closeIcon
+          open={this.state.modalOpen}
         >
           <Modal.Content>
             <Card.Content align="center" />
