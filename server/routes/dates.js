@@ -81,10 +81,10 @@ router.post('/', (req, res) => {
 router.get('/graph/:period/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
   // let endDate = req.params.endDate
-  // const period = req.params.period
+  const period = req.params.period
   let endDate = '2018-12-08'
   // endDate += ' 23:59:59'
-  const period = 'month'
+  // const period = 'month'
 
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let chartData = {}
@@ -110,8 +110,7 @@ router.get('/graph/:period/:userId/:endDate', (req, res) => {
                 aObj.fill = false
                 aObj.pointRadius = 1
                 aObj.spanGaps = true
-                // a.id === 1 ? aObj.hiddenLegend = true : aObj.hiddenLegend = false
-                // aObj.showLine = false
+                // a.id === 1 ? aObj.hiddenLegend = false : aObj.hiddenLegend = true
                 aObj.data = []
 
                 dates.map(date => {
