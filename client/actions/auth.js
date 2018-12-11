@@ -12,7 +12,7 @@ export const login = (username, password) => dispatch => {
   dispatch(loginPending())
 
   return request
-    .post('/api/v1/users/login')
+    .post('/api/v1/auth/login')
     .send({username, password})
     .then(res => {
       setToken(res.body.token)
@@ -31,7 +31,7 @@ export const register = (username, password, email) => dispatch => {
   dispatch(registerPending())
 
   return request
-    .post('/api/v1/users/register')
+    .post('/api/v1/auth/register')
     .send({username, password, email})
     .then(res => {
       setToken(res.body.token)
