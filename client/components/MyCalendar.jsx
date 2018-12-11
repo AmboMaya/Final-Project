@@ -5,12 +5,9 @@ import Loading from './Loading'
 import moment from "moment"
 
 class MyCalendar extends React.Component {
-  constructor(){
-    super();
-    this.state={
-      selectedDate:moment(),
+  state={
+      selectedDate: moment(),
     }
-  }
 
   onSelect = (e) => {
     this.setState({selectedDate:moment(e)})
