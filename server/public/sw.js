@@ -98,9 +98,9 @@ workbox.routing.registerRoute(
   })
 )
 
-// self.addEventListener('fetch', (event) => {
-//   if (event.request.url === '/login') {
-//     const staleWhileRevalidate = new workbox.strategies.StaleWhileRevalidate();
-//     event.respondWith(staleWhileRevalidate.handle({event}))
-//   }
-// })
+self.addEventListener('fetch', (event) => {
+  if (event.request.url === '/login') {
+    const staleWhileRevalidate = new workbox.strategies.StaleWhileRevalidate();
+    event.respondWith(staleWhileRevalidate.handle({event}))
+  }
+})
