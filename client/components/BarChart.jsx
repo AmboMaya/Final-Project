@@ -1,24 +1,33 @@
 import React, {Component} from 'react'
-import {Line} from 'react-chartjs-2'
+import {Bar} from 'react-chartjs-2'
 import {Card, Grid, Modal} from 'semantic-ui-react'
+import windowSize from 'react-window-size'
 
-export default class BarChart extends Component {
+class BarChart extends Component {
+  getGraphHeight () {
+    if (this.props.windowWidth < 500) {
+      return 60
+    } else {
+      return 40
+    }
+  }
+
   render () {
     return (
       <React.Fragment>
         <Card fluid>
           <Card.Content align="center">
-            <Card.Header>Average Ratings</Card.Header>
+            <Card.Header>Average ratings</Card.Header>
           </Card.Content >
           <Card.Content align="center" >
-            <Line
+            <Bar
               data={this.props.chartData}
               width={100}
-              height={80}
+              height={this.getGraphHeight()}
               options={{
                 maintainAspectRatio: true,
                 legend: {
-                  display: true,
+                  display: false,
                   position: 'bottom',
                   labels: {
                     boxWidth: 30,
@@ -27,10 +36,8 @@ export default class BarChart extends Component {
                 },
                 scales: {
                   yAxes: [{
-                    gridLines: {
-                      display: false
-                    },
                     ticks: {
+                      suggestedMin: 0,
                       fontColor: 'black',
                       callback: function (label, index, labels) {
                         return yLabels[label]
@@ -56,10 +63,7 @@ export default class BarChart extends Component {
 }
 
 let yLabels = {
-  // 1: 'terrible',
-  // 2: 'bad',
-  // 3: 'average',
-  // 4: 'good',
-  // 5: 'great'
-  1: 1, 2: 2, 3: 3, 4: 4, 5: 5
+  0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5
 }
+
+export default windowSize(BarChart)
