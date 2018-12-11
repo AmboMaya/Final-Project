@@ -147,12 +147,16 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
   // const period = 'month'
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let chartData = {}
+  //
+  let barData = {}
 
   // get dates data
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
       chartData.labels = dates.map(date => date.date.slice(5, 10))
       chartData.datasets = []
+      //
+
 
       // get cards data
       graph.getAllCards()
@@ -160,6 +164,13 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
           // loop through activities to add data for each activity
           activities.getActivities()
             .then(acts => {
+              //
+              barData.labels = acts.map(a => a.name)
+              barData.datasets = []
+              let bObj = {}
+              bObj.backgroundColor = []
+              bObj.data = []
+              //
               acts.map(a => {
                 let aObj = {}
                 aObj.label = a.name
@@ -171,6 +182,8 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 aObj.spanGaps = true
                 a.id === 1 ? aObj.hidden = false : aObj.hidden = true
                 aObj.data = []
+                //
+                bObj.backgroundColor.push(a.colour)
 
                 dates.map(date => {
                   let [filteredCard] = cards.filter(card => {
@@ -182,9 +195,14 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                     aObj.data.push(null)
                   }
                 })
+                // get average of aObj.data
+                
+                
 
                 chartData.datasets.push(aObj)
               })
+
+
               res.status(200).json({
                 ok: true, chartData
               })
