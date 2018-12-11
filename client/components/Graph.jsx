@@ -19,7 +19,7 @@ class Graph extends Component {
           <Card.Content align="center">
             <Card.Header>Progress graph</Card.Header>
           </Card.Content >
-          <Card.Content align="center" >
+          <Card.Content align="center" className='graphHeader'>
             <Line
               data={this.props.chartData}
               width={100}
