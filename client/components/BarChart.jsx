@@ -1,21 +1,15 @@
 import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2'
 import {Card, Grid, Modal} from 'semantic-ui-react'
+import windowSize from 'react-window-size'
 
-export default class BarChart extends Component {
-  state = {
-      chartData: {
-          labels: ["Mood", "Sleep", "Monday", "Tuesday", "Wednesday", "Yesterday"],
-          datasets: [{
-              fill: false,
-              // borderColor: '#E1350B',
-              backgroundColor: 'black',
-              label: 'Mood',
-              data: [1.5, 3, 3, 5, 2, 1], //Placeholders for data
-              borderWidth: 4
-          }
-      ]
-      }
+class BarChart extends Component {
+  getGraphHeight () {
+    if (this.props.windowWidth < 500) {
+      return 60
+    } else {
+      return 40
+    }
   }
 
   render () {
@@ -28,10 +22,12 @@ export default class BarChart extends Component {
           <Card.Content align="center" >
             <Bar
               data={this.props.chartData}
+              width={100}
+              height={this.getGraphHeight()}
               options={{
                 maintainAspectRatio: true,
                 legend: {
-                  display: true,
+                  display: false,
                   position: 'bottom',
                   labels: {
                     boxWidth: 30,
@@ -41,6 +37,7 @@ export default class BarChart extends Component {
                 scales: {
                   yAxes: [{
                     ticks: {
+                      suggestedMin: 0,
                       fontColor: 'black',
                       callback: function (label, index, labels) {
                         return yLabels[label]
@@ -66,10 +63,7 @@ export default class BarChart extends Component {
 }
 
 let yLabels = {
-//   // 1: 'terrible',
-//   // 2: 'bad',
-//   // 3: 'average',
-//   // 4: 'good',
-//   // 5: 'great'
   0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5
 }
+
+export default windowSize(BarChart)
