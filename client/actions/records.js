@@ -1,6 +1,13 @@
 import request from 'superagent'
 import moment from 'moment'
 
+export function getRecordsSuccess(records) {
+  return {
+    type: 'GET_RECORDS_SUCCESS',
+    records
+  }
+}
+
 export function addRecordSuccess(records) {
   return {
     type: 'ADD_RECORD_SUCCESS',
