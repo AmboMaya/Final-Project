@@ -29,17 +29,17 @@
 // 5. If so, adds an activity (cardData) to existing date record for today.
 // 6. In either case, returns date record with activities updated.
 
-export default function recordReducer (state = [], action) {
+export default function recordReducer(state = [], action) {
   switch (action.type) {
     case 'GET_RECORD_SUCCESS':
       return action.records
 
+    case 'GET_RECORDS_SUCCESS':
+      return action.records
+
     case 'ADD_RECORD_SUCCESS':
       const newState = state.filter(rec => rec.dateId !== action.records.dateId)
-      return [
-        ...newState,
-        action.records
-      ]
+      return [...newState, action.records]
 
     default:
       return state
