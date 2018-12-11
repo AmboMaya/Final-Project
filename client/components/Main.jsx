@@ -3,7 +3,6 @@ import Statistics from './Statistics'
 import CardList from './CardList'
 import RegisterForm from './RegisterForm'
 import LoginForm from './LoginForm'
-
 import MyCalendar from './MyCalendar'
 import {Route, BrowserRouter as Router, Switch} from 'react-router-dom'
 

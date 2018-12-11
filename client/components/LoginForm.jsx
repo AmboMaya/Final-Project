@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Button, Form, Grid, Header, Segment} from 'semantic-ui-react'
+import {Button, Form, Grid, Header} from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
   render () {
@@ -35,7 +35,6 @@ class LoginForm extends React.Component {
                 type='password'
               />
               <Button as={Link} color='teal' fluid size='large' to="/">Login</Button>
-              {/* </Segment> */}
             </Form>
           </Grid.Column>
         </Grid>
@@ -44,4 +43,5 @@ class LoginForm extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(LoginForm)
