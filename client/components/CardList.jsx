@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Calendar from 'react-input-calendar'
+import moment from 'moment'
 
 import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
+import { getRecords } from '../actions/records'
 
 import BottomMenu from './BottomMenu'
 
@@ -23,12 +25,22 @@ class CardList extends React.Component {
     this.props.getActivities()
   }
 
+  onSelect = e => {
+    this.props.getRecords(this.props.user.id, moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD'))
+  }
+
   render() {
     return (
       <React.Fragment>
         <Container className="appBody">
           <Container textAlign="center">
-            <Calendar placeholder="Today" format="DD/MM/YYYY" />
+            <Calendar
+              placeholder='Today'
+              format='YYYY-MM-DD'
+              computableFormat='YYYY-MM-DD'
+              date={this.props.selectedDate}
+              onChange={this.onSelect}
+            />
           </Container>
           <Divider />
           <Grid columns={3} doubling stackable>
@@ -40,6 +52,7 @@ class CardList extends React.Component {
                   act_id={act.id}
                   info={act.info}
                   link={act.link}
+                  selectedDate={this.props.selectedDate}
                   user_id={this.props.user.id}
                   smiles={this.state.smiles}
                 />
@@ -53,17 +66,12 @@ class CardList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const activities = [...state.activities]
-  return {
-    activities,
-    user: state.user
-  }
-}
+const mapStateToProps = ({ activities, selectedDate, user }) => ({ activities, selectedDate, user })
 
 const mapDispatchToProps = dispatch => {
   return {
-    getActivities: () => dispatch(getActivities())
+    getActivities: () => dispatch(getActivities()),
+    getRecords: (userId, date) => dispatch(getRecords(userId, date))
   }
 }
 
