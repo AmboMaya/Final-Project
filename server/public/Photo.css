@@ -1,0 +1,17 @@
+.react-html5-camera-photo {
+  position: relative;
+  text-align: center;
+}
+
+.react-html5-camera-photo > video {
+  width: 768px;
+}
+
+.react-html5-camera-photo > img {
+  width: 768px;
+}
+
+.react-html5-camera-photo > .display-error {
+  width: 768px;
+  margin: 0 auto;
+}
