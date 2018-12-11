@@ -3,7 +3,7 @@ const path = require('path')
 const express = require('express')
 const sslRedirect = require('heroku-ssl-redirect')
 
-const auth = require ('./routes/auth')
+const auth = require('./routes/auth')
 const users = require('./routes/users')
 const dates = require('./routes/dates')
 const activities = require('./routes/activities')

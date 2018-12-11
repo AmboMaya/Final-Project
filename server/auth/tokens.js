@@ -1,5 +1,10 @@
 const jwt = require('jsonwebtoken')
 
+module.exports = {
+  create,
+  decode
+}
+
 function create (userId) {
   return jwt.sign(
     {},
@@ -11,6 +16,8 @@ function create (userId) {
   )
 }
 
-module.exports = {
-  create
+function decode (req, res, next) {
+
 }
+
+

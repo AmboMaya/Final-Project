@@ -14,10 +14,17 @@ function create (user, db = connection) {
     .then(([ id ]) => getById(id, db))
 }
 
-function createUser (
-  newUser,
-  db = connection
-) {
+// function userExists (username, conn) {
+//   const db = conn || connection
+//   return db('users')
+//     .count('id as n')
+//     .where('username', username)
+//     .then(count => {
+//       return count[0].n > 0
+//     })
+// }
+
+function createUser (newUser, db = connection) {
   return db('users')
     .insert(newUser)
 }
