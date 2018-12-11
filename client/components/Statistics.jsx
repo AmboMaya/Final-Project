@@ -77,8 +77,8 @@ class Statistics extends React.Component {
               </div>
             </Card.Content>
           </Card>
-          {/* <Graph chartData={this.props.records}/> */}
-          <BarChart chartData={this.props.records}/>
+          {/* <Graph chartData={this.props.records.graphData}/> */}
+          <BarChart chartData={this.props.records.barData}/>
           
         </Container>
         <BottomMenu />

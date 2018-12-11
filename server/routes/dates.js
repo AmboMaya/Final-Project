@@ -37,14 +37,14 @@ router.post('/', (req, res) => {
     .checkDate(userId, date)
     .then(existingDate => {
       if (!existingDate) {
-        return cardDb.addDate({ user_id: userId, date })
+        return cardDb.addDate({user_id: userId, date})
       }
       return [existingDate.id]
     })
     .then(([dateId]) => addRecords(cardData, dateId))
     .then(() => cardDb.getRecordsForDate(userId, date))
-    .then(records => res.status(200).json({ Okay: true, records }))
-    .catch(err => res.status(500).json({ Okay: false, error: err.message }))
+    .then(records => res.status(200).json({Okay: true, records}))
+    .catch(err => res.status(500).json({Okay: false, error: err.message}))
 })
 
 router.get('/cards/:userId/:date', (req, res) => {
@@ -52,8 +52,8 @@ router.get('/cards/:userId/:date', (req, res) => {
   const date = req.params.date
 
   cardDb.getRecordsForDate(userId, date)
-    .then(records => res.status(200).json({ Okay: true, records }))
-    .catch(err => res.status(500).json({ Okay: false, error: err.message }))
+    .then(records => res.status(200).json({Okay: true, records}))
+    .catch(err => res.status(500).json({Okay: false, error: err.message}))
 })
 
 // // Gets all data for graph component
@@ -125,17 +125,15 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
   // endDate += ' 23:59:59'
   // const period = 'month'
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
-  let chartData = {}
-  //
+  let graphData = {}
   let barData = {}
 
   // get dates data
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      chartData.labels = dates.map(date => date.date.slice(5, 10))
-      chartData.datasets = []
+      graphData.labels = dates.map(date => date.date.slice(5, 10))
+      graphData.datasets = []
       //
-
 
       // get cards data
       graph.getAllCards()
@@ -143,14 +141,16 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
           // loop through activities to add data for each activity
           activities.getActivities()
             .then(acts => {
-              //
+              // Bar Chart
               barData.labels = acts.map(a => a.name)
               barData.datasets = []
               let bObj = {}
               bObj.backgroundColor = []
               bObj.data = []
-              //
+              bObj.label = 'Activities'
+              // loop through activities
               acts.map(a => {
+                // Graph
                 let aObj = {}
                 aObj.label = a.name
                 aObj.borderColor = a.colour
@@ -161,8 +161,6 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 aObj.spanGaps = true
                 a.id === 1 ? aObj.hidden = false : aObj.hidden = true
                 aObj.data = []
-                //
-                bObj.backgroundColor.push(a.colour)
 
                 dates.map(date => {
                   let [filteredCard] = cards.filter(card => {
@@ -174,16 +172,25 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                     aObj.data.push(null)
                   }
                 })
-                // get average of aObj.data
-                
-                
+                graphData.datasets.push(aObj)
 
-                chartData.datasets.push(aObj)
+                // Bar Chart
+                let sum = 0
+                let count = 0
+                aObj.data.map(rating => {
+                  if (rating) {
+                    sum += rating
+                    count++
+                  }
+                })
+                let av = sum / count
+                bObj.data.push(av)
+                bObj.backgroundColor.push(a.colour)
               })
-
+              barData.datasets.push(bObj)
 
               res.status(200).json({
-                ok: true, chartData
+                ok: true, chartData: {graphData, barData}
               })
             })
             .catch(err => res.status(500).json({
@@ -198,4 +205,3 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
         )
     })
 })
-

@@ -27,7 +27,7 @@ export default class BarChart extends Component {
           </Card.Content >
           <Card.Content align="center" >
             <Bar
-              data={this.state.chartData}
+              data={this.props.chartData}
               options={{
                 maintainAspectRatio: true,
                 legend: {

@@ -25,7 +25,7 @@ export function getRecords (userId, endDate, period) {
     dispatch(getRecordsPending())
 
     request
-      .get(`/api/v1/records/graph/${period}/${userId}/${endDate}`)
+      .get(`/api/v1/records/stats/${period}/${userId}/${endDate}`)
       .then(res => dispatch(getRecordsSuccess(res.body.chartData)))
       .catch(err => dispatch(getRecordsError(err.message)))
   }
