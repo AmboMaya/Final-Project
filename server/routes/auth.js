@@ -6,9 +6,22 @@ const tokens = require('../auth/tokens')
 
 const router = express.Router()
 
+// login and register is working
+// login receives req.body = {
+// 	"username":"",
+// 	"password": ""
+// }
 router.post('/login', validateLogin, checkUser, issueToken)
+
+// register receives req.body = {
+// 	"username":"dani",
+// 	"email":"aw4egrdf",
+// 	"password": "danidani"
+// }
 router.post('/register', validateRegistration, createUser, issueToken)
 router.use(errorHandler)
+
+// from end of the exercise but not working
 router.get('/username', tokens.decode, (req, res) => {
   res.json({
     username: req.user.username
