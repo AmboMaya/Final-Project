@@ -17,7 +17,7 @@ class BarChart extends Component {
       <React.Fragment>
         <Card fluid>
           <Card.Content align="center">
-            <Card.Header>Average Ratings</Card.Header>
+            <Card.Header>Average ratings</Card.Header>
           </Card.Content >
           <Card.Content align="center" >
             <Bar
