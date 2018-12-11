@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Main /> matches the last snapshot 1`] = `
+<BrowserRouter>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/photo"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/statistics"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/login"
+    />
+  </Switch>
+</BrowserRouter>
+`;

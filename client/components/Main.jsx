@@ -13,7 +13,7 @@ export default class Main extends React.Component {
       <Router>
         <Switch>
           <Route exact path='/' component={CardList} />
-          <Route path='/calendar' component={MyCalendar} />
+          <Route path='/photo' component={MyCalendar} />
           <Route exact path='/statistics' component={Statistics} />
           <Route exact path='/login' component={LoginForm} />
           <Route exact path='/auth' component={RegisterForm} />

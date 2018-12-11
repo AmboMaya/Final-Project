@@ -35,3 +35,15 @@ body{
   width: 100% !important;
   border-radius: none !important;
 }
+
+.space {
+  margin-bottom: 10px !important;
+}
+
+.weeklyButton {
+  margin-top: 10px !important;
+}
+
+.graphHeader {
+  border: none !important;
+}
