@@ -68,9 +68,10 @@ exports.seed = knex => {
         },
         {
           id: 9,
-          name: 'Medication',
+          name: 'Stress',
           icon: '',
-          info: 'Have you taken any medication today? Does it affect your health?',
+          info: '"If our stress response is activated repeatedly, or it persists over time, the effects can result in wear and tear on the body and can cause us to feel permanently in a state of ‘fight or flight’."',
+          link: 'https://www.mentalhealth.org.uk/a-to-z/s/stress',
           colour: '#7c3284'
         }
       ])

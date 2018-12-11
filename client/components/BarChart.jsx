@@ -1,29 +1,20 @@
 import React, {Component} from 'react'
 import {Line} from 'react-chartjs-2'
-import {Card} from 'semantic-ui-react'
-import windowSize from 'react-window-size'
+import {Card, Grid, Modal} from 'semantic-ui-react'
 
-class Graph extends Component {
-  getGraphHeight () {
-    if (this.props.windowWidth < 500) {
-      return 90
-    } else {
-      return 60
-    }
-  }
-
+export default class BarChart extends Component {
   render () {
     return (
       <React.Fragment>
         <Card fluid>
           <Card.Content align="center">
-            <Card.Header>Progress graph</Card.Header>
+            <Card.Header>Average Ratings</Card.Header>
           </Card.Content >
           <Card.Content align="center" >
             <Line
               data={this.props.chartData}
               width={100}
-              height={this.getGraphHeight}
+              height={80}
               options={{
                 maintainAspectRatio: true,
                 legend: {
@@ -72,5 +63,3 @@ let yLabels = {
   // 5: 'great'
   1: 1, 2: 2, 3: 3, 4: 4, 5: 5
 }
-
-export default windowSize(Graph)
