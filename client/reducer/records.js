@@ -35,8 +35,6 @@ export default function recordReducer(state = [], action) {
       return action.records
 
     case 'GET_RECORDS_SUCCESS':
-      return action.records
-
     case 'ADD_RECORD_SUCCESS':
       const newState = state.filter(rec => rec.dateId !== action.records.dateId)
       return [...newState, action.records]

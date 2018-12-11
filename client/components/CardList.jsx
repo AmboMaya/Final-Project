@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Calendar from 'react-input-calendar'
-import moment from "moment"
+import moment from 'moment'
 
 import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
@@ -12,7 +12,6 @@ import BottomMenu from './BottomMenu'
 
 class CardList extends React.Component {
   state = {
-    selectedDate: moment(),
     smiles: [
       { mood: 'fa-angry', value: '1', color: 'red' },
       { mood: 'fa-frown', value: '2', color: 'orange' },
@@ -26,8 +25,8 @@ class CardList extends React.Component {
     this.props.getActivities()
   }
 
-  onSelect = (e) => {
-    this.setState({selectedDate:moment(e)})
+  onSelect = e => {
+    this.props.getRecords(this.props.user.id, moment(e).format('YYYY-MM-DD'))
   }
 
   render() {
@@ -35,7 +34,12 @@ class CardList extends React.Component {
       <React.Fragment>
         <Container className="appBody">
           <Container textAlign="center">
-            <Calendar placeholder="Today" format="DD/MM/YYYY" date={this.state.selectedDate} onChange={this.onSelect} onClick={() => this.props.getRecords(this.props.user.id, this.state.selectedDate )} />
+            <Calendar
+              placeholder="Today"
+              format="DD/MM/YYYY"
+              date={this.props.dateString}
+              onChange={this.onSelect}
+            />
           </Container>
           <Divider />
           <Grid columns={3} doubling stackable>
@@ -61,11 +65,17 @@ class CardList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const activities = [...state.activities]
+const mapStateToProps = ({ activities, records, selectedDate, user }) => {
+  const selected = records.find(r => r.date === selectedDate)
+  let dateString = moment()
+  if (selected) {
+    datestring = selected.date
+  }
+
   return {
     activities,
-    user: state.user
+    dateString,
+    user
   }
 }
 

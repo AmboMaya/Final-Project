@@ -1,9 +1,10 @@
 import request from 'superagent'
 import moment from 'moment'
 
-export function getRecordsSuccess(records) {
+export function getRecordsSuccess(records, date) {
   return {
     type: 'GET_RECORDS_SUCCESS',
+    date,
     records
   }
 }
@@ -33,8 +34,8 @@ export function getRecords(userId, date) {
     dispatch(getRecordPending())
     request
       .get(`/api/v1/records/cards/${userId}/${date}`)
-      .then(res => dispatch(getRecordsSuccess(res.body.records)))
-      .catch(err => dispatch(getRecordsError(err.message)))
+      .then(res => dispatch(getRecordsSuccess(res.body.records, date)))
+      .catch(err => dispatch(getRecordError(err.message)))
   }
 }
 

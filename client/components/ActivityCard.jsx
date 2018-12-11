@@ -82,12 +82,15 @@ class ActivityCard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ records }, ownProps) => {
+const mapStateToProps = ({ records, selectedDate }, ownProps) => {
   let card = undefined
   if (records.length > 0) {
-    card = records[0].cardData.find(c => {
-      return Number(c.activityId) === ownProps.act_id
-    })
+    const selected = records.find(r => r.date === selectedDate)
+    if (selected) {
+      card = selected.cardData.find(c => {
+        return Number(c.activityId) === ownProps.act_id
+      })
+    }
   }
 
   return {
