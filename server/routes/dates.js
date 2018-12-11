@@ -39,7 +39,6 @@ router.post('/', (req, res) => {
       if (!existingDate) {
         return cardDb.addDate({ user_id: userId, date })
       }
-
       return [existingDate.id]
     })
     .then(([dateId]) => addRecords(cardData, dateId))
@@ -58,7 +57,6 @@ router.get('/cards/:userId/:date', (req, res) => {
       if (!existingDate) {
         return null
       }
-
       return [existingDate.id]
     })
     .then(() => cardDb.getRecordsForDate(date))
