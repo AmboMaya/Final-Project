@@ -60,7 +60,7 @@ const addRecords = (record, dateId, date) => {
 router.post('/', (req, res) => {
   // req.body look like :
   // { userId: 1, date: 'YYYY-MM-DD', cardData: { activityId: 1, rating: 1, log: 'asdfdgfh'} }
-  const { userId, date, cardData } = req.body
+  const {userId, date, cardData} = req.body
 
   // check if date data is exist in dates table
   cardDb.checkDate(userId, date)
