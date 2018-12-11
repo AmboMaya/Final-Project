@@ -6,6 +6,7 @@ import moment from "moment"
 import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
+import { getRecords } from '../actions/records'
 
 import BottomMenu from './BottomMenu'
 
@@ -70,7 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getActivities: () => dispatch(getActivities())
+    getActivities: () => dispatch(getActivities()),
+    getRecords: (userId, date) => dispatch(getRecords(userId, date))
   }
 }
 
