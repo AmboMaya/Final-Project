@@ -9,6 +9,11 @@ const router = express.Router()
 router.post('/login', validateLogin, checkUser, issueToken)
 router.post('/register', validateRegistration, createUser, issueToken)
 router.use(errorHandler)
+router.get('/username', tokens.decode, (req, res) => {
+  res.json({
+    username: req.user.username
+  })
+})
 
 function checkUser (req, res, next) {
   const {username, password} = req.body
