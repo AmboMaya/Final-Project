@@ -20,12 +20,12 @@ export function getRecordsError (message) {
   }
 }
 
-export function getRecords (userId, endDate) {
+export function getRecords (userId, endDate, period) {
   return dispatch => {
     dispatch(getRecordsPending())
 
     request
-      .get(`/api/v1/records/graph/${userId}/${endDate}`)
+      .get(`/api/v1/records/graph/${period}/${userId}/${endDate}`)
       .then(res => dispatch(getRecordsSuccess(res.body.chartData)))
       .catch(err => dispatch(getRecordsError(err.message)))
   }

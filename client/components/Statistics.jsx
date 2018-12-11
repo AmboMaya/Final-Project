@@ -45,7 +45,7 @@ class Statistics extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getRecords(this.props.user.id, this.state.date)
+    this.props.getRecords(this.props.user.id, this.state.date, 'month')
     //  this.getUserAction()
   }
 
@@ -90,7 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRecords: (userId, date) => dispatch(getRecords(userId, date)),
+    getRecords: (userId, date, period) => dispatch(getRecords(userId, date, period)),
     // getUser: () => dispatch(getUser())
   }
 }
