@@ -50,6 +50,8 @@ router.post('/', (req, res) => {
 router.get('/cards/:userId/:date', (req, res) => {
   const userId = Number(req.params.userId)
   const date = req.params.date
+  console.debug(`Router received date is =${date}`)
+
 
   cardDb.getRecordsForDate(userId, date)
     .then(records => res.status(200).json({ Okay: true, records }))
