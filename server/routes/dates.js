@@ -110,11 +110,10 @@ router.get('/graph/:period/:userId/:endDate', (req, res) => {
                 aObj.fill = false
                 aObj.pointRadius = 1
                 aObj.spanGaps = true
-                // a.id === 1 ? aObj.hiddenLegend = false : aObj.hiddenLegend = true
+                a.id === 1 ? aObj.hidden = false : aObj.hidden = true
                 aObj.data = []
 
                 dates.map(date => {
-                  // let dataNotExist
                   let [filteredCard] = cards.filter(card => {
                     return card.activity_id === a.id && card.date_id === date.id
                   })
