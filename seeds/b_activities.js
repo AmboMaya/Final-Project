@@ -70,7 +70,7 @@ exports.seed = knex => {
           id: 9,
           name: 'Stress',
           icon: '',
-          info: '"If our stress response is activated repeatedly, or it persists over time, the effects can result in wear and tear on the body and can cause us to feel permanently in a state of ‘fight or flight’ . Rather than helping us push through, this pressure can make us feel overwhelmed or unable to cope."',
+          info: '"If our stress response is activated repeatedly, or it persists over time, the effects can result in wear and tear on the body and can cause us to feel permanently in a state of ‘fight or flight’."',
           link: 'https://www.mentalhealth.org.uk/a-to-z/s/stress',
           colour: '#7c3284'
         }

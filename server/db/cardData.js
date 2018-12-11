@@ -40,17 +40,10 @@ function processRecords (records) {
   }
 
   const { dateId, date, userId } = records[0]
-  const cardData = records.map(({
-    id,
-    activityId,
-    rating,
-    log
-  }) => ({
-    id,
-    activityId,
-    rating,
-    log
-  }))
+  const cardData = records.map(
+    ({ id, activityId, rating, log }) =>
+    ({ id, activityId, rating, log })
+  )
 
   return {
     dateId,
@@ -82,7 +75,7 @@ function processRecords (records) {
 //   }
 // ]
 //
-function getRecordsForDate (date, db = connection) {
+function getRecordsForDate (userId, date, db = connection) {
   return db('dates')
     .join('cardData', 'dates.id', '=', 'cardData.date_id')
     .select(
@@ -94,7 +87,7 @@ function getRecordsForDate (date, db = connection) {
       'rating',
       'log'
     )
-    .where('date', date)
+    .where({ date, user_id: userId })
     .then(processRecords)
 }
 
