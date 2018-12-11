@@ -10,7 +10,7 @@ exports[`<Main /> matches the last snapshot 1`] = `
     />
     <Route
       component={[Function]}
-      path="/calendar"
+      path="/photo"
     />
     <Route
       component={[Function]}
