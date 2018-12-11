@@ -5,6 +5,7 @@ import { Container, Grid, Card } from "semantic-ui-react"
 import moment from "moment"
 
 import Graph from "./Graph"
+import BarChart from './BarChart'
 import BottomMenu from './BottomMenu'
 import {getRecords} from '../actions/graph'
 import Loading from './Loading'
@@ -42,7 +43,8 @@ class Statistics extends React.Component {
         <Card.Header size='small'>My Activity Statistics</Card.Header>
           </Card.Content>
           </Card>
-          <Graph chartData={this.props.records}/>
+          {/* <Graph chartData={this.props.records}/> */}
+          <BarChart chartData={this.props.records}/>
           
         </Container>
         <BottomMenu />
