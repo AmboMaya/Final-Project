@@ -1,25 +1,52 @@
 import React from "react"
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
-import { Container, Grid, Card } from "semantic-ui-react"
+import { Container, Card, Button } from "semantic-ui-react"
+import Calendar from 'react-input-calendar'
 import moment from "moment"
-
 import Graph from "./Graph"
 import BottomMenu from './BottomMenu'
-import {getRecords} from '../actions/graph'
+import { getRecords } from '../actions/graph'
 import Loading from './Loading'
+
 // import {getUser} from '../actions/user'
 
 
 
 class Statistics extends React.Component {
   state = {
-    date: moment().format('YYYY-MM-DD')
+    date: moment().format('YYYY-MM-DD'),
+    selectedDate: moment(),
+    period: 'week'
   }
 
-  componentDidMount(){
-   this.props.getRecords(this.props.user.id, this.state.date)
-  //  this.getUserAction()
+  onSelect = (e) => {
+    this.setState({
+      selectedDate: moment(e),
+      date: moment(e).format('YYYY-MM-DD')
+    })
+    console.log(this.state)
+    this.props.getRecords(this.props.user.id, this.state.date)
+  }
+
+  clickWeekly = () => {
+    this.setState({
+      period: 'week'
+    })
+  this.props.getRecords(this.props.user.id, this.state.date)
+
+  }
+
+  clickMonthly = () => {
+    this.setState({
+      period: 'month'
+    })
+  this.props.getRecords(this.props.user.id, this.state.date)
+  }
+
+  componentDidMount() {
+    this.props.getRecords(this.props.user.id, this.state.date)
+    //  this.getUserAction()
   }
 
   // getUserAction = () => {
@@ -37,13 +64,15 @@ class Statistics extends React.Component {
     return (
       <React.Fragment>
         <Container className="appBody">
-        <Card fluid>
-        <Card.Content align="center">
-        <Card.Header size='small'>My Activity Statistics</Card.Header>
-          </Card.Content>
+          <Card fluid>
+            <Card.Content align="center">
+              <Card.Header size='small'>My Activity Statistics</Card.Header>
+              <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
+              <Button onClick={this.clickWeekly} size='mini'>Week</Button>
+              <Button onClick={this.clickMonthly} size='mini'>Month</Button>
+            </Card.Content>
           </Card>
-          <Graph chartData={this.props.records}/>
-          
+          <Graph chartData={this.props.records} />
         </Container>
         <BottomMenu />
       </React.Fragment>
@@ -53,10 +82,10 @@ class Statistics extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    records: state.graph, 
+    records: state.graph,
     user: state.user
   }
-  
+
 }
 
 const mapDispatchToProps = dispatch => {
