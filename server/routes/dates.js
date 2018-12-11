@@ -80,9 +80,9 @@ router.post('/', (req, res) => {
 // Gets all data for graph component
 router.get('/graph/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
-  let endDate = req.params.endDate
-  // let endDate = '2018-12-14'
-  endDate += ' 23:59:59'
+  // let endDate = req.params.endDate
+  let endDate = '2018-12-08'
+  // endDate += ' 23:59:59'
   const period = 'week'
 
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
@@ -91,15 +91,12 @@ router.get('/graph/:userId/:endDate', (req, res) => {
   // get dates data
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      chartData.labels = dates.map(date => date.date)
+      chartData.labels = dates.map(date => date.date.slice(5, 10))
       chartData.datasets = []
-      // let dateIds = dates.map(date => date.id)
-      // console.log(dateIds)
+
       // get cards data
       graph.getAllCards()
         .then(cards => {
-          let cardsPerDate = []
-
           // loop through activities to add data for each activity
           activities.getActivities()
             .then(acts => {
@@ -111,6 +108,7 @@ router.get('/graph/:userId/:endDate', (req, res) => {
                 a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
                 aObj.fill = false
                 aObj.pointRadius = 1
+                aObj.spanGaps = true
                 aObj.data = []
 
                 dates.map(date => {
@@ -126,9 +124,9 @@ router.get('/graph/:userId/:endDate', (req, res) => {
                 })
 
                 chartData.datasets.push(aObj)
-                res.status(200).json({
-                  ok: true, chartData
-                })
+              })
+              res.status(200).json({
+                ok: true, chartData
               })
             })
             .catch(err => res.status(500).json({
