@@ -14,10 +14,10 @@
     "postinstall": "knex migrate:latest && yarn knex seed:run",
     "heroku-postbuild":"webpack -p --progress --config ./webpack-config/webpack.prod.js --mode production",
     "test": "jest --watchAll",
-    "build-dev": "webpack --progress --config ./webpack-config/webpack.dev.js",
+    "build-dev": "webpack --watch --progress --config ./webpack-config/webpack.dev.js",
     "build-prod": "webpack -p --progress --config ./webpack-config/webpack.prod.js",
-    "dev": "nodemon --watch server/index.js && yarn build-dev --watch",
-    "prod": "nodemon --watch server/index.js && yarn build-prod --watch"
+    "dev": "nodemon --watch server/index.js && yarn build-dev",
+    "prod": "nodemon --watch server/index.js && yarn build-prod"
   },
   "babel": {
     "presets": [
