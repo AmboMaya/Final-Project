@@ -26,7 +26,7 @@ class CardList extends React.Component {
   }
 
   onSelect = e => {
-    this.props.getRecords(this.props.user.id, moment(e).format('YYYY-MM-DD'))
+    this.props.getRecords(this.props.user.id, moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD'))
   }
 
   render() {
@@ -35,9 +35,10 @@ class CardList extends React.Component {
         <Container className="appBody">
           <Container textAlign="center">
             <Calendar
-              placeholder="Today"
-              format="DD/MM/YYYY"
-              date={this.props.dateString}
+              placeholder='Today'
+              format='YYYY-MM-DD'
+              computableFormat='YYYY-MM-DD'
+              date={this.props.selectedDate}
               onChange={this.onSelect}
             />
           </Container>
@@ -51,7 +52,7 @@ class CardList extends React.Component {
                   act_id={act.id}
                   info={act.info}
                   link={act.link}
-                  selectedDate={this.state.selectedDate}
+                  selectedDate={this.props.selectedDate}
                   user_id={this.props.user.id}
                   smiles={this.state.smiles}
                 />
@@ -65,19 +66,7 @@ class CardList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ activities, records, selectedDate, user }) => {
-  const selected = records.find(r => r.date === selectedDate)
-  let dateString = moment()
-  if (selected) {
-    datestring = selected.date
-  }
-
-  return {
-    activities,
-    dateString,
-    user
-  }
-}
+const mapStateToProps = ({ activities, selectedDate, user }) => ({ activities, selectedDate, user })
 
 const mapDispatchToProps = dispatch => {
   return {

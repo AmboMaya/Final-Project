@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
       return [existingDate.id]
     })
     .then(([dateId]) => addRecords(cardData, dateId))
-    .then(() => cardDb.getRecordsForDate(date))
+    .then(() => cardDb.getRecordsForDate(userId, date))
     .then(records => res.status(200).json({ Okay: true, records }))
     .catch(err => res.status(500).json({ Okay: false, error: err.message }))
 })
@@ -51,15 +51,7 @@ router.get('/cards/:userId/:date', (req, res) => {
   const userId = Number(req.params.userId)
   const date = req.params.date
 
-  cardDb
-    .checkDate(userId, date)
-    .then(existingDate => {
-      if (!existingDate) {
-        return null
-      }
-      return [existingDate.id]
-    })
-    .then(() => cardDb.getRecordsForDate(date))
+  cardDb.getRecordsForDate(userId, date)
     .then(records => res.status(200).json({ Okay: true, records }))
     .catch(err => res.status(500).json({ Okay: false, error: err.message }))
 })

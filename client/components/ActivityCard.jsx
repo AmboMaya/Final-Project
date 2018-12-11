@@ -7,10 +7,11 @@ import { addActivity } from '../actions/records'
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.addActivity(userId, {
-      activityId: e.target.id,
-      rating: e.target.getAttribute('value')
-    })
+    this.props.addActivity(
+      userId,
+      { activityId: e.target.id, rating: e.target.getAttribute('value') },
+      this.props.selectedDate
+    )
   }
 
   renderSmiles = () => {
@@ -83,9 +84,10 @@ class ActivityCard extends React.Component {
 }
 
 const mapStateToProps = ({ records, selectedDate }, ownProps) => {
-  let card = undefined
+  let card = null
   if (records.length > 0) {
     const selected = records.find(r => r.date === selectedDate)
+
     if (selected) {
       card = selected.cardData.find(c => {
         return Number(c.activityId) === ownProps.act_id
@@ -94,13 +96,14 @@ const mapStateToProps = ({ records, selectedDate }, ownProps) => {
   }
 
   return {
-    card
+    card,
+    selectedDate
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addActivity: (userId, record) => dispatch(addActivity(userId, record))
+    addActivity: (userId, record, date) => dispatch(addActivity(userId, record, date))
   }
 }
 

@@ -39,12 +39,12 @@ export function getRecords(userId, date) {
   }
 }
 
-export function addActivity(userId, cardData) {
+export function addActivity(userId, cardData, date) {
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-      .send({ userId, date: moment().format('YYYY-MM-DD'), cardData })
+      .send({ userId, cardData, date })
       .then(res => dispatch(addRecordSuccess(res.body.records)))
       .catch(err => dispatch(getRecordError(err.message)))
   }
