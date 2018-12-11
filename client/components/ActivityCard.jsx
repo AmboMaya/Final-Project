@@ -7,14 +7,14 @@ import { addActivity } from '../actions/records'
 class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
-    this.props.addActivity(userId, {
-      activityId: e.target.id,
-      rating: e.target.getAttribute('value')
-    })
+    this.props.addActivity(
+      userId,
+      { activityId: e.target.id, rating: e.target.getAttribute('value') },
+      this.props.selectedDate
+    )
   }
 
   renderSmiles = () => {
-    // this.props.activity && Number(this.props.activity.rating) === smile.value && { color: 'green' }
     const { card, smiles } = this.props
 
     return smiles.map((smile, key) => (
@@ -40,7 +40,7 @@ class ActivityCard extends React.Component {
     return card && card.log ? (
       <ActivityLog icon="edit icon" text={card.log} id={act_id} name={name} />
     ) : (
-      <ActivityLog icon="plus icon" text="Add Log" id={act_id} name={name} />
+      <ActivityLog icon="plus icon" text="Add Log" id={act_id} name={name} date={this.props.selectedDate} />
     )
   }
 
@@ -83,22 +83,27 @@ class ActivityCard extends React.Component {
   }
 }
 
-const mapStateToProps = ({ records }, ownProps) => {
-  let card = undefined
+const mapStateToProps = ({ records, selectedDate }, ownProps) => {
+  let card = null
   if (records.length > 0) {
-    card = records[0].cardData.find(c => {
-      return Number(c.activityId) === ownProps.act_id
-    })
+    const selected = records.find(r => r.date === selectedDate)
+
+    if (selected) {
+      card = selected.cardData.find(c => {
+        return Number(c.activityId) === ownProps.act_id
+      })
+    }
   }
 
   return {
-    card
+    card,
+    selectedDate
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addActivity: (userId, record) => dispatch(addActivity(userId, record))
+    addActivity: (userId, record, date) => dispatch(addActivity(userId, record, date))
   }
 }
 

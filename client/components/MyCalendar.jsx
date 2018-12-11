@@ -7,12 +7,9 @@ import Photo from './Photo'
 import { Placeholder } from '../../node_modules/semantic-ui-react';
 
 class MyCalendar extends React.Component {
-  constructor(){
-    super();
-    this.state={
-      selectedDate:moment(),
+  state={
+      selectedDate: moment(),
     }
-  }
 
   onSelect = (e) => {
     this.setState({selectedDate:moment(e)})
