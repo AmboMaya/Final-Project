@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from 'react-redux'
 
-import { Container, Card, Button } from "semantic-ui-react"
+import { Container, Card, Button, Divider } from "semantic-ui-react"
 import Calendar from 'react-input-calendar'
 import moment from "moment"
 import Graph from "./Graph"
@@ -26,14 +26,14 @@ class Statistics extends React.Component {
       date: moment(e).format('YYYY-MM-DD')
     })
     console.log(this.state)
-    this.props.getRecords(this.props.user.id, this.state.date)
+    this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
   }
 
   clickWeekly = () => {
     this.setState({
       period: 'week'
     })
-  this.props.getRecords(this.props.user.id, this.state.date)
+  this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
 
   }
 
@@ -41,11 +41,12 @@ class Statistics extends React.Component {
     this.setState({
       period: 'month'
     })
-  this.props.getRecords(this.props.user.id, this.state.date)
+    console.log(this.state.period)
+  this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
   }
 
   componentDidMount() {
-    this.props.getRecords(this.props.user.id, this.state.date, 'month')
+    this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
     //  this.getUserAction()
   }
 
@@ -63,13 +64,16 @@ class Statistics extends React.Component {
 
     return (
       <React.Fragment>
-        <Container className="appBody">
+        <Container className='appBody'>
           <Card fluid>
-            <Card.Content align="center">
-              <Card.Header size='small'>My Activity Statistics</Card.Header>
+            <Card.Content align='center'>
+              <Card.Header className='space' size='small'>My Activity Statistics</Card.Header>
+              <Divider />
               <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
-              <Button onClick={this.clickWeekly} size='mini'>Week</Button>
-              <Button onClick={this.clickMonthly} size='mini'>Month</Button>
+              <div className='weeklyButton'>
+                <Button onClick={this.clickWeekly} size='mini'>Week</Button>
+                <Button onClick={this.clickMonthly} size='mini'>Month</Button>
+              </div>
             </Card.Content>
           </Card>
           <Graph chartData={this.props.records} />
