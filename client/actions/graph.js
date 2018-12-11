@@ -1,32 +1,32 @@
 import request from 'superagent'
 
-export function getRecordsPending () {
+export function getChartPending () {
   return {
-    type: 'GET_RECORDS_PENDING'
+    type: 'GET_CHART_PENDING'
   }
 }
 
-export function getRecordsSuccess (records) {
+export function getChartSuccess (chart) {
   return {
-    type: 'GET_RECORDS_SUCCESS',
-    records
+    type: 'GET_CHART_SUCCESS',
+    chart
   }
 }
 
-export function getRecordsError (message) {
+export function getChartError (message) {
   return {
-    type: 'GET_RECORDS_ERROR',
+    type: 'GET_CHART_ERROR',
     message
   }
 }
 
-export function getRecords (userId, endDate, period) {
+export function getChart (userId, endDate, period) {
   return dispatch => {
-    dispatch(getRecordsPending())
+    dispatch(getChartPending())
 
     request
       .get(`/api/v1/records/stats/${period}/${userId}/${endDate}`)
-      .then(res => dispatch(getRecordsSuccess(res.body.chartData)))
-      .catch(err => dispatch(getRecordsError(err.message)))
+      .then(res => dispatch(getChartSuccess(res.body.chartData)))
+      .catch(err => dispatch(getChartError(err.message)))
   }
 }

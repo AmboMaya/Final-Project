@@ -119,9 +119,9 @@ router.get('/cards/:userId/:date', (req, res) => {
 // Gets all data for graph component
 router.get('/stats/:period/:userId/:endDate', (req, res) => {
   const userId = Number(req.params.userId)
-  // let endDate = req.params.endDate
+  let endDate = req.params.endDate
   const period = req.params.period
-  let endDate = '2018-12-08'
+  // let endDate = '2018-12-08'
   // endDate += ' 23:59:59'
   // const period = 'month'
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')

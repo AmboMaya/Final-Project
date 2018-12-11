@@ -7,7 +7,7 @@ import moment from "moment"
 import Graph from "./Graph"
 import BarChart from './BarChart'
 import BottomMenu from './BottomMenu'
-import { getRecords } from '../actions/graph'
+import { getChart } from '../actions/graph'
 import Loading from './Loading'
 
 // import {getUser} from '../actions/user'
@@ -27,14 +27,14 @@ class Statistics extends React.Component {
       date: moment(e).format('YYYY-MM-DD')
     })
     console.log(this.state)
-    this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
+    this.props.getChart(this.props.user.id, this.state.date, this.state.period)
   }
 
   clickWeekly = () => {
     this.setState({
       period: 'week'
     })
-  this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
+  this.props.getChart(this.props.user.id, this.state.date, this.state.period)
 
   }
 
@@ -43,11 +43,11 @@ class Statistics extends React.Component {
       period: 'month'
     })
     console.log(this.state.period)
-  this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
+  this.props.getChart(this.props.user.id, this.state.date, this.state.period)
   }
 
   componentDidMount() {
-    this.props.getRecords(this.props.user.id, this.state.date, this.state.period)
+    this.props.getChart(this.props.user.id, this.state.date, this.state.period)
     //  this.getUserAction()
   }
 
@@ -97,7 +97,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getRecords: (userId, date, period) => dispatch(getRecords(userId, date, period)),
+    getChart: (userId, date, period) => dispatch(getChart(userId, date, period)),
     // getUser: () => dispatch(getUser())
   }
 }
