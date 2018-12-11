@@ -35,7 +35,7 @@ class CardList extends React.Component {
       <React.Fragment>
         <Container className="appBody">
           <Container textAlign="center">
-            <Calendar placeholder="Today" format="DD/MM/YYYY" date={this.state.selectedDate} onChange={this.onSelect} />
+            <Calendar placeholder="Today" format="DD/MM/YYYY" date={this.state.selectedDate} onChange={this.onSelect} onClick={() => this.props.getRecords(this.props.user.id, this.state.selectedDate )} />
           </Container>
           <Divider />
           <Grid columns={3} doubling stackable>
