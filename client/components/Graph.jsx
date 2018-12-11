@@ -23,7 +23,7 @@ class Graph extends Component {
             <Line
               data={this.props.chartData}
               width={100}
-              height={this.getGraphHeight}
+              height={this.getGraphHeight()}
               options={{
                 maintainAspectRatio: true,
                 legend: {
