@@ -45,7 +45,6 @@ router.post('/', (req, res) => {
 router.get('/cards/:userId/:date', (req, res) => {
   const userId = Number(req.params.userId)
   const date = req.params.date
-  console.debug(`Router received date is =${date}`)
 
 
   cardDb.getRecordsForDate(userId, date)
@@ -59,24 +58,19 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let graphData = {}
   let barData = {}
-  console.debug(`StartDate = ${startDate}`)
-  console.debug(`EndDate = ${endDate}`)
+
 
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      console.debug(dates)
       graphData = {
         labels: dates.map(date => moment(date.date).format('MM-DD')),
         datasets: []
       }
-      console.log(`GRAPHDATA LABELS : ${graphData.lables}`)
 
       graph.getAllCards()
         .then(cards => {
           activities.getActivities()
             .then(acts => {
-              console.log(cards)
-              console.log(acts)
               barData = {labels: acts.map(a => a.name)}
               let bObj = {
                 backgroundColor: [],
@@ -101,9 +95,7 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                   let [filteredCard] = cards.filter(card => card.activity_id === a.id && card.date_id === date.id)
                   filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
                 })
-                console.log(aObj.data)
                 graphData.datasets = [...graphData.datasets, aObj]
-                console.log(graphData.datasets)
 
                 let sum = 0
                 let count = 0
@@ -117,7 +109,6 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 bObj.backgroundColor.push(a.colour)
               })
               barData.datasets = [bObj]
-              console.log(barData.datasets)
 
               res.status(200).json({ok: true, chartData: {graphData, barData}})
             })
