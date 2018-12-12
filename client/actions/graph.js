@@ -21,6 +21,7 @@ export function getChartError (message) {
 }
 
 export function getChart (userId, endDate, period) {
+  console.debug(endDate)
   return dispatch => {
     dispatch(getChartPending())
 
