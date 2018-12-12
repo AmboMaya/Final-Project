@@ -61,7 +61,7 @@
     "react-window-size": "^1.2.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.83.0",
+    "semantic-ui-react": "^0.84.0",
     "superagent": "^4.0.0",
     "webpack": "^4.27.1",
     "webpack-dev-server": "^3.1.10",
