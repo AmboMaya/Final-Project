@@ -1,8 +1,11 @@
 const express = require('express')
+const verifyJwt = require('express-jwt')
 
 const users = require('../db/users')
 
 const router = express.Router()
+
+router.use(verifyJwt({ secret: process.env.JWT_SECRET }))
 
 router.get('/', (req, res) => {
   users.get()
@@ -24,6 +27,14 @@ router.post('/', (req, res) => {
       res.json({Okay: true})
     })
     .catch((err) => res.json({Okay: false, error: err.message}))
+})
+
+router.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(403).json({ ok: false, message: 'Access denied.' })
+  }
+
+  next(err)
 })
 
 module.exports = router

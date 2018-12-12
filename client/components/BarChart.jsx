@@ -19,7 +19,7 @@ class BarChart extends Component {
           <Card.Content align="center">
             <Card.Header>Average ratings</Card.Header>
           </Card.Content >
-          <Card.Content align="center" >
+          <Card.Content align="center" className='graphHeader'>
             <Bar
               data={this.props.chartData}
               width={100}
