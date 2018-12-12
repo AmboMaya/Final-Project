@@ -14,13 +14,15 @@ exports[`<Main /> matches the last snapshot 1`] = `
     />
     <Route
       component={[Function]}
-      exact={true}
       path="/statistics"
     />
     <Route
       component={[Function]}
-      exact={true}
       path="/login"
+    />
+    <Route
+      component={[Function]}
+      path="/register"
     />
   </Switch>
 </BrowserRouter>
