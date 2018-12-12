@@ -4,7 +4,7 @@ import ActivityLog from './ActivityLog'
 import { connect } from 'react-redux'
 import { addActivity } from '../actions/records'
 
-class ActivityCard extends React.Component {
+export class ActivityCard extends React.Component {
   clickHandler = e => {
     const userId = this.props.user_id
     this.props.addActivity(
