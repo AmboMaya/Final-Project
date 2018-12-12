@@ -1,9 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Button, Form, Grid, Header} from 'semantic-ui-react'
+import {Button, Form, Grid, Header, Message} from 'semantic-ui-react'
 
 class LoginForm extends React.Component {
+  state = {
+    username: '',
+    password: ''
+  }
+
+  onChange = e => this.setState({ [ e.target.name ]: e.target.value })
+
+  onSubmit = () => {}
+
   render () {
     return (
       <div className='login-form'>
@@ -24,15 +33,28 @@ class LoginForm extends React.Component {
             <Header as='h2' color='teal' textAlign='center'>
           Log-in to your account
             </Header>
-            <Form size='large'>
-
-              <Form.Input fluid icon='user' iconPosition='left' placeholder='Username or E-mail address' />
+            <Form error={this.props.auth.error} size='large'>
+              <Message
+                error
+                header='Login Error'
+                content={this.props.auth.error}
+              />
+              <Form.Input
+                fluid
+                icon='user'
+                iconPosition='left'
+                name='username'
+                placeholder='Username'
+                value={this.state.username}
+              />
               <Form.Input
                 fluid
                 icon='lock'
                 iconPosition='left'
+                name='password'
                 placeholder='Password'
                 type='password'
+                value={this.state.password}
               />
               <Button as={Link} color='teal' fluid size='large' to="/">Login</Button>
             </Form>
@@ -43,5 +65,10 @@ class LoginForm extends React.Component {
   }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
-export default connect(LoginForm)
+const mapStateToProps = ({ auth }) => ({ auth })
+
+const mapDispatchToProps = dispatch => ({
+  login: (username, password) => dispatch(login(username, password))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
