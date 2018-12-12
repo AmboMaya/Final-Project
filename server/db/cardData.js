@@ -39,10 +39,8 @@ function processRecords (records) {
   if (records.length === 0) {
     return records
   }
-  // let temp = moment(records.date).format('YYYY-MM-DD')
 
   const { dateId, date, userId } = records[0]
-    console.debug(`cardData - processRecords fn - date is =${date}`)
   const cardData = records.map(
     ({ id, activityId, rating, log }) =>
     ({ id, activityId, rating, log })
