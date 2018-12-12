@@ -19,10 +19,14 @@ class ActivityLog extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    this.props.addLog(this.props.user.id, {
-      activityId: this.props.id,
-      log: this.state.log
-    })
+    this.props.addLog(
+      this.props.user.id,
+      {
+        activityId: this.props.id,
+        log: this.state.log
+      },
+      this.props.selectedDate
+    )
     this.setState({ modalOpen: false})
   }
 
@@ -64,15 +68,11 @@ class ActivityLog extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
+const mapStateToProps = ({ selectedDate, user }) => ({ selectedDate, user })
 
 const mapDispatchToProps = dispatch => {
   return {
-    addLog: (id, record) => dispatch(addLog(id, record))
+    addLog: (id, record, date) => dispatch(addLog(id, record, date))
   }
 }
 
