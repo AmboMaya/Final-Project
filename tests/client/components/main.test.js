@@ -18,4 +18,3 @@ test('<Main /> matches the last snapshot', () => {
   const actual = renderer.render(<Main />)
   expect(actual).toMatchSnapshot()
 })
-
