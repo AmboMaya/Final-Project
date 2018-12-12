@@ -54,13 +54,13 @@ export function addActivity(userId, cardData, date) {
   }
 }
 
-export function addLog(userId, cardData) {
+export function addLog(userId, cardData, date) {
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records') // we may need a new api?
       .set('Authorization', `Bearer ${getToken()}`)
-      .send({ userId, date: moment().format('YYYY-MM-DD'), cardData })
+      .send({ userId, cardData, date })
       .then(res => {
         dispatch(addRecordSuccess(res.body.records))
       })
