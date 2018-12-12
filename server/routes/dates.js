@@ -1,4 +1,5 @@
 const express = require('express')
+const verifyJwt = require('express-jwt')
 const moment = require('moment')
 
 const cardDb = require('../db/cardData')
@@ -8,6 +9,8 @@ const activities = require('../db/activities')
 const router = express.Router()
 
 module.exports = router
+
+router.use(verifyJwt({ secret: process.env.JWT_SECRET }))
 
 const addRecords = (record, dateId, date) => {
   record.date_id = dateId
@@ -117,3 +120,12 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
         )
     })
 })
+
+router.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(403).json({ ok: false, message: 'Access denied.' })
+  }
+
+  next(err)
+})
+
