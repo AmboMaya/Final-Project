@@ -86,8 +86,8 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
             .then(acts => {
               // Bar Chart
               barData = {
-                labels: acts.map(a => a.name),
-                datasets: []
+                labels: acts.map(a => a.name)
+                // datasets: []
               }
               // barData.labels = acts.map(a => a.name)
               // barData.datasets = []
@@ -110,6 +110,8 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                   fill: false,
                   pointRadius: 1,
                   spanGaps: true,
+                  borderWidth: a.id === 1 ? 2 : 1,
+                  hidden: a.id !== 1,
                   data: []
                 }
                 // aObj.label = a.name
@@ -118,21 +120,23 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 // aObj.fill = false
                 // aObj.pointRadius = 1
                 // aObj.spanGaps = true
-                a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
-                a.id === 1 ? aObj.hidden = false : aObj.hidden = true
+                // a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
+                // a.id === 1 ? aObj.hidden = false : aObj.hidden = true
                 // aObj.data = []
 
                 dates.map(date => {
                   let [filteredCard] = cards.filter(card => {
                     return card.activity_id === a.id && card.date_id === date.id
                   })
-                  if (filteredCard) {
-                    aObj.data.push(filteredCard.rating)
-                  } else {
-                    aObj.data.push(null)
-                  }
+                  filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
+                  // if (filteredCard) {
+                  //   aObj.data.push(filteredCard.rating)
+                  // } else {
+                  //   aObj.data.push(null)
+                  // }
                 })
-                graphData.datasets.push(aObj)
+                graphData.datasets = [...graphData.datasets, aObj]
+                // graphData.datasets.push(aObj)
 
                 // Bar Chart
                 let sum = 0
@@ -143,11 +147,12 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                     count++
                   }
                 })
-                let av = sum / count
-                bObj.data.push(av)
+                // let av = sum / count
+                bObj.data.push(sum / count)
                 bObj.backgroundColor.push(a.colour)
               })
-              barData.datasets.push(bObj)
+              barData.datasets = [bObj]
+              // barData.datasets.push(bObj)
 
               res.status(200).json({
                 ok: true, chartData: {graphData, barData}
