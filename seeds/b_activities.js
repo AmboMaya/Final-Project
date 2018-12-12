@@ -29,7 +29,7 @@ exports.seed = knex => {
           name: 'Sleep',
           info: '"Studies using different methods and populations estimate that 65% to 90% of adult patients with major depression, and about 90% of children with this disorder, experience some kind of sleep problem."',
           link: 'https://www.health.harvard.edu/newsletter_article/sleep-and-mental-health',
-          colour: 'rgba(45, 23, 150, 0.7)'
+          colour: 'rgba(10, 45, 102, 0.7)'
         },
         {
           id: 5,
@@ -50,7 +50,7 @@ exports.seed = knex => {
           name: 'Alcohol',
           info: '"in the long term alcohol misuse can cause big problems for our mental health. It’s linked to a range of issues from depression and memory loss to suicide."',
           link: 'https://www.mentalhealth.org.nz/assets/A-Z/Downloads/The-facts-about-Alcohol-and-mental-health-Drink-Aware-UK-2013.pdf',
-          colour: 'rgba(106, 76, 147, 0.7)'
+          colour: 'rgba(86, 96, 147, 0.7)'
         },
         {
           id: 8,

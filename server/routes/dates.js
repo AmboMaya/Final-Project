@@ -1,4 +1,5 @@
 const express = require('express')
+const verifyJwt = require('express-jwt')
 const moment = require('moment')
 
 const cardDb = require('../db/cardData')
@@ -9,6 +10,12 @@ const router = express.Router()
 
 module.exports = router
 
+// This isn't an ideal thing to do in general! However, modifying our route tests to cope with
+// authentication tokens is a bit out of scope for this project :)
+if (process.env.NODE_ENV !== 'test') {
+  router.use(verifyJwt({ secret: process.env.JWT_SECRET }))
+}
+
 const addRecords = (record, dateId, date) => {
   record.date_id = dateId
   record.activity_id = record.activityId
@@ -16,10 +23,8 @@ const addRecords = (record, dateId, date) => {
 
   return cardDb.checkRecords(dateId, record.activity_id).then(card => {
     if (!card) {
-      // add
       return cardDb.addRecord(record)
     }
-    // update
     return cardDb.updateRecord({
       id: card.id,
       ...record
@@ -28,11 +33,8 @@ const addRecords = (record, dateId, date) => {
 }
 
 router.post('/', (req, res) => {
-  // req.body look like :
-  // { userId: 1, date: 'YYYY-MM-DD', cardData: { activityId: 1, rating: 1, log: 'asdfdgfh'} }
   const {userId, date, cardData} = req.body
 
-  // check if date data is exist in dates table
   cardDb
     .checkDate(userId, date)
     .then(existingDate => {
@@ -50,7 +52,6 @@ router.post('/', (req, res) => {
 router.get('/cards/:userId/:date', (req, res) => {
   const userId = Number(req.params.userId)
   const date = req.params.date
-  console.debug(`Router received date is =${date}`)
 
 
   cardDb.getRecordsForDate(userId, date)
@@ -58,125 +59,51 @@ router.get('/cards/:userId/:date', (req, res) => {
     .catch(err => res.status(500).json({Okay: false, error: err.message}))
 })
 
-// // Gets all data for graph component
-// router.get('/graph/:period/:userId/:endDate', (req, res) => {
-//   const userId = Number(req.params.userId)
-//   // let endDate = req.params.endDate
-//   const period = req.params.period
-//   let endDate = '2018-12-08'
-//   // endDate += ' 23:59:59'
-//   // const period = 'month'
-
-//   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
-//   let chartData = {}
-
-//   // get dates data
-//   graph.getDates(userId, startDate, endDate)
-//     .then(dates => {
-//       chartData.labels = dates.map(date => date.date.slice(5, 10))
-//       chartData.datasets = []
-
-//       // get cards data
-//       graph.getAllCards()
-//         .then(cards => {
-//           // loop through activities to add data for each activity
-//           activities.getActivities()
-//             .then(acts => {
-//               acts.map(a => {
-//                 let aObj = {}
-//                 aObj.label = a.name
-//                 aObj.borderColor = a.colour
-//                 aObj.backgroundColor = a.colour
-//                 a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
-//                 aObj.fill = false
-//                 aObj.pointRadius = 1
-//                 aObj.spanGaps = true
-//                 a.id === 1 ? aObj.hidden = false : aObj.hidden = true
-//                 aObj.data = []
-
-//                 dates.map(date => {
-//                   let [filteredCard] = cards.filter(card => {
-//                     return card.activity_id === a.id && card.date_id === date.id
-//                   })
-//                   if (filteredCard) {
-//                     aObj.data.push(filteredCard.rating)
-//                   } else {
-//                     aObj.data.push(null)
-//                   }
-//                 })
-
-//                 chartData.datasets.push(aObj)
-//               })
-//               res.status(200).json({
-//                 ok: true, chartData
-//               })
-//             })
-//             .catch(err => res.status(500).json({
-//               ok: false, error: err.message
-//             }))
-//         })
-//     })
-// })
-
-// Gets all data for graph component
 router.get('/stats/:period/:userId/:endDate', (req, res) => {
-  const userId = Number(req.params.userId)
-  let endDate = req.params.endDate
-  const period = req.params.period
-  // let endDate = '2018-12-08'
-  // endDate += ' 23:59:59'
-  // const period = 'month'
+  let {userId, endDate, period} = req.params
+  userId = Number(userId)
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let graphData = {}
   let barData = {}
 
-  // get dates data
+
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
-      graphData.labels = dates.map(date => date.date.slice(5, 10))
-      graphData.datasets = []
-      //
+      graphData = {
+        labels: dates.map(date => moment(date.date).format('MM-DD')),
+        datasets: []
+      }
 
-      // get cards data
       graph.getAllCards()
         .then(cards => {
-          // loop through activities to add data for each activity
           activities.getActivities()
             .then(acts => {
-              // Bar Chart
-              barData.labels = acts.map(a => a.name)
-              barData.datasets = []
-              let bObj = {}
-              bObj.backgroundColor = []
-              bObj.data = []
-              bObj.label = 'Activities'
-              // loop through activities
+              barData = {labels: acts.map(a => a.name)}
+              let bObj = {
+                backgroundColor: [],
+                data: [],
+                label: 'Activities'
+              }
+
               acts.map(a => {
-                // Graph
-                let aObj = {}
-                aObj.label = a.name
-                aObj.borderColor = a.colour
-                aObj.backgroundColor = a.colour
-                a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
-                aObj.fill = false
-                aObj.pointRadius = 1
-                aObj.spanGaps = true
-                a.id === 1 ? aObj.hidden = false : aObj.hidden = true
-                aObj.data = []
+                let aObj = {
+                  label: a.name,
+                  borderColor: a.colour,
+                  backgroundColor: a.colour,
+                  fill: false,
+                  pointRadius: 1,
+                  spanGaps: true,
+                  borderWidth: a.id === 1 ? 2 : 1,
+                  hidden: a.id !== 1,
+                  data: []
+                }
 
                 dates.map(date => {
-                  let [filteredCard] = cards.filter(card => {
-                    return card.activity_id === a.id && card.date_id === date.id
-                  })
-                  if (filteredCard) {
-                    aObj.data.push(filteredCard.rating)
-                  } else {
-                    aObj.data.push(null)
-                  }
+                  let [filteredCard] = cards.filter(card => card.activity_id === a.id && card.date_id === date.id)
+                  filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
                 })
-                graphData.datasets.push(aObj)
+                graphData.datasets = [...graphData.datasets, aObj]
 
-                // Bar Chart
                 let sum = 0
                 let count = 0
                 aObj.data.map(rating => {
@@ -185,25 +112,26 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                     count++
                   }
                 })
-                let av = sum / count
-                bObj.data.push(av)
+                bObj.data.push(sum / count)
                 bObj.backgroundColor.push(a.colour)
               })
-              barData.datasets.push(bObj)
+              barData.datasets = [bObj]
 
-              res.status(200).json({
-                ok: true, chartData: {graphData, barData}
-              })
+              res.status(200).json({ok: true, chartData: {graphData, barData}})
             })
-            .catch(err => res.status(500).json({
-              ok: false, error: err.message
-            }))
+            .catch(err => res.status(500).json({ok: false, error: err.message}))
         })
         .catch(err =>
-          res.status(500).json({
-            ok: false,
-            error: err.message
-          })
+          res.status(500).json({ok: false, error: err.message})
         )
     })
 })
+
+router.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(403).json({ ok: false, message: 'Access denied.' })
+  }
+
+  next(err)
+})
+

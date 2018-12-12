@@ -1,5 +1,7 @@
 import request from 'superagent'
 
+import { getToken } from '../utils/tokens'
+
 export function getActivitiesPending () {
   return {
     type: 'GET_ACTIVITIES_PENDING'
@@ -26,6 +28,7 @@ export function getActivities () {
 
     request
       .get('/api/v1/activities')
+      .set('Authorization', `Bearer ${getToken()}`)
       .then(res => dispatch(getActivitiesSuccess(res.body.activity)))
       .catch(err => dispatch(getActivitiesError(err.message)))
   }

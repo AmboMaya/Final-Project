@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { getToken } from '../utils/tokens'
 
 export function getChartPending () {
   return {
@@ -26,6 +27,7 @@ export function getChart (userId, endDate, period) {
 
     request
       .get(`/api/v1/records/stats/${period}/${userId}/${endDate}`)
+      .set('Authorization', `Bearer ${getToken()}`)
       .then(res => dispatch(getChartSuccess(res.body.chartData)))
       .catch(err => dispatch(getChartError(err.message)))
   }

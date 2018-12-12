@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import Calendar from 'react-input-calendar'
 import moment from 'moment'
 
@@ -23,6 +24,7 @@ class CardList extends React.Component {
 
   componentDidMount() {
     this.props.getActivities()
+    this.props.getRecords(this.props.user.id, this.props.selectedDate)
   }
 
   onSelect = e => {
@@ -30,6 +32,10 @@ class CardList extends React.Component {
   }
 
   render() {
+    if (!this.props.auth.loggedIn) {
+      return <Redirect to='/login' />
+    }
+
     return (
       <React.Fragment>
         <Container className="appBody">
@@ -66,7 +72,17 @@ class CardList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ activities, selectedDate, user }) => ({ activities, selectedDate, user })
+const mapStateToProps = ({
+  activities,
+  auth,
+  selectedDate,
+  user
+}) => ({
+  activities,
+  auth,
+  selectedDate,
+  user
+})
 
 const mapDispatchToProps = dispatch => {
   return {
