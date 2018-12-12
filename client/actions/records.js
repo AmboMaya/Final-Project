@@ -44,7 +44,7 @@ export function addActivity(userId, cardData, date) {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-      .send({ userId, cardData, date })
+      .send({ userId, cardData, date: moment().format('YYYY-MM-DD') })
       .then(res => dispatch(addRecordSuccess(res.body.records)))
       .catch(err => dispatch(getRecordError(err.message)))
   }

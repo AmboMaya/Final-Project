@@ -1,4 +1,5 @@
 const connection = require('./')
+const moment = require('moment')
 
 function checkDate (userId, date, db = connection) {
   return db('dates')
@@ -47,7 +48,7 @@ function processRecords (records) {
 
   return {
     dateId,
-    date,
+    date: moment(date).format('YYYY-MM-DD'),
     userId,
     cardData
   }
