@@ -104,23 +104,23 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
               acts.map(a => {
                 // Graph
                 let aObj = {
-                  label = a.name,
-                  borderColor = a.colour,
-                  backgroundColor = a.colour,
-                  fill = false,
-                  pointRadius = 1,
-                  
-                  
+                  label: a.name,
+                  borderColor: a.colour,
+                  backgroundColor: a.colour,
+                  fill: false,
+                  pointRadius: 1,
+                  spanGaps: true,
+                  data: []
                 }
-                aObj.label = a.name
-                aObj.borderColor = a.colour
-                aObj.backgroundColor = a.colour
+                // aObj.label = a.name
+                // aObj.borderColor = a.colour
+                // aObj.backgroundColor = a.colour
+                // aObj.fill = false
+                // aObj.pointRadius = 1
+                // aObj.spanGaps = true
                 a.id === 1 ? aObj.borderWidth = 2 : aObj.borderWidth = 1
-                aObj.fill = false
-                aObj.pointRadius = 1
-                aObj.spanGaps = true
                 a.id === 1 ? aObj.hidden = false : aObj.hidden = true
-                aObj.data = []
+                // aObj.data = []
 
                 dates.map(date => {
                   let [filteredCard] = cards.filter(card => {
