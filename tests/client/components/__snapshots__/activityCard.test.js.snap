@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ActivityCard /> matches the last snapshot 1`] = `
+<React.Fragment>
+  <GridColumn
+    align="center"
+  >
+    <Card>
+      <CardContent
+        align="center"
+      >
+        <Grid>
+          <GridColumn
+            floated="right"
+            width={5}
+          >
+            <Modal
+              centered={true}
+              closeIcon={true}
+              closeOnDimmerClick={true}
+              closeOnDocumentClick={false}
+              dimmer={true}
+              eventPool="Modal"
+              trigger={
+                <a>
+                  <i
+                    className="question circle outline icon right"
+                  />
+                </a>
+              }
+            >
+              <ModalHeader />
+              <ModalContent>
+                <ModalDescription>
+                  <p />
+                </ModalDescription>
+              </ModalContent>
+            </Modal>
+          </GridColumn>
+        </Grid>
+        <CardHeader />
+        <GridColumn
+          align="center"
+        />
+      </CardContent>
+      <CardContent
+        extra={true}
+      >
+        <Connect(ActivityLog)
+          icon="plus icon"
+          text="Add Log"
+        />
+      </CardContent>
+    </Card>
+  </GridColumn>
+</React.Fragment>
+`;
