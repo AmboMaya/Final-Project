@@ -1,10 +1,10 @@
 import React from 'react'
-import {mount} from 'enzyme'
+import {shallow} from 'enzyme'
 
 import Graph from '../../../client/components/Graph'
 
 test('Graph renders progress graph text', () => {
-  const expected = 'Progress graph'
-  const wrapper = mount(<Graph />)
+  const expected = '<Graph />'
+  const wrapper = shallow(<Graph />)
   expect(wrapper.text()).toBe(expected)
 })
