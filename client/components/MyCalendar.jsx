@@ -23,20 +23,20 @@ class MyCalendar extends React.Component {
     return (
       <div>
         <Container textAlign="center">
-        <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
+          <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
         </Container>
-          <Divider />
+        <Divider />
         <Photo />
         <div className='description'>Capture your mood with a photo of the day </div>
         <div>
           <Divider hidden />
           <Container textAlign="center">
-          <Image.Group size='small'>
-          <Image src={'/images/BeerPizza.png'} />
-          <Image src={'/images/Crazy.png'} />
-          <Image src={'/images/tech.png'} />
-          <Image src={'/images/sleep.png'} />
-          </Image.Group>
+            <Image.Group size='small'>
+              <Image src={'/images/BeerPizza.png'} />
+              <Image src={'/images/Crazy.png'} />
+              <Image src={'/images/tech.png'} />
+              <Image src={'/images/sleep.png'} />
+            </Image.Group>
           </Container>
         </div>
         <BottomMenu />
