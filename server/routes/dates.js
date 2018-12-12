@@ -59,12 +59,14 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let graphData = {}
   let barData = {}
+  console.debug(`StartDate = ${startDate}`)
+  console.debug(`EndDate = ${endDate}`)
 
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
       console.debug(dates)
       graphData = {
-        labels: dates.map(date => date.date.slice(5, 10)),
+        labels: dates.map(date => moment(date.date).format('MM-DD')),
         datasets: []
       }
 
