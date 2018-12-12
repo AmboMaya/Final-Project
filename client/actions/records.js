@@ -43,6 +43,7 @@ export function getRecords(userId, date) {
 }
 
 export function addActivity(userId, cardData, date) {
+  let dateRev = moment(date).format('YYYY-MM-DD')
   return dispatch => {
     dispatch(getRecordPending())
     return request

@@ -53,6 +53,7 @@ router.get('/cards/:userId/:date', (req, res) => {
   const userId = Number(req.params.userId)
   const date = req.params.date
 
+
   cardDb.getRecordsForDate(userId, date)
     .then(records => res.status(200).json({Okay: true, records}))
     .catch(err => res.status(500).json({Okay: false, error: err.message}))
@@ -65,10 +66,11 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
   let graphData = {}
   let barData = {}
 
+
   graph.getDates(userId, startDate, endDate)
     .then(dates => {
       graphData = {
-        labels: dates.map(date => date.date.slice(5, 10)),
+        labels: dates.map(date => moment(date.date).format('MM-DD')),
         datasets: []
       }
 

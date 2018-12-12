@@ -1,5 +1,4 @@
 import request from 'superagent'
-
 import { getToken } from '../utils/tokens'
 
 export function getChartPending () {
