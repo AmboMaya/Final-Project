@@ -15,7 +15,7 @@ export default class Main extends React.Component {
           <Route path='/photo' component={MyCalendar} />
           <Route path='/statistics' component={Statistics} />
           <Route path='/login' component={LoginForm} />
-          <Route path='/auth' component={RegisterForm} />
+          <Route path='/register' component={RegisterForm} />
         </Switch>
       </Router>
     )
