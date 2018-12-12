@@ -10,10 +10,6 @@ import BottomMenu from './BottomMenu'
 import { getChart } from '../actions/graph'
 import Loading from './Loading'
 
-// import {getUser} from '../actions/user'
-
-
-
 class Statistics extends React.Component {
   state = {
     date: moment().format('YYYY-MM-DD'),
@@ -22,28 +18,15 @@ class Statistics extends React.Component {
   }
 
   onSelect = (e) => {
+    this.props.getChart(this.props.user.id, moment(e, 'YYYY-MM-DD').format('YYYY-MM-DD'), this.state.period)
     this.setState({
       selectedDate: moment(e),
       date: moment(e).format('YYYY-MM-DD')
     })
-    console.log(this.state)
-    this.props.getChart(this.props.user.id, this.state.date, this.state.period)
   }
 
-  clickWeekly = () => {
-    this.setState({
-      period: 'week'
-    })
-  this.props.getChart(this.props.user.id, this.state.date, this.state.period)
-
-  }
-
-  clickMonthly = () => {
-    this.setState({
-      period: 'month'
-    })
-    console.log(this.state.period)
-  this.props.getChart(this.props.user.id, this.state.date, this.state.period)
+  onClickPeriod = (e) => {
+    this.props.getChart(this.props.user.id, this.state.date, e.target.name)
   }
 
   componentDidMount() {
@@ -70,10 +53,15 @@ class Statistics extends React.Component {
             <Card.Content align='center'>
               <Card.Header className='space' size='small'>My Activity Statistics</Card.Header>
               <Divider />
-              <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
+              <Calendar 
+              placeholder='Today'
+              format='YYYY-MM-DD'
+              computableFormat='YYYY-MM-DD'
+              date={this.state.selectedDate} 
+              onChange={this.onSelect} />
               <div className='weeklyButton'>
-                <Button onClick={this.clickWeekly} size='mini'>Week</Button>
-                <Button onClick={this.clickMonthly} size='mini'>Month</Button>
+                <Button onClick={this.onClickPeriod} name='week' size='mini'>Week</Button>
+                <Button onClick={this.onClickPeriod} name='month'size='mini'>Month</Button>
               </div>
             </Card.Content>
           </Card>
