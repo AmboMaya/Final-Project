@@ -1,6 +1,7 @@
 .input-calendar {
   font-family: 'Pontano Sans', sans-serif;
   position: relative;
+  margin-top: 15px; 
 }
 
 .input-calendar-wrapper {
@@ -37,8 +38,8 @@
 .input-calendar .calendar-icon {
   display: inline-block;
   padding: 0px 1px 0 5px;
-  height: 27px;
-  line-height: 27px;
+  height: 30px;
+  line-height: 30px;
   transform: translateY(4px);
   cursor: pointer;
 }

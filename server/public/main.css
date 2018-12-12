@@ -14,8 +14,8 @@ body{
 }
 
 .appBody{
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 3%;
+  margin-bottom: 60px;
 }
 
 *:focus{
@@ -30,15 +30,6 @@ body{
   height: 150px !important;
 }
 
-.stickyMenu {
-  position: fixed !important;
-  width: 100% !important;
-  border-radius: none !important;
-}
-
-.space {
-  margin-bottom: 10px !important;
-}
 
 .weeklyButton {
   margin-top: 10px !important;
