@@ -60,8 +60,11 @@ class Statistics extends React.Component {
               date={this.state.selectedDate} 
               onChange={this.onSelect} />
               <div className='weeklyButton'>
-                <Button onClick={this.onClickPeriod} name='week' size='mini'>Week</Button>
-                <Button onClick={this.onClickPeriod} name='month'size='mini'>Month</Button>
+                <Button.Group size='mini' compact>
+                  <Button onClick={this.onClickPeriod} name='week' size='mini'>Week</Button>
+                  <Button onClick={this.onClickPeriod} name='month'size='mini'>Month</Button>
+                </Button.Group>
+                
               </div>
             </Card.Content>
           </Card>
