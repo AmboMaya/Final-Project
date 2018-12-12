@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {Form, Grid, Header, Message} from 'semantic-ui-react'
 
 import { login } from '../actions/auth'
@@ -20,6 +20,10 @@ class LoginForm extends React.Component {
   }
 
   render () {
+    if (this.props.auth.loggedIn) {
+      return <Redirect to='/' />
+    }
+
     return (
       <div className='login-form'>
         {/*
