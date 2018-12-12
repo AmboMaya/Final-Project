@@ -54,8 +54,6 @@ router.get('/cards/:userId/:date', (req, res) => {
 })
 
 router.get('/stats/:period/:userId/:endDate', (req, res) => {
-    console.debug(endDate)
-
   let {userId, endDate, period} = req.params
   userId = Number(userId)
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
