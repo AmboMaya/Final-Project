@@ -5,6 +5,7 @@ import { Container, Card, Button, Divider } from "semantic-ui-react"
 import Calendar from 'react-input-calendar'
 import moment from "moment"
 import Graph from "./Graph"
+import BarChart from './BarChart'
 import BottomMenu from './BottomMenu'
 import { getChart } from '../actions/graph'
 import Loading from './Loading'
@@ -76,7 +77,9 @@ class Statistics extends React.Component {
               </div>
             </Card.Content>
           </Card>
-          <Graph chartData={this.props.records} />
+          <Graph chartData={this.props.records.graphData}/>
+          <BarChart chartData={this.props.records.barData}/>
+          
         </Container>
         <BottomMenu />
       </React.Fragment>
