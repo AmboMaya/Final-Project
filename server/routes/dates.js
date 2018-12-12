@@ -66,7 +66,7 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
     .then(dates => {
       console.debug(dates)
       graphData = {
-        labels: dates.map(date => moment(date.date).format('MM-DD')),
+        labels: dates.map(date => moment(date).format('MM-DD')),
         datasets: []
       }
 
@@ -95,6 +95,7 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 }
 
                 dates.map(date => {
+                  console.debug(filteredCard)
                   let [filteredCard] = cards.filter(card => card.activity_id === a.id && card.date_id === date.id)
                   filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
                 })
