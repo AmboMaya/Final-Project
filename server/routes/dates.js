@@ -66,14 +66,17 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
     .then(dates => {
       console.debug(dates)
       graphData = {
-        labels: dates.map(date => moment(date).format('MM-DD')),
+        labels: dates.map(date => moment(date.date).format('MM-DD')),
         datasets: []
       }
+      console.log(`GRAPHDATA LABELS : ${graphData.lables}`)
 
       graph.getAllCards()
         .then(cards => {
           activities.getActivities()
             .then(acts => {
+              console.log(cards)
+              console.log(acts)
               barData = {labels: acts.map(a => a.name)}
               let bObj = {
                 backgroundColor: [],
