@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
-import {Form, Grid, Header, Message} from 'semantic-ui-react'
+import {Image, Form, Grid, Header, Message} from 'semantic-ui-react'
 
 import { login } from '../actions/auth'
 
@@ -42,6 +42,7 @@ class LoginForm extends React.Component {
         </style>
         <Grid textAlign='center' style={{height: '100%'}} verticalAlign='middle'>
           <Grid.Column style={{maxWidth: 340}}>
+          <Image verticalAlign='middle' size='small' src='/images/MoodLogo.png' />
             <Header as='h2' color='teal' textAlign='center'>
           Log-in to your account
             </Header>
