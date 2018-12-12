@@ -1,5 +1,4 @@
 const path = require('path')
-const { GenerateSW } = require('workbox-webpack-plugin')
 
 module.exports = {
   entry: path.join(__dirname, '../client/index.js'),
@@ -31,11 +30,5 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new GenerateSW({
-      swDest: 'sw.js',
-      clientsClaim: true,
-      skipWaiting: true,
-      include: [/\.html$/, /\.js$/, /\.jpg$/, /\.png$/]
-    })
   ]
 }
