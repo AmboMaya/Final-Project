@@ -1,5 +1,7 @@
 import request from 'superagent'
 
+import { getToken } from '../utils/tokens'
+
 export function getUserPending () {
   return {
     type: 'GET_USER_PENDING'
@@ -26,6 +28,7 @@ export function getUser () {
 
     request
       .get('/api/v1/users')
+      .set('Authorization', `Bearer ${getToken()}`)
       .then(res => dispatch(getUserSuccess(res.body.user)))
       .catch(err => dispatch(getUserError(err.message)))
   }
