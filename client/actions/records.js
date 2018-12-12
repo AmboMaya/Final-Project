@@ -48,32 +48,20 @@ export function addActivity(userId, cardData, date) {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-<<<<<<< HEAD
-      .send({ userId, cardData, date: dateRev })
-=======
       .set('Authorization', `Bearer ${getToken()}`)
       .send({ userId, cardData, date })
->>>>>>> 4025fa9b3429dadd06aff7fcc1eb7cbe2597b4c0
       .then(res => dispatch(addRecordSuccess(res.body.records)))
       .catch(err => dispatch(getRecordError(err.message)))
   }
 }
 
 export function addLog(userId, cardData, date) {
-<<<<<<< HEAD
-  let dateRev = moment(date).format('YYYY-MM-DD')
-=======
->>>>>>> 4025fa9b3429dadd06aff7fcc1eb7cbe2597b4c0
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records') // we may need a new api?
-<<<<<<< HEAD
-      .send({ userId, cardData, date: dateRev })
-=======
       .set('Authorization', `Bearer ${getToken()}`)
       .send({ userId, cardData, date })
->>>>>>> 4025fa9b3429dadd06aff7fcc1eb7cbe2597b4c0
       .then(res => {
         dispatch(addRecordSuccess(res.body.records))
       })

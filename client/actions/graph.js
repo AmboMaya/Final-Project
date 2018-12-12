@@ -1,5 +1,4 @@
 import request from 'superagent'
-
 import { getToken } from '../utils/tokens'
 
 export function getChartPending () {
@@ -23,7 +22,6 @@ export function getChartError (message) {
 }
 
 export function getChart (userId, endDate, period) {
-  console.debug(endDate)
   return dispatch => {
     dispatch(getChartPending())
 
