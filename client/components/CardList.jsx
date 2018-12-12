@@ -24,6 +24,7 @@ class CardList extends React.Component {
 
   componentDidMount() {
     this.props.getActivities()
+    this.props.getRecords(this.props.user.id, this.props.selectedDate)
   }
 
   onSelect = e => {

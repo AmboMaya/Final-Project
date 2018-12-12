@@ -9,7 +9,22 @@ class ActivityLog extends React.Component {
     modalOpen: false
   }
 
-  openModal = () => this.setState({modalOpen: true})
+  componentDidMount () {
+    document.addEventListener('keydown', this.escKey, false)
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this.escKey, false)
+  }
+
+  escKey = e => {
+    if (event.keyCode === 27 && this.state.modalOpen) {
+      this.setState({ modalOpen: false })
+    }
+  }
+
+  openModal = () => this.setState({ modalOpen: true })
+  closeModal = () => this.setState({ modalOpen: false })
 
   handleChange = e => {
     this.setState({
@@ -19,26 +34,31 @@ class ActivityLog extends React.Component {
 
   submitHandler = e => {
     e.preventDefault()
-    this.props.addLog(this.props.user.id, {
-      activityId: this.props.id,
-      log: this.state.log
-    })
-    this.setState({ modalOpen: false})
+    this.props.addLog(
+      this.props.user.id,
+      {
+        activityId: this.props.id,
+        log: this.state.log
+      },
+      this.props.selectedDate
+    )
+    this.closeModal()
   }
-
 
   render() {
     return (
       <div>
         
         <Modal
-          trigger={<a size="mini" onClick={this.openModal}>
-          <i className={this.props.icon} />
-          <span>{this.props.text}</span>
-        </a>}
+          trigger={
+            <a size="mini" onClick={this.openModal}>
+              <i className={this.props.icon} />
+              <span>{this.props.text}</span>
+            </a>}
           className="addLogModal"
-          size="mini"
           closeIcon
+          size="mini"
+          onClose={this.closeModal}
           open={this.state.modalOpen}
         >
           <Modal.Content>
@@ -53,9 +73,7 @@ class ActivityLog extends React.Component {
                 maxLength="250"
               />
               <Divider />
-              <Form.Button basic={true} size="mini" >
-                Add
-              </Form.Button>
+              <Form.Button basic={true} size="mini" content='Add' />
             </Form>
           </Modal.Content>
         </Modal>
@@ -64,15 +82,11 @@ class ActivityLog extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
-}
+const mapStateToProps = ({ selectedDate, user }) => ({ selectedDate, user })
 
 const mapDispatchToProps = dispatch => {
   return {
-    addLog: (id, record) => dispatch(addLog(id, record))
+    addLog: (id, record, date) => dispatch(addLog(id, record, date))
   }
 }
 
