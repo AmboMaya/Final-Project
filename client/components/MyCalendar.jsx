@@ -22,10 +22,9 @@ class MyCalendar extends React.Component {
 
     return (
       <div>
-        <Placeholder> Today is: {this.state.selectedDate.format('YYYY-MM-DD')} </Placeholder>
         <Calendar date={this.state.selectedDate} onChange={this.onSelect} />
         <Photo />
-        <Placeholder>Capture your mood with a photo of the day </Placeholder>
+        <div className='description'>Capture your mood with a photo of the day </div>
         <BottomMenu />
       </div>
     )

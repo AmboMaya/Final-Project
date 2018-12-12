@@ -159,3 +159,9 @@
   font-size: 20px;
   color: #F39C12;
 }
+
+.description {
+  position: center;
+  text-decoration-color: #fff;
+  text-align: center
+}
