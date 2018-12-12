@@ -13,9 +13,9 @@ export default class Main extends React.Component {
         <Switch>
           <Route exact path='/' component={CardList} />
           <Route path='/photo' component={MyCalendar} />
-          <Route exact path='/statistics' component={Statistics} />
-          <Route exact path='/login' component={LoginForm} />
-          <Route exact path='/auth' component={RegisterForm} />
+          <Route path='/statistics' component={Statistics} />
+          <Route path='/login' component={LoginForm} />
+          <Route path='/auth' component={RegisterForm} />
         </Switch>
       </Router>
     )
