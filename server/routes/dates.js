@@ -98,11 +98,12 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 }
 
                 dates.map(date => {
-                  console.debug(filteredCard)
                   let [filteredCard] = cards.filter(card => card.activity_id === a.id && card.date_id === date.id)
                   filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
                 })
+                console.log(aobj.data)
                 graphData.datasets = [...graphData.datasets, aObj]
+                console.log(graphData.datasets)
 
                 let sum = 0
                 let count = 0
@@ -116,6 +117,7 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                 bObj.backgroundColor.push(a.colour)
               })
               barData.datasets = [bObj]
+              console.log(barData.datasets)
 
               res.status(200).json({ok: true, chartData: {graphData, barData}})
             })
