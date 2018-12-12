@@ -39,7 +39,7 @@ function processRecords (records) {
   if (records.length === 0) {
     return records
   }
-  // moment(records.date).format('YYYY-MM-DD')
+  moment(records.date).format('YYYY-MM-DD')
 
   const { dateId, date, userId } = records[0]
     console.debug(`cardData - processRecords fn - date is =${date}`)
