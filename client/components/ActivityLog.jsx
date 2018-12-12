@@ -72,7 +72,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addLog: (id, record) => dispatch(addLog(id, record))
+    addLog: (id, record, date) => dispatch(addLog(id, record, date))
   }
 }
 

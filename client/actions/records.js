@@ -40,22 +40,24 @@ export function getRecords(userId, date) {
 }
 
 export function addActivity(userId, cardData, date) {
+  let dateRev = moment(date).format('YYYY-MM-DD')
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records')
-      .send({ userId, cardData, date: moment().format('YYYY-MM-DD') })
+      .send({ userId, cardData, date: dateRev })
       .then(res => dispatch(addRecordSuccess(res.body.records)))
       .catch(err => dispatch(getRecordError(err.message)))
   }
 }
 
-export function addLog(userId, cardData) {
+export function addLog(userId, cardData, date) {
+  let dateRev = moment(date).format('YYYY-MM-DD')
   return dispatch => {
     dispatch(getRecordPending())
     return request
       .post('/api/v1/records') // we may need a new api?
-      .send({ userId, date: moment().format('YYYY-MM-DD'), cardData })
+      .send({ userId, cardData, date: dateRev })
       .then(res => {
         dispatch(addRecordSuccess(res.body.records))
       })
