@@ -10,7 +10,6 @@ export const loginFailure = error => ({type: 'LOGIN_FAILURE', error})
 
 export const login = (username, password) => dispatch => {
   dispatch(loginPending())
-
   return request
     .post('/api/v1/auth/login')
     .send({username, password})
