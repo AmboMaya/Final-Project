@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 
 import activities from './activities'
+import auth from './auth'
 import graph from './graph'
 import user from './user'
 import records from './records'
@@ -9,6 +10,7 @@ import selectedDate from './selectedDate'
 
 export default combineReducers({
   activities,
+  auth,
   graph,
   user,
   records,
