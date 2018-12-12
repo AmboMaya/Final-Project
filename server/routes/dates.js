@@ -101,7 +101,7 @@ router.get('/stats/:period/:userId/:endDate', (req, res) => {
                   let [filteredCard] = cards.filter(card => card.activity_id === a.id && card.date_id === date.id)
                   filteredCard ? aObj.data.push(filteredCard.rating) : aObj.data.push(null)
                 })
-                console.log(aobj.data)
+                console.log(aObj.data)
                 graphData.datasets = [...graphData.datasets, aObj]
                 console.log(graphData.datasets)
 
