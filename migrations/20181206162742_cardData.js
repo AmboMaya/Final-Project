@@ -3,6 +3,7 @@ exports.up = knex =>
     t.increments('id').primary()
     t.integer('date_id').references('dates.id')
     t.integer('activity_id').references('activities.id')
+    t.integer('user_id').references('users.id')
     t.integer('rating')
     t.string('log')
   })

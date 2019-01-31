@@ -15,9 +15,10 @@ function addDate (data, db = connection) {
     .returning('id')
 }
 
-function checkRecords (dateId, actId, db = connection) {
+function checkRecords (dateId, actId, uId, db = connection) {
   return db('cardData')
     .select()
+    .where('user_id', uId)
     .where('date_id', dateId)
     .where('activity_id', actId)
     .first()

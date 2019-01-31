@@ -16,12 +16,14 @@ if (process.env.NODE_ENV !== 'test') {
   router.use(verifyJwt({ secret: process.env.JWT_SECRET }))
 }
 
-const addRecords = (record, dateId, date) => {
+const addRecords = (record, userId, dateId) => {
   record.date_id = dateId
+  record.user_id = userId
+  console.log(`db route add record ccalled userId = ${userId}`)
   record.activity_id = record.activityId
   delete record.activityId
 
-  return cardDb.checkRecords(dateId, record.activity_id).then(card => {
+  return cardDb.checkRecords(dateId, record.activity_id, record.user_id).then(card => {
     if (!card) {
       return cardDb.addRecord(record)
     }
@@ -33,6 +35,7 @@ const addRecords = (record, dateId, date) => {
 }
 
 router.post('/', (req, res) => {
+  console.log(req.body.userId) 
   const {userId, date, cardData} = req.body
 
   cardDb
@@ -43,7 +46,7 @@ router.post('/', (req, res) => {
       }
       return [existingDate.id]
     })
-    .then(([dateId]) => addRecords(cardData, dateId))
+    .then(([dateId]) => addRecords(cardData, userId, dateId))
     .then(() => cardDb.getRecordsForDate(userId, date))
     .then(records => res.status(200).json({Okay: true, records}))
     .catch(err => res.status(500).json({Okay: false, error: err.message}))
