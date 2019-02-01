@@ -25,6 +25,7 @@ function checkRecords (dateId, actId, uId, db = connection) {
 }
 
 function addRecord (record, db = connection) {
+  console.log(record)
   return db('cardData')
     .insert(record)
     .returning('id')

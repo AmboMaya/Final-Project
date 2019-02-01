@@ -2,6 +2,8 @@ import request from 'superagent'
 import moment from 'moment'
 
 import { getToken } from '../utils/tokens'
+import { getUserId } from '../utils/userlogon'
+
 
 export function getRecordsSuccess(records, date) {
   return {

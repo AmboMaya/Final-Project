@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 import {setToken} from '../utils/tokens'
-import {setUserId} from '../utils/user'
+import setUserId from '../utils/userlogon'
 
 export const loginPending = () => ({type: 'LOGIN_PENDING'})
 
@@ -15,11 +15,18 @@ export const login = (username, password) => dispatch => {
     .post('/api/v1/auth/login')
     .send({username, password})
     .then(res => {
-      setToken(res.body.token)
-      setUserId(res.body.userId)
+      console.log(res.body)
+      setToken({  token: res.body.token,
+                  userId: res.body.userId 
+                })
+      // setUserId(res.body.userId)
       dispatch(loginSuccess())
     })
-    .catch(err => dispatch(loginFailure(err.response.body.error)))
+    .catch(err => {
+      console.log(err)
+      dispatch(loginFailure(err.response.body.error))
+    })
+    
 }
 
 export const registerPending = () => ({type: 'REGISTER_PENDING'})
@@ -37,7 +44,7 @@ export const register = (username, password, email) => dispatch => {
     .then(res => {
       console.log(`token ${res.body.token} + uID${res.body.userId}`)
       setToken(res.body.token)
-      setUserId(res.body.userId)
+      setUserId(res.body.userId)  
       dispatch(registerSuccess())
     })
     .catch(err => dispatch(registerFailure(err.response.body.error)))

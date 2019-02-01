@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 import { getToken } from '../utils/tokens'
-import { getUserID } from '../utils/user'
+import { getUserID } from '../utils/userlogon'
 
 
 export function getUserPending () {

@@ -1,7 +1,7 @@
 const defaultUser = {
-  id: 1,
-  username: 'kowhai',
-  email: 'kowhai@email.com'
+  // id: 1,
+  // username: 'kowhai',
+  // email: 'kowhai@email.com'
 }
 
 export default function usersReducer (state = defaultUser, action) {
