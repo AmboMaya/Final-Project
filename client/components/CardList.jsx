@@ -8,6 +8,7 @@ import { Container, Grid, Divider } from 'semantic-ui-react'
 import ActivityCard from './ActivityCard'
 import { getActivities } from '../actions/journalActions'
 import { getRecords } from '../actions/records'
+import { getUserID } from '../utils/userlogon'
 
 import BottomMenu from './BottomMenu'
 
@@ -19,10 +20,22 @@ class CardList extends React.Component {
       { mood: 'fa-meh', value: '3', color: 'blue' },
       { mood: 'fa-smile', value: '4', color: 'yellow' },
       { mood: 'fa-laugh', value: '5', color: 'green' }
-    ]
+    ],
+    user: {
+      id: ''
+    }
   }
 
   componentDidMount() {
+    console.log(`Component mount UID: ${this.props.user.id}`)
+    getUserID(id => {
+      this.setState({
+        user: {
+          id
+        }
+      })
+    })
+  
     this.props.getActivities()
     this.props.getRecords(this.props.user.id, this.props.selectedDate)
   }

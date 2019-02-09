@@ -3,10 +3,11 @@ import { Card, Grid, Modal } from 'semantic-ui-react'
 import ActivityLog from './ActivityLog'
 import { connect } from 'react-redux'
 import { addActivity } from '../actions/records'
+import { getUserID } from '../utils/userlogon'
 
 export class ActivityCard extends React.Component {
   clickHandler = e => {
-    const userId = this.props.user_id
+    const userId = getUserID()
     this.props.addActivity(
       userId,
       { activityId: e.target.id, rating: e.target.getAttribute('value') },

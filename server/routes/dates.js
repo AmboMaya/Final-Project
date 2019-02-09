@@ -35,6 +35,7 @@ const addRecords = (record, userId, dateId) => {
 }
 
 router.post('/', (req, res) => {
+  console.log('date POST route called')
   console.log(req.body) 
   const {userId, date, cardData} = req.body
 
@@ -53,6 +54,8 @@ router.post('/', (req, res) => {
 })
 
 router.get('/cards/:userId/:date', (req, res) => {
+  console.log('date GET route uID/DAte called')
+  console.log(req.body) 
   const userId = Number(req.params.userId)
   const date = req.params.date
 
@@ -63,7 +66,10 @@ router.get('/cards/:userId/:date', (req, res) => {
 })
 
 router.get('/stats/:period/:userId/:endDate', (req, res) => {
+  console.log('stats GET route uID/DAte called')
+   
   let {userId, endDate, period} = req.params
+  console.log(`USERID: ${userId} endDate: ${endDate} PERIOD ${period} `)
   userId = Number(userId)
   let startDate = moment(endDate).add(-1, period).format('YYYY-MM-DD')
   let graphData = {}
