@@ -23,7 +23,6 @@ router.use(errorHandler)
 
 // from end of the exercise but not working
 router.get('/username', tokens.decode, (req, res) => {
-  console.log('/username route called')
   res.json({
     username: req.user.username
   })
@@ -37,7 +36,7 @@ function checkUser (req, res, next) {
       if (!user) {
         return next(new Error('Unknown user.'))
       }
-      console.log(user)
+
       const {hash, ...userWithoutHash} = user
       res.locals.user = userWithoutHash
       return hashing.verify(hash, password)
@@ -80,7 +79,7 @@ function errorHandler (err, req, res, next) {
 }
 
 function issueToken (req, res, next) {
-  console.log(res.locals)
+  console.log(`ID from Auth Route is - ${res.locals.user.id}`)
   const {id} = res.locals.user
 
   const token = tokens.create(id)

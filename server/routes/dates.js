@@ -35,7 +35,7 @@ const addRecords = (record, userId, dateId) => {
 }
 
 router.post('/', (req, res) => {
-  console.log(req.body) 
+  console.log(req.body.userId) 
   const {userId, date, cardData} = req.body
 
   cardDb
