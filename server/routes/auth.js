@@ -56,8 +56,6 @@ function createUser (req, res, next) {
     .then(user => {
       const {hash, ...userWithoutHash} = user
       res.locals.user = userWithoutHash
-      console.log(user)
-      console.log(userWithoutHash)
       next()
     })
     .catch(err => {
@@ -79,11 +77,10 @@ function errorHandler (err, req, res, next) {
 }
 
 function issueToken (req, res, next) {
-  console.log(`ID from Auth Route is - ${res.locals.user.id}`)
   const {id} = res.locals.user
 
   const token = tokens.create(id)
-  res.status(200).json({ok: true, userId: id, token })
+  res.status(200).json({ok: true, token})
 }
 
 function validateLogin (req, res, next) {
