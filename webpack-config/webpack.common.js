@@ -30,5 +30,34 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router|react-redux)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  }
 }
