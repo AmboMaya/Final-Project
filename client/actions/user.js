@@ -31,7 +31,7 @@ export function getUser () {
     request
       .get('/api/v1/users')
       .set('Authorization', `Bearer ${getToken()}`)
-      // .set('user', getUserID())
+      .set('user', getUserID())
       .then(res => dispatch(getUserSuccess(res.body.user)))
       .catch(err => dispatch(getUserError(err.message)))
   }

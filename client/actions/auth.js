@@ -1,7 +1,7 @@
 import request from 'superagent'
 
 import {setToken} from '../utils/tokens'
-import {setUserID} from '../utils/userlogon'
+import setUserId from '../utils/userlogon'
 
 export const loginPending = () => ({type: 'LOGIN_PENDING'})
 
@@ -19,7 +19,7 @@ export const login = (username, password) => dispatch => {
       setToken({  token: res.body.token,
                   userId: res.body.userId 
                 })
-      // setUserID(res.body.userId)
+      // setUserId(res.body.userId)
       dispatch(loginSuccess())
     })
     .catch(err => {
@@ -44,7 +44,7 @@ export const register = (username, password, email) => dispatch => {
     .then(res => {
       console.log(`token ${res.body.token} + uID${res.body.userId}`)
       setToken(res.body.token)
-      // setUserId(res.body.userId)  
+      setUserId(res.body.userId)  
       dispatch(registerSuccess())
     })
     .catch(err => dispatch(registerFailure(err.response.body.error)))

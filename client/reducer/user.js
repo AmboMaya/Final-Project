@@ -1,13 +1,8 @@
-import { getUserID } from '../utils/userlogon'
-
 const defaultUser = {
-  user:{
-    id: getUserID,
-  }
+  // id: 1,
   // username: 'kowhai',
   // email: 'kowhai@email.com'
 }
-
 
 export default function usersReducer (state = defaultUser, action) {
   switch (action.type) {
